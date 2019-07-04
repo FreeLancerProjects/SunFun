@@ -20,7 +20,7 @@ public class Fragment_Home  extends Fragment {
     private AHBottomNavigation ah_bottom_nav;    @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_sign_in,container,false);
+        View view = inflater.inflate(R.layout.fragment_home,container,false);
         initView(view);
         return view;
     }
