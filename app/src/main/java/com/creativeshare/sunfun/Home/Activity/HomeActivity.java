@@ -117,8 +117,8 @@ if(fragment_main!=null&&fragment_main.isAdded()){
         if(fragment_main!=null&&fragment_main.isAdded()){
             fragmentManager.beginTransaction().hide(fragment_main).commit();
         }
-        if(fragment_orders!=null&&fragment_orders.isAdded()){
-            fragmentManager.beginTransaction().hide(fragment_orders).commit();
+        if(fragment_more!=null&&fragment_more.isAdded()){
+            fragmentManager.beginTransaction().hide(fragment_more).commit();
         }
         if(fragment_notidications!=null&&fragment_notidications.isAdded()){
             fragmentManager.beginTransaction().hide(fragment_notidications).commit();
@@ -131,7 +131,7 @@ if(fragment_main!=null&&fragment_main.isAdded()){
 
         }
         if(fragment_home!=null&&fragment_home.isAdded()){
-            fragment_home.updateBottomNavigationPosition(2);
+            fragment_home.updateBottomNavigationPosition(1);
         }
     }
     public void DisplayFragmentnotifications()
@@ -143,15 +143,22 @@ if(fragment_main!=null&&fragment_main.isAdded()){
         if(fragment_main!=null&&fragment_main.isAdded()){
             fragmentManager.beginTransaction().hide(fragment_main).commit();
         }
-        if (fragment_more.isAdded()) {
-            fragmentManager.beginTransaction().show(fragment_more).commit();
+
+        if(fragment_orders!=null&&fragment_orders.isAdded()){
+            fragmentManager.beginTransaction().hide(fragment_orders).commit();
+        }
+        if(fragment_more!=null&&fragment_more.isAdded()){
+            fragmentManager.beginTransaction().hide(fragment_more).commit();
+        }
+        if (fragment_notidications.isAdded()) {
+            fragmentManager.beginTransaction().show(fragment_notidications).commit();
 
         } else {
             fragmentManager.beginTransaction().add(R.id.fragment_home_container, fragment_notidications, "fragment_notidications").addToBackStack("fragment_notidications").commit();
 
         }
         if(fragment_home!=null&&fragment_home.isAdded()){
-            fragment_home.updateBottomNavigationPosition(3);
+            fragment_home.updateBottomNavigationPosition(2);
         }
     }
     @Override
