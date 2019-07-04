@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">صن فان</string>
+    <string name="log_in">تسجيل الدخول</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="are_you_forgot_password">are you forgot password ?</string>
+    <string name="do_you_have_a_new_account">Do you have a new account?</string>
+    <string name="create_an_account">Create an account</string>
+    <string name="user_name">user name</string>
+    <string name="phone">phone</string>
+    <string name="you_already_have_an_account_log_in">You already have an account! log in</string>
+
+</resources>
