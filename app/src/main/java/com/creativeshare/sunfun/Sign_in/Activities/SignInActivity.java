@@ -1,10 +1,12 @@
 package com.creativeshare.sunfun.Sign_in.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
+import com.creativeshare.sunfun.Home.Activity.HomeActivity;
 import com.creativeshare.sunfun.R;
 import com.creativeshare.sunfun.Sign_in.Fragments.Fragment_Sign_In;
 import com.creativeshare.sunfun.Sign_in.Fragments.Fragment_Sign_Up;
@@ -67,5 +69,11 @@ public class SignInActivity extends AppCompatActivity {
         } else {
             fragmentManager.beginTransaction().add(R.id.fragment_sign_in_container, fragment_sign_up, "fragment_sign_up").addToBackStack("fragment_sign_up").commit();
         }
+    }
+
+    public void gotohome() {
+        Intent intent=new Intent(SignInActivity.this, HomeActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

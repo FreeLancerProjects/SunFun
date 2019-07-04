@@ -11,5 +11,9 @@
     <string name="user_name">user name</string>
     <string name="phone">phone</string>
     <string name="you_already_have_an_account_log_in">You already have an account! log in</string>
+    <string name="home">Home</string>
+    <string name="notifications">notifications</string>
+    <string name="orders">My Orders</string>
+    <string name="more">More</string>
 
 </resources>
