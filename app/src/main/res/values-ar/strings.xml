@@ -29,5 +29,7 @@
     <string name="about_app">About App</string>
     <string name="contact_us">Contact Us</string>
     <string name="logout">Logout</string>
+    <string name="ticket_num">ticket number</string>
+    <string name="order_offr">order offr</string>
 
 </resources>
