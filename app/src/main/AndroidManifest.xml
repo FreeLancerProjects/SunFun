@@ -4,6 +4,7 @@
     package="com.creativeshare.sunfun">
 
     <application
+        android:name=".Share.Local"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -13,7 +14,7 @@
         tools:ignore="GoogleAppIndexingWarning">
 
         <activity
-            android:name=".Sign_in.Activities.SignInActivity"
+            android:name=".Activities_Fragments.Sign_in.Activities.SignInActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize">
             <intent-filter>
@@ -22,7 +23,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<activity android:name=".Home.Activity.HomeActivity"
+<activity android:name=".Activities_Fragments.Home.Activity.HomeActivity"
     android:configChanges="orientation|screenSize|keyboardHidden"
     android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
     >

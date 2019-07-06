@@ -153,6 +153,7 @@
         android:background="@color/black"
         />
     <LinearLayout
+        android:id="@+id/ll_contact_us"
     android:layout_width="match_parent"
     android:layout_height="50dp"
     app:layout_constraintTop_toTopOf="parent"
@@ -182,7 +183,7 @@
         />
 
     <ImageView
-
+        android:id="@+id/arrow_contact_us"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_gravity="center_vertical"

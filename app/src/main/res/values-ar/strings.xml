@@ -31,5 +31,9 @@
     <string name="logout">Logout</string>
     <string name="ticket_num">ticket number</string>
     <string name="order_offr">order offr</string>
+    <string name="subject">Subject</string>
+    <string name="leave_your_message">Leave your message</string>
+    <string name="send">send</string>
+    <string name="book">Book</string>
 
 </resources>
