@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Sunfun</string>
+    <string name="map_api_key">AIzaSyCbc2Y5AIwZ8uUeHRUXiozGN3CnpjKT0oI</string>
+
     <string name="log_in">Log In</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
@@ -37,4 +39,7 @@
     <string name="date_of_event">Date of Event</string>
     <string name="time_of_event">time  of  event</string>
     <string name="event_details">Event details</string>
+    <string name="tickets">Tickets</string>
+    <string name="address">Adrress</string>
+    <string name="make_event">make Event</string>
 </resources>
