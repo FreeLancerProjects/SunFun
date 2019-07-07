@@ -43,5 +43,9 @@
     <string name="tickets">Tickets</string>
     <string name="address">Adrress</string>
     <string name="make_event">make Event</string>
+    <string name="next">next</string>
+    <string name="previous">previous</string>
+    <string name="first_details_about_the_place">First details about the place</string>
+    <string name="event_name">Event name</string>
 
 </resources>
