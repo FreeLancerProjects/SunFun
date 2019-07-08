@@ -22,7 +22,6 @@
     <string name="message">message</string>
     <string name="date">Date</string>
     <string name="time">time</string>
-    <string name="price">price</string>
     <string name="join_us">Join us</string>
     <string name="tickets_remaining">Tickets remaining</string>
     <string name="book_now">Book now</string>
@@ -57,5 +56,10 @@
     <string name="fourth_add_activity_to_the_event">Fourth add activity to the event</string>
     <string name="do_you_want_to_add_event_activity">Do you want to add event activity?</string>
     <string name="yes">yes</string>
+    <string name="no">No</string>
+    <string name="activity_name">activity name</string>
+    <string name="unit">Unit</string>
+    <string name="price">price</string>
+    <string name="activity_address">activity Address</string>
 
 </resources>
