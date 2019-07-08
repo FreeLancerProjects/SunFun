@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fillViewport="true">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:text="@string/second_details_of_the_place_of_the_event"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+
+            />
+
+        <FrameLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@drawable/edt_bg"
+            android:layout_marginTop="8dp"
+
+            >
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                >
+
+            </Spinner>
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:text="@string/event_address"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center_vertical"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@drawable/edt_bg"
+            android:hint="@string/event_address"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray4"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:text="@string/choose_your_location_on_map"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center_vertical"
+            />
+        <fragment
+            android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            />
+    </LinearLayout>
+</ScrollView>

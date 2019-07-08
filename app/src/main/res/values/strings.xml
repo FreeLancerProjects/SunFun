@@ -46,4 +46,14 @@
     <string name="previous">previous</string>
     <string name="first_details_about_the_place">First details about the place</string>
     <string name="event_name">Event name</string>
+    <string name="event_image">Event Image</string>
+    <string name="second_details_of_the_place_of_the_event">Second Details of the place of the event</string>
+    <string name="event_address">Event Address</string>
+    <string name="choose_your_location_on_map">Choose your LOcation on Map</string>
+    <string name="third_date_and_time">Third Date And Time</string>
+    <string name="event_begin">The beginning of the event</string>
+    <string name="end_of_event">End of event</string>
+    <string name="fourth_add_activity_to_the_event">Fourth add activity to the event</string>
+    <string name="do_you_want_to_add_event_activity">Do you want to add event activity?</string>
+    <string name="yes">yes</string>
 </resources>
