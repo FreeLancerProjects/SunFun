@@ -1,4 +1,4 @@
-package com.creativeshare.sunfun.Activities_Fragments.Home.Activity;
+package com.creativeshare.sunfun.Activities_Fragments.activity_home.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,16 +7,17 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
-import com.creativeshare.sunfun.Activities_Fragments.Create_Event.Activity.Create_Event_Activity;
-import com.creativeshare.sunfun.Activities_Fragments.Home.Fragments.Fragment_Contact_Us;
-import com.creativeshare.sunfun.Activities_Fragments.Home.Fragments.Fragment_Home;
-import com.creativeshare.sunfun.Activities_Fragments.Home.Fragments.Fragment_Main;
-import com.creativeshare.sunfun.Activities_Fragments.Home.Fragments.Fragment_More;
-import com.creativeshare.sunfun.Activities_Fragments.Home.Fragments.Fragment_Notidications;
-import com.creativeshare.sunfun.Activities_Fragments.Home.Fragments.Fragment_Orders;
-import com.creativeshare.sunfun.Activities_Fragments.Home.Fragments.Fragment_Ticket_detials;
+import com.creativeshare.sunfun.Activities_Fragments.activity_create_event.activity.Create_Event_Activity;
+import com.creativeshare.sunfun.Activities_Fragments.activity_home.fragments.Fragment_Contact_Us;
+import com.creativeshare.sunfun.Activities_Fragments.activity_home.fragments.Fragment_Home;
+import com.creativeshare.sunfun.Activities_Fragments.activity_home.fragments.Fragment_Main;
+import com.creativeshare.sunfun.Activities_Fragments.activity_home.fragments.Fragment_More;
+import com.creativeshare.sunfun.Activities_Fragments.activity_home.fragments.Fragment_Notidications;
+import com.creativeshare.sunfun.Activities_Fragments.activity_home.fragments.Fragment_Orders;
+import com.creativeshare.sunfun.Activities_Fragments.activity_home.fragments.Fragment_Ticket_detials;
 import com.creativeshare.sunfun.Language.Language;
 import com.creativeshare.sunfun.R;
+import com.creativeshare.sunfun.preferences.Preferences;
 
 import java.util.Locale;
 
@@ -35,7 +36,7 @@ public class HomeActivity extends AppCompatActivity {
     private String cuurent_language;
     @Override
     protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(Language.updateResources(newBase, Language.getLanguage(newBase)));
+        super.attachBaseContext(Language.updateResources(newBase,  Preferences.getInstance().getLanguage(newBase)));
 
     }
     @Override

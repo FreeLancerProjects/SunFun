@@ -14,6 +14,10 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+    dataBinding
+            {
+                enabled=true
+            }
     buildTypes {
         release {
             minifyEnabled false
@@ -28,6 +32,17 @@ android {
         resolutionStrategy {
             force 'com.android.support:support-annotations:26.1.0'
         }
+    }
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+    repositories {
+
+        maven { url 'https://jitpack.io' }
+
     }
 
 }
@@ -45,7 +60,10 @@ dependencies {
     implementation 'com.makeramen:roundedimageview:2.3.0'
     implementation 'io.paperdb:paperdb:2.6'
     implementation 'com.google.maps.android:android-maps-utils:0.5'
-    implementation 'com.google.android.gms:play-services-places:16.1.0'
-    implementation 'com.google.android.gms:play-services-location:16.0.0'
+    implementation 'com.google.android.gms:play-services-places:17.0.0'
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
     implementation 'com.xw.repo:bubbleseekbar:3.20'
+    implementation 'com.github.mukeshsolanki:country-picker-android:2.0.1'
+    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
 }

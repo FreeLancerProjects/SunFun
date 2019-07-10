@@ -9,12 +9,10 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
 import com.creativeshare.sunfun.R;
-import com.creativeshare.sunfun.Activities_Fragments.Sign_in.Activities.SignInActivity;
-import com.creativeshare.sunfun.databinding.FragmentSignInBinding;
+import com.creativeshare.sunfun.Activities_Fragments.activity_sign_in.activities.SignInActivity;
 
 import java.util.Locale;
 
@@ -24,23 +22,20 @@ public class Fragment_Sign_In extends Fragment {
     private SignInActivity signInActivity;
     private LinearLayout ll_new_account;
     private Button bt_signin;
-
     private String  cuurent_language;
-    FragmentSignInBinding fragmentSignInBinding;
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-      fragmentSignInBinding = DataBindingUtil.inflate(inflater,R.layout.fragment_sign_in,container,false);
-      View view=fragmentSignInBinding.getRoot();
-        initView();
+        View view = inflater.inflate(R.layout.fragment_sign_in,container,false);
+        initView(view);
         return view;
     }
 
-    private void initView() {
+    private void initView(View view) {
         signInActivity=(SignInActivity)getActivity();
         Paper.init(signInActivity);
         cuurent_language = Paper.book().read("lang", Locale.getDefault().getLanguage());
-        ll_new_account=fragmentSignInBinding.llNewAcccount;
-        bt_signin=fragmentSignInBinding.btSignin;
+        ll_new_account=view.findViewById(R.id.ll_new_acccount);
+        bt_signin=view.findViewById(R.id.bt_signin);
         ll_new_account.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

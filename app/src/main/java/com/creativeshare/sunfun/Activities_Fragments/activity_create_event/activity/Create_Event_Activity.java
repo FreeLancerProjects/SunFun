@@ -1,4 +1,4 @@
-package com.creativeshare.sunfun.Activities_Fragments.Create_Event.Activity;
+package com.creativeshare.sunfun.Activities_Fragments.activity_create_event.activity;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -10,13 +10,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
-import com.creativeshare.sunfun.Activities_Fragments.Create_Event.Fragments.Fragment_Add_Activity;
-import com.creativeshare.sunfun.Activities_Fragments.Create_Event.Fragments.Fragment_Detials_About_The_Place;
-import com.creativeshare.sunfun.Activities_Fragments.Create_Event.Fragments.Fragment_Detials_Of_The_Place_OF_The_Event;
-import com.creativeshare.sunfun.Activities_Fragments.Create_Event.Fragments.Fragment_Event_Date_Time;
+import com.creativeshare.sunfun.Activities_Fragments.activity_create_event.fragments.Fragment_Add_Activity;
+import com.creativeshare.sunfun.Activities_Fragments.activity_create_event.fragments.Fragment_Detials_About_The_Place;
+import com.creativeshare.sunfun.Activities_Fragments.activity_create_event.fragments.Fragment_Detials_Of_The_Place_OF_The_Event;
+import com.creativeshare.sunfun.Activities_Fragments.activity_create_event.fragments.Fragment_Event_Date_Time;
 import com.creativeshare.sunfun.Adapter.PageAdapter;
 import com.creativeshare.sunfun.Language.Language;
 import com.creativeshare.sunfun.R;
+import com.creativeshare.sunfun.preferences.Preferences;
 import com.xw.repo.BubbleSeekBar;
 
 import java.util.ArrayList;
@@ -36,11 +37,11 @@ public class Create_Event_Activity extends AppCompatActivity {
     private Fragment_Detials_Of_The_Place_OF_The_Event fragment_detials_of_the_place_of_the_event;
     private Fragment_Event_Date_Time fragment_event_date_time;
     private Fragment_Add_Activity fragment_add_activity;
-    private String cuurent_language;
+    private String current_language;
 
     @Override
     protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(Language.updateResources(newBase, Language.getLanguage(newBase)));
+        super.attachBaseContext(Language.updateResources(newBase,  Preferences.getInstance().getLanguage(newBase)));
 
     }
 
@@ -54,14 +55,14 @@ public class Create_Event_Activity extends AppCompatActivity {
 
     private void intitview() {
         Paper.init(this);
-        cuurent_language = Paper.book().read("lang", Locale.getDefault().getLanguage());
+        current_language = Paper.book().read("lang", Locale.getDefault().getLanguage());
         fragmentList = new ArrayList<>();
         back_arrow = findViewById(R.id.arrow);
         viewPager = findViewById(R.id.pager);
         seekBar = findViewById(R.id.seekBar);
         bt_next = findViewById(R.id.bt_next);
         bt_previous = findViewById(R.id.bt_previous);
-        if (cuurent_language.equals("en")) {
+        if (current_language.equals("en")) {
             back_arrow.setRotation(180.0f);
         } else {
             seekBar.setRotation(180.0f);

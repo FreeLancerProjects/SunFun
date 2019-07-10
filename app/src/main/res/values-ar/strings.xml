@@ -2,7 +2,6 @@
 <resources>
     <string name="app_name">صن فان</string>
     <string name="map_api_key">AIzaSyCbc2Y5AIwZ8uUeHRUXiozGN3CnpjKT0oI</string>
-
     <string name="log_in">تسجيل الدخول</string>
     <string name="email">البريد الالكترونى</string>
     <string name="password">الرقم السرى</string>

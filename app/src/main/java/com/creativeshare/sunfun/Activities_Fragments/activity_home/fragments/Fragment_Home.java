@@ -1,4 +1,4 @@
-package com.creativeshare.sunfun.Activities_Fragments.Home.Fragments;
+package com.creativeshare.sunfun.Activities_Fragments.activity_home.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
-import com.creativeshare.sunfun.Activities_Fragments.Home.Activity.HomeActivity;
+import com.creativeshare.sunfun.Activities_Fragments.activity_home.activity.HomeActivity;
 import com.creativeshare.sunfun.R;
 
 import java.util.Locale;

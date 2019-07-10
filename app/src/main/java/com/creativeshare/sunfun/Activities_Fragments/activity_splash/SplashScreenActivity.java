@@ -1,18 +1,18 @@
-package com.creativeshare.sunfun.Activities_Fragments.Splash;
+package com.creativeshare.sunfun.Activities_Fragments.activity_splash;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.FrameLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.creativeshare.sunfun.Activities_Fragments.Sign_in.Activities.SignInActivity;
+import com.creativeshare.sunfun.Activities_Fragments.activity_sign_in.activities.SignInActivity;
 import com.creativeshare.sunfun.Language.Language;
 import com.creativeshare.sunfun.R;
+import com.creativeshare.sunfun.preferences.Preferences;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
@@ -20,7 +20,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
     @Override
     protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(Language.updateResources(newBase, Language.getLanguage(newBase)));
+        super.attachBaseContext(Language.updateResources(newBase, Preferences.getInstance().getLanguage(newBase)));
 
     }
 

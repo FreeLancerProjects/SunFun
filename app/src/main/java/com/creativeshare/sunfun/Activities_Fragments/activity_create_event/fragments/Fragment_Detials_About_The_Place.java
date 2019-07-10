@@ -1,4 +1,4 @@
-package com.creativeshare.sunfun.Activities_Fragments.Create_Event.Fragments;
+package com.creativeshare.sunfun.Activities_Fragments.activity_create_event.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,8 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.creativeshare.sunfun.Activities_Fragments.Create_Event.Activity.Create_Event_Activity;
-import com.creativeshare.sunfun.Activities_Fragments.Home.Activity.HomeActivity;
+import com.creativeshare.sunfun.Activities_Fragments.activity_create_event.activity.Create_Event_Activity;
 import com.creativeshare.sunfun.R;
 
 import java.util.Locale;
