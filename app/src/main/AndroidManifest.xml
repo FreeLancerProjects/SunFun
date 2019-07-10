@@ -34,6 +34,12 @@
     >
 
 </activity>
+        <activity android:name=".Activities_Fragments.Create_Event.Activity.Create_Event_Activity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
+            >
+
+        </activity>
     </application>
 
 </manifest>

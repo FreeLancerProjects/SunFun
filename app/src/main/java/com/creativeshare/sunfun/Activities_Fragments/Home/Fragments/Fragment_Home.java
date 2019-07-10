@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,6 +24,7 @@ public class Fragment_Home extends Fragment {
     private HomeActivity homeActivity;
     private AHBottomNavigation ah_bottom_nav;
     private String cuurent_language;
+    private ImageView im_create_event;
 
     @Nullable
     @Override
@@ -33,15 +35,17 @@ public class Fragment_Home extends Fragment {
     }
 
     private void initView(View view) {
-        homeActivity=(HomeActivity)getActivity();
+        homeActivity = (HomeActivity) getActivity();
         Paper.init(homeActivity);
         cuurent_language = Paper.book().read("lang", Locale.getDefault().getLanguage());
         ah_bottom_nav = view.findViewById(R.id.ah_bottom_nav);
+        im_create_event=view.findViewById(R.id.im_create_event);
+
         setUpBottomNavigation();
         ah_bottom_nav.setOnTabSelectedListener(new AHBottomNavigation.OnTabSelectedListener() {
             @Override
             public boolean onTabSelected(int position, boolean wasSelected) {
-                switch(position){
+                switch (position) {
                     case 0:
                         homeActivity.DisplayFragmentMain();
                         break;
@@ -56,6 +60,12 @@ public class Fragment_Home extends Fragment {
                         break;
                 }
                 return false;
+            }
+        });
+        im_create_event.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                homeActivity.Create_Event();
             }
         });
     }

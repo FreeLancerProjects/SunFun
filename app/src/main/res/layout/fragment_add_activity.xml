@@ -33,7 +33,6 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:orientation="horizontal"
 
             >
 
@@ -44,8 +43,9 @@
                 android:text="@string/yes"
                 android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="parent"
-                app:useMaterialThemeColors="false"
+
                 />
+
 
             <CheckBox
                 android:id="@+id/chec_no"
@@ -55,7 +55,6 @@
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/chec_yes"
-                app:useMaterialThemeColors="false"
 
                 />
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -87,17 +86,19 @@
                 android:padding="5dp"
                 android:src="@drawable/ic_upload" />
         </FrameLayout>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="45dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             android:text="@string/activity_name"
             android:textColor="@color/black"
             android:textSize="15sp"
-            android:paddingRight="10dp"
-            android:paddingLeft="10dp"
-            android:gravity="center_vertical"
 
             />
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="45dp"
@@ -105,45 +106,46 @@
             android:hint="@string/activity_name"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:textSize="14sp"
             android:textColor="@color/black"
             android:textColorHint="@color/gray4"
-            />
+            android:textSize="14sp" />
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="45dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/edt_bg"
             android:hint="@string/unit"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:textSize="14sp"
             android:textColor="@color/black"
             android:textColorHint="@color/gray4"
-            android:layout_marginTop="8dp"
-            />
+            android:textSize="14sp" />
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="45dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/edt_bg"
             android:hint="@string/price"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:textSize="14sp"
             android:textColor="@color/black"
             android:textColorHint="@color/gray4"
-            android:layout_marginTop="8dp"
-            />
+            android:textSize="14sp" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="45dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             android:text="@string/activity_address"
             android:textColor="@color/black"
             android:textSize="15sp"
-            android:paddingRight="10dp"
-            android:paddingLeft="10dp"
-            android:gravity="center_vertical"
 
             />
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="45dp"
@@ -151,23 +153,21 @@
             android:hint="@string/activity_address"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:textSize="14sp"
             android:textColor="@color/black"
             android:textColorHint="@color/gray4"
-            />
+            android:textSize="14sp" />
+
         <ImageView
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_gravity="center"
             android:layout_marginTop="8dp"
-            android:src="@drawable/ic_success"
-            />
+            android:src="@drawable/ic_success" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            >
+            android:layout_marginTop="8dp">
 
         </androidx.recyclerview.widget.RecyclerView>
     </LinearLayout>

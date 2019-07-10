@@ -42,15 +42,15 @@
                 android:textColor="@color/gray4"
                 android:textSize="15sp"
                 android:layout_marginTop="15dp"
-                android:layout_weight=".9"
+                android:layout_weight=".95"
 
                 />
 <ImageView
     android:layout_width="45dp"
-    android:layout_height="match_parent"
+    android:layout_height="45dp"
     android:src="@drawable/date"
     android:background="@drawable/edt_bg_radius_one_side"
-    android:layout_weight=".1"
+    android:layout_weight=".05"
     android:rotation="180"
     android:padding="8dp"
     />
@@ -69,15 +69,15 @@
                 android:textColor="@color/gray4"
                 android:textSize="15sp"
                 android:layout_marginTop="15dp"
-                android:layout_weight=".9"
+                android:layout_weight=".95"
 
                 />
             <ImageView
                 android:layout_width="45dp"
-                android:layout_height="match_parent"
+                android:layout_height="45dp"
                 android:src="@drawable/time"
                 android:background="@drawable/edt_bg_radius_one_side"
-                android:layout_weight=".1"
+                android:layout_weight=".05"
                 android:rotation="180"
                 android:padding="8dp"
                 />
@@ -105,15 +105,15 @@
                 android:textColor="@color/gray4"
                 android:textSize="15sp"
                 android:layout_marginTop="15dp"
-                android:layout_weight=".9"
+                android:layout_weight=".95"
 
                 />
             <ImageView
                 android:layout_width="45dp"
-                android:layout_height="match_parent"
+                android:layout_height="45dp"
                 android:src="@drawable/date"
                 android:background="@drawable/edt_bg_radius_one_side"
-                android:layout_weight=".1"
+                android:layout_weight=".05"
                 android:rotation="180"
                 android:padding="8dp"
                 />
@@ -132,15 +132,15 @@
                 android:textColor="@color/gray4"
                 android:textSize="15sp"
                 android:layout_marginTop="15dp"
-                android:layout_weight=".9"
+                android:layout_weight=".95"
 
                 />
             <ImageView
                 android:layout_width="45dp"
-                android:layout_height="match_parent"
+                android:layout_height="45dp"
                 android:src="@drawable/time"
                 android:background="@drawable/edt_bg_radius_one_side"
-                android:layout_weight=".1"
+                android:layout_weight=".05"
                 android:rotation="180"
                 android:padding="8dp"
                 />

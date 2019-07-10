@@ -1,11 +1,13 @@
 package com.creativeshare.sunfun.Activities_Fragments.Home.Activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
+import com.creativeshare.sunfun.Activities_Fragments.Create_Event.Activity.Create_Event_Activity;
 import com.creativeshare.sunfun.Activities_Fragments.Home.Fragments.Fragment_Contact_Us;
 import com.creativeshare.sunfun.Activities_Fragments.Home.Fragments.Fragment_Home;
 import com.creativeshare.sunfun.Activities_Fragments.Home.Fragments.Fragment_Main;
@@ -234,4 +236,8 @@ if(fragment_main!=null&&fragment_main.isAdded()){
     }
 
 
+    public void Create_Event() {
+        Intent intent=new Intent(HomeActivity.this, Create_Event_Activity.class);
+        startActivity(intent);
+    }
 }

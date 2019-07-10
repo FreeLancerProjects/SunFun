@@ -7,7 +7,7 @@
     android:background="@color/gray8">
 
     <LinearLayout
-        android:id="@+id/ll"
+        android:id="@+id/cons1"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:orientation="horizontal"
@@ -73,7 +73,7 @@
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:background="@drawable/edt_bg"
-        app:layout_constraintTop_toBottomOf="@+id/ll"
+        app:layout_constraintTop_toBottomOf="@+id/cons1"
         android:layout_marginTop="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginLeft="8dp"
