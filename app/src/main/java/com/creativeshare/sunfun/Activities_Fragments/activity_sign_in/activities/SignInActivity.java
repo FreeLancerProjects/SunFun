@@ -1,4 +1,4 @@
-package com.creativeshare.sunfun.Activities_Fragments.Sign_in.Activities;
+package com.creativeshare.sunfun.Activities_Fragments.activity_sign_in.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,10 +8,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
 import com.creativeshare.sunfun.Activities_Fragments.activity_home.activity.HomeActivity;
-import com.creativeshare.sunfun.Language.Language;
-import com.creativeshare.sunfun.R;
 import com.creativeshare.sunfun.Activities_Fragments.activity_sign_in.fragments.Fragment_Sign_In;
 import com.creativeshare.sunfun.Activities_Fragments.activity_sign_in.fragments.Fragment_Sign_Up;
+import com.creativeshare.sunfun.Language.Language;
+import com.creativeshare.sunfun.R;
 import com.creativeshare.sunfun.preferences.Preferences;
 
 import java.util.Locale;
@@ -29,7 +29,7 @@ public class SignInActivity extends AppCompatActivity {
     private String cuurent_language;
     @Override
     protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(Language.updateResources(newBase, Language.getLanguage(newBase)));
+        super.attachBaseContext(Language.updateResources(newBase,  Preferences.getInstance().getLanguage(newBase)));
 
     }
     @Override

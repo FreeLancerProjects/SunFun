@@ -1,4 +1,4 @@
-package com.creativeshare.sunfun.Activities_Fragments.Sign_in.Fragments;
+package com.creativeshare.sunfun.Activities_Fragments.activity_sign_in.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,8 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.creativeshare.sunfun.R;
 import com.creativeshare.sunfun.Activities_Fragments.activity_sign_in.activities.SignInActivity;
+import com.creativeshare.sunfun.R;
 
 import java.util.Locale;
 

@@ -7,16 +7,21 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.databinding.DataBindingUtil;
 
+import com.creativeshare.sunfun.Activities_Fragments.activity_home.activity.HomeActivity;
 import com.creativeshare.sunfun.Activities_Fragments.activity_sign_in.activities.SignInActivity;
 import com.creativeshare.sunfun.Language.Language;
 import com.creativeshare.sunfun.R;
+import com.creativeshare.sunfun.databinding.ActivitySplashBinding;
 import com.creativeshare.sunfun.preferences.Preferences;
+import com.creativeshare.sunfun.tags.Tags;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
-    private ConstraintLayout f1;
+    private ActivitySplashBinding binding;
+    private Animation animation;
+    private Preferences preferences;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -27,12 +32,12 @@ public class SplashScreenActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
-        f1=findViewById(R.id.fl);
-        Animation animation;
+        binding = DataBindingUtil.setContentView(this,R.layout.activity_splash);
+        preferences = Preferences.getInstance();
 
         animation= AnimationUtils.loadAnimation(getBaseContext(),R.anim.lanuch);
-        f1.startAnimation(animation);
+        binding.cons.startAnimation(animation);
+
         animation.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
@@ -41,9 +46,18 @@ public class SplashScreenActivity extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                Intent intent=new Intent(SplashScreenActivity.this, SignInActivity.class);
-                startActivity(intent);
-                finish();
+               String session = preferences.getSession(SplashScreenActivity.this);
+               if (session.equals(Tags.session_login))
+               {
+                   Intent intent=new Intent(SplashScreenActivity.this, HomeActivity.class);
+                   startActivity(intent);
+                   finish();
+               }else
+                   {
+                       Intent intent=new Intent(SplashScreenActivity.this, SignInActivity.class);
+                       startActivity(intent);
+                       finish();
+                   }
 
             }
 
