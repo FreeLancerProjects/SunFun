@@ -115,7 +115,7 @@
                         android:textColor="@color/black"
                         android:textColorHint="@color/gray4"
                         android:textSize="14sp"
-
+                        android:inputType="textPassword"
 
                         />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -139,6 +139,7 @@
                     />
 
                 <Button
+                    android:id="@+id/bt_signup"
                     android:layout_width="180dp"
                     android:layout_height="45dp"
                     android:layout_gravity="center"
