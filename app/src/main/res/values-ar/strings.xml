@@ -7,6 +7,7 @@
     <string name="email">البريد الالكترونى</string>
     <string name="password">الرقم السرى</string>
     <string name="login">تسجيل الدخول</string>
+    <string name="signup">تسجيل الدخول</string>
     <string name="are_you_forgot_password">هل نسيت الرقم السرى؟</string>
     <string name="do_you_have_a_new_account">هل لديك حساب جديد</string>
     <string name="create_an_account">انشا حساب</string>

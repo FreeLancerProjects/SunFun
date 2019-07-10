@@ -1,10 +1,12 @@
 package com.creativeshare.sunfun.Activities_Fragments.Sign_in.Activities;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.FragmentManager;
 
 import com.creativeshare.sunfun.Activities_Fragments.Home.Activity.HomeActivity;
@@ -12,6 +14,7 @@ import com.creativeshare.sunfun.Language.Language;
 import com.creativeshare.sunfun.R;
 import com.creativeshare.sunfun.Activities_Fragments.Sign_in.Fragments.Fragment_Sign_In;
 import com.creativeshare.sunfun.Activities_Fragments.Sign_in.Fragments.Fragment_Sign_Up;
+import com.creativeshare.sunfun.databinding.ActivitySignInBinding;
 
 import java.util.Locale;
 
@@ -19,7 +22,7 @@ import io.paperdb.Paper;
 
 
 public class SignInActivity extends AppCompatActivity {
-
+ActivitySignInBinding activitySignInBinding;
     private FragmentManager fragmentManager;
 
     private int fragment_count = 0;
@@ -34,7 +37,7 @@ public class SignInActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_in);
+       activitySignInBinding= DataBindingUtil. setContentView(this,R.layout.activity_sign_in);
      initview();
         if(savedInstanceState==null){
         DisplayFragmentSignIN();}
