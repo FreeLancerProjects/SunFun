@@ -61,4 +61,5 @@
     <string name="unit">Unit</string>
     <string name="price">price</string>
     <string name="activity_address">activity Address</string>
+    <string name="tiket_detials">tiket detials</string>
 </resources>

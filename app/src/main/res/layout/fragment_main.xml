@@ -7,7 +7,7 @@
     android:background="@color/gray8">
 
     <LinearLayout
-        android:id="@+id/cons1"
+        android:id="@+id/ll"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:orientation="horizontal"
@@ -31,11 +31,14 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/edt_bg">
+            android:background="@drawable/edt_bg"
+            android:padding="10dp"
+            >
 
             <Spinner
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@drawable/spinnerbackground"
 
                 >
 
@@ -57,42 +60,29 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/edt_bg">
+            android:background="@drawable/edt_bg"
+            android:padding="10dp"
+
+            >
 
             <Spinner
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@drawable/spinnerbackground"
 
                 >
 
             </Spinner>
         </FrameLayout>
     </LinearLayout>
-    <FrameLayout
-        android:id="@+id/fr_city"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:background="@drawable/edt_bg"
-        app:layout_constraintTop_toBottomOf="@+id/cons1"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginLeft="8dp"
-        >
-
-        <Spinner
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-
-            >
-
-        </Spinner>
-    </FrameLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recv_events"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@+id/fr_city"
+        app:layout_constraintTop_toBottomOf="@+id/ll"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginTop="8dp"
-        ></androidx.recyclerview.widget.RecyclerView>
+        >
+
+    </androidx.recyclerview.widget.RecyclerView>
 </androidx.constraintlayout.widget.ConstraintLayout>

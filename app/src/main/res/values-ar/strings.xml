@@ -61,5 +61,6 @@
     <string name="unit">الوحده</string>
     <string name="price">السعر</string>
     <string name="activity_address">مكان النشاط</string>
+    <string name="tiket_detials">تفاصيل التذكره</string>
 
 </resources>
