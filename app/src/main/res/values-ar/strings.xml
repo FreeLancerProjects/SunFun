@@ -62,5 +62,6 @@
     <string name="price">السعر</string>
     <string name="activity_address">مكان النشاط</string>
     <string name="tiket_detials">تفاصيل التذكره</string>
+    <string name="inc_phonr_password">Incorrect user phone or password</string>
 
 </resources>

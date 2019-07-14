@@ -62,4 +62,5 @@
     <string name="price">price</string>
     <string name="activity_address">activity Address</string>
     <string name="tiket_detials">tiket detials</string>
+    <string name="inc_phonr_password">Incorrect user phone or password</string>
 </resources>
