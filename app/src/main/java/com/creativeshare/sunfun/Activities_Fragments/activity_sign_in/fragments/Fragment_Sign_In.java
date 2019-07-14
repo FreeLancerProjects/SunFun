@@ -34,7 +34,6 @@ import retrofit2.Response;
 public class Fragment_Sign_In extends Fragment {
     private FragmentSignInBinding fragmentSignInBinding;
     private SignInActivity signInActivity;
-    private LinearLayout ll_new_account;
     private String cuurent_language;
     private User_View_Model user_view_model;
     private Preferences preferences;
