@@ -27,6 +27,7 @@ import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
 
+import com.creativeshare.sunfun.Activities_Fragments.activity_sign_in.fragments.Fragment_Sign_In;
 import com.creativeshare.sunfun.R;
 import com.creativeshare.sunfun.databinding.DialogSignBinding;
 import com.google.android.material.snackbar.Snackbar;
@@ -72,7 +73,6 @@ public class Common {
                 dialog.dismiss();
             }
         });
-        binding.setMsg();
 
        // dialog.getWindow().getAttributes().windowAnimations=R.style.dialog_congratulation_animation;
         dialog.setCanceledOnTouchOutside(false);
