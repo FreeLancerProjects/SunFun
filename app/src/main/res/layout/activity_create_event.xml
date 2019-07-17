@@ -112,7 +112,7 @@
             android:layout_height="45dp"
             android:layout_weight=".4"
 
-            android:background="@drawable/button_bg"
+            android:background="@drawable/btn_login_bg"
             android:text="@string/next"
             android:textColor="@color/white"
             android:textSize="15sp"
@@ -135,7 +135,7 @@
             android:layout_height="45dp"
 
             android:layout_weight=".4"
-            android:background="@drawable/button_bg"
+            android:background="@drawable/btn_login_bg"
             android:text="@string/previous"
             android:textColor="@color/white"
             android:textSize="15sp"

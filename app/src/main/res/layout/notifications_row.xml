@@ -35,7 +35,6 @@
         <ImageView
             android:layout_width="0dp"
             android:layout_height="45dp"
-            android:src="@drawable/ic_notification"
             android:layout_weight=".1"
             android:tint="@color/colorPrimary"
             />
