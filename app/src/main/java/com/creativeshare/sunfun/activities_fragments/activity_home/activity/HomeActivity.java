@@ -13,8 +13,9 @@ import com.creativeshare.sunfun.activities_fragments.activity_home.fragments.Fra
 import com.creativeshare.sunfun.activities_fragments.activity_home.fragments.Fragment_More;
 import com.creativeshare.sunfun.activities_fragments.activity_home.fragments.Fragment_Notidications;
 import com.creativeshare.sunfun.activities_fragments.activity_home.fragments.Fragment_Orders;
-import com.creativeshare.sunfun.activities_fragments.activity_home.fragments.Fragment_Ticket_detials;
+import com.creativeshare.sunfun.activities_fragments.activity_home.fragments.Fragment_Event_Details;
 import com.creativeshare.sunfun.language.Language;
+import com.creativeshare.sunfun.models.EventDataModel;
 
 import java.util.Locale;
 
@@ -29,7 +30,7 @@ public class HomeActivity extends AppCompatActivity {
     private Fragment_Orders fragment_orders;
     private Fragment_Notidications fragment_notidications;
     private Fragment_Contact_Us fragment_contact_us;
-    private Fragment_Ticket_detials fragment_ticket_detials;
+    private Fragment_Event_Details fragment_event_details;
     @Override
     protected void attachBaseContext(Context newBase) {
         Paper.init(newBase);
@@ -127,9 +128,7 @@ if(fragment_main!=null&&fragment_main.isAdded()){
     }
     public void DisplayFragmentContactUs() {
         fragment_count += 1;
-        if (fragment_contact_us == null) {
-            fragment_contact_us = Fragment_Contact_Us.newInstance();
-        }
+        fragment_contact_us = Fragment_Contact_Us.newInstance();
 
         if (fragment_contact_us.isAdded()) {
             fragmentManager.beginTransaction().show(fragment_contact_us).commit();
@@ -139,17 +138,16 @@ if(fragment_main!=null&&fragment_main.isAdded()){
 
         }
     }
-    public void DisplayFragmentTicket_detilas() {
+    public void DisplayFragmentEventDetails(EventDataModel.EventModel eventModel) {
         fragment_count+=1;
-        if (fragment_ticket_detials == null) {
-            fragment_ticket_detials = Fragment_Ticket_detials.newInstance();
-        }
 
-        if (fragment_ticket_detials.isAdded()) {
-            fragmentManager.beginTransaction().show(fragment_ticket_detials).commit();
+        fragment_event_details = Fragment_Event_Details.newInstance(eventModel);
+
+        if (fragment_event_details.isAdded()) {
+            fragmentManager.beginTransaction().show(fragment_event_details).commit();
 
         } else {
-            fragmentManager.beginTransaction().add(R.id.fragment_app_container, fragment_ticket_detials, "fragment_ticket_detials").addToBackStack("fragment_ticket_detials").commit();
+            fragmentManager.beginTransaction().add(R.id.fragment_app_container, fragment_event_details, "fragment_event_details").addToBackStack("fragment_event_details").commit();
 
         }
     }

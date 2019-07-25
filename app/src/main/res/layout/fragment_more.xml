@@ -8,7 +8,7 @@
         android:layout_height="match_parent"
         android:fillViewport="true"
         android:fitsSystemWindows="true"
-        android:background="@color/gray8"
+        android:background="@color/white"
         >
         <LinearLayout
             android:id="@+id/llProfile"
@@ -18,8 +18,8 @@
             >
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:background="@color/gray3"
+                android:layout_height="40dp"
+                android:background="@color/gray0"
                 android:textColor="@color/black"
                 android:paddingLeft="8dp"
                 android:paddingRight="8dp"

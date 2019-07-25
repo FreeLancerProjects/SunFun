@@ -9,11 +9,11 @@ import android.view.animation.AnimationUtils;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import com.creativeshare.sunfun.R;
 import com.creativeshare.sunfun.activities_fragments.activity_home.activity.HomeActivity;
 import com.creativeshare.sunfun.activities_fragments.activity_sign_in.activities.SignInActivity;
-import com.creativeshare.sunfun.language.Language;
-import com.creativeshare.sunfun.R;
 import com.creativeshare.sunfun.databinding.ActivitySplashBinding;
+import com.creativeshare.sunfun.language.Language;
 import com.creativeshare.sunfun.preferences.Preferences;
 import com.creativeshare.sunfun.tags.Tags;
 
@@ -32,6 +32,7 @@ public class SplashScreenActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         binding = DataBindingUtil.setContentView(this,R.layout.activity_splash);
         preferences = Preferences.getInstance();
 

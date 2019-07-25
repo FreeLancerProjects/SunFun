@@ -1,6 +1,197 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
 
-</LinearLayout>
+    >
+    <data>
+        <variable
+            name="lang"
+            type="String" />
+        <variable
+            name="event"
+            type="com.creativeshare.sunfun.models.EventDataModel.EventModel" />
+
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="@drawable/edt_bg"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="2dp"
+        android:padding="10dp"
+        >
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/image"
+            android:layout_height="110dp"
+            android:layout_width="110dp"
+            app:riv_border_color="@color/gray1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:scaleType="fitXY"
+            app:riv_corner_radius="5dp"
+            app:riv_border_width="1dp"
+            app:Uri="@{event.image1??event.image2}"
+
+
+            />
+        <TextView
+            android:id="@+id/tvEventTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/image"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintWidth_default="wrap"
+            app:layout_constraintHorizontal_bias="0"
+            android:text='@{lang.equals("ar")?(event.ar_title??""):(event.en_title??"")}'
+
+
+            />
+        <TextView
+            android:id="@+id/tvResponsible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/tvEventTitle"
+            app:layout_constraintStart_toEndOf="@+id/image"
+            android:layout_marginStart="8dp"
+            tools:ignore="RtlCompat"
+            android:textColor="@color/gray3"
+            android:textSize="14sp"
+            android:text='@{event.responsible??""}'
+
+            />
+        <TextView
+            android:id="@+id/tvDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/tvResponsible"
+            app:layout_constraintStart_toEndOf="@+id/image"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:singleLine="true"
+            app:layout_constraintWidth_default="wrap"
+            app:layout_constraintHorizontal_bias="0"
+            android:text='@{lang.equals("ar")?(event.ar_description??""):(event.en_description??"")}'
+            />
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/tvDescription"
+            app:layout_constraintStart_toEndOf="@+id/image"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:startDate="@{event.start_at}"
+            app:endDate="@{event.end_at}"
+
+            />
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/tv_date"
+            app:layout_constraintStart_toEndOf="@+id/image"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:startTime="@{event.from_time}"
+            app:endTime="@{event.to_time}"
+
+            />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/image"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="5dp"
+            android:weightSum="4"
+            android:paddingTop="5dp"
+            android:padding="5dp"
+            >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight=".85"
+                android:layout_height="match_parent"
+                android:background="@drawable/edt_bg2"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:textSize="11sp"
+                android:text="@{@string/price+' '+event.price+' '+@string/sar}"
+
+                />
+            <View
+                android:layout_width="0dp"
+                android:layout_weight=".15"
+                android:layout_height="match_parent"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight=".85"
+                android:layout_height="match_parent"
+                android:background="@drawable/edt_bg2"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="11sp"
+                android:text="@{@string/join_us+' '+event.booking_number}"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp"
+                android:maxLines="2"
+                android:ellipsize="end"
+
+                />
+            <View
+                android:layout_width="0dp"
+                android:layout_weight=".15"
+                android:layout_height="match_parent"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight=".95"
+                android:layout_height="match_parent"
+                android:background="@drawable/edt_bg2"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="11sp"
+                android:text="@{@string/tickets_remaining+' '+String.valueOf(Integer.parseInt(event.max_number)- event.booking_number)}"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp"
+                android:maxLines="2"
+                android:ellipsize="end"
+                />
+            <View
+                android:layout_width="0dp"
+                android:layout_weight=".15"
+                android:layout_height="match_parent"/>
+            <Button
+                android:id="@+id/btnReserve"
+                android:layout_width="0dp"
+                android:layout_weight=".9"
+                android:layout_height="match_parent"
+                android:background="@drawable/edt_bg3"
+                android:text="@string/book_now"
+                android:textSize="12sp"
+                android:textColor="@color/colorPrimary"
+                />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

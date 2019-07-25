@@ -12,12 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".activities_fragments.activity_book_event.BookEventActivity"></activity>
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/map_api_key" />
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+
         <activity
             android:name=".activities_fragments.activity_splash.SplashScreenActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
@@ -28,24 +31,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities_fragments.activity_sign_in.activities.SignInActivity"
+        <activity
+            android:name=".activities_fragments.activity_sign_in.activities.SignInActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
-            >
-
-        </activity>
-<activity android:name=".activities_fragments.activity_home.activity.HomeActivity"
-    android:configChanges="orientation|screenSize|keyboardHidden"
-    android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
-    >
-
-</activity>
-        <activity android:name=".activities_fragments.activity_create_event.activity.Create_Event_Activity"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"></activity>
+        <activity
+            android:name=".activities_fragments.activity_home.activity.HomeActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
-            >
-
-        </activity>
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"></activity>
+        <activity
+            android:name=".activities_fragments.activity_create_event.activity.Create_Event_Activity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"></activity>
     </application>
 
 </manifest>

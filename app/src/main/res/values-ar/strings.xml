@@ -61,7 +61,7 @@
     <string name="unit">الوحده</string>
     <string name="price">السعر</string>
     <string name="activity_address">مكان النشاط</string>
-    <string name="tiket_detials">تفاصيل التذكره</string>
+    <string name="tiket_detials">تفاصيل الحدث</string>
     <string name="inc_phonr_password">Incorrect user phone or password</string>
     <string name="skip">تخطي</string>
     <string name="field_req">الحقل مطلوب</string>
@@ -77,5 +77,15 @@
     <string name="general_settings">الإعدادت العامة</string>
     <string name="edit_profile">تعديل الملف الشخصي</string>
     <string name="language_settings">إعدادات اللغة</string>
+    <string name="sar">ر.س</string>
+    <string name="no_details">لا توجد تفاصيل</string>
+    <string name="sign_in">تسجيل الدخول</string>
+    <string name="please_sign_in_or_sign_up">برجاء تسجيل الدخول أو إنشاء حساب جديد.</string>
+    <string name="cancel">إلغاء</string>
+    <string name="subscribers">المشتركين</string>
+    <string name="payment_method">طريقة الدفع</string>
+    <string name="ch_pm_methd">إختر طريقة الدفع</string>
+    <string name="cnt_book_event">قم بحجز الحدث ثم قم بحجز النشاط.</string>
+
 
 </resources>

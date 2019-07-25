@@ -21,6 +21,7 @@ public class UserModel implements Serializable {
         private double longitude;
         private String national_image;
         private String responsible;
+        private String phone_code;
         private String phone;
         private int is_available;
         private double ratings;
@@ -64,6 +65,10 @@ public class UserModel implements Serializable {
 
         public String getPhone() {
             return phone;
+        }
+
+        public String getPhone_code() {
+            return phone_code;
         }
 
         public int getIs_available() {

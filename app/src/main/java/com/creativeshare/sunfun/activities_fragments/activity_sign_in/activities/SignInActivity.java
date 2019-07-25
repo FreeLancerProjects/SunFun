@@ -7,12 +7,13 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 
+import com.creativeshare.sunfun.R;
 import com.creativeshare.sunfun.activities_fragments.activity_sign_in.fragments.Fragment_Language;
 import com.creativeshare.sunfun.activities_fragments.activity_sign_in.fragments.Fragment_Sign_In;
 import com.creativeshare.sunfun.activities_fragments.activity_sign_in.fragments.Fragment_Sign_Up;
 import com.creativeshare.sunfun.language.Language;
-import com.creativeshare.sunfun.R;
 import com.creativeshare.sunfun.preferences.Preferences;
+import com.creativeshare.sunfun.share.TypefaceUtil;
 
 import java.util.Locale;
 
@@ -40,6 +41,23 @@ public class SignInActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
+        Paper.init(this);
+        if(Paper.book().read("lang", Locale.getDefault().getLanguage()).equals("ar"))
+        {
+            TypefaceUtil.setDefaultFont(this, "DEFAULT", "fonts/ar_font.otf");
+            TypefaceUtil.setDefaultFont(this, "MONOSPACE", "fonts/ar_font.otf");
+            TypefaceUtil.setDefaultFont(this, "SERIF", "fonts/ar_font.otf");
+            TypefaceUtil.setDefaultFont(this, "SANS_SERIF", "fonts/ar_font.otf");
+
+        }else
+        {
+            TypefaceUtil.setDefaultFont(this, "DEFAULT", "fonts/en_font.ttf");
+            TypefaceUtil.setDefaultFont(this, "MONOSPACE", "fonts/en_font.ttf");
+            TypefaceUtil.setDefaultFont(this, "SERIF", "fonts/en_font.ttf");
+            TypefaceUtil.setDefaultFont(this, "SANS_SERIF", "fonts/en_font.ttf");
+
+        }
+
         initView();
         if (savedInstanceState == null) {
             if (!preferences.isLanguageSelected(this))
