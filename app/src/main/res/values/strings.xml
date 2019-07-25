@@ -86,4 +86,9 @@
     <string name="payment_method">Payment Method</string>
     <string name="ch_pm_methd">Choose payment method</string>
     <string name="cnt_book_event">Can\'t book activity without booking the event.</string>
+    <string name="suc">Success !</string>
+    <string name="bank_name">Bank Name</string>
+    <string name="account_name">Account Name</string>
+    <string name="account_iban">Account IBAN</string>
+    <string name="account_number">Account Number</string>
 </resources>

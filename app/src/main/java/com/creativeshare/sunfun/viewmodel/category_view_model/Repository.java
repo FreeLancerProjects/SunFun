@@ -8,7 +8,7 @@ import com.creativeshare.sunfun.models.CategoryDataModel;
 import com.creativeshare.sunfun.remote.Api;
 import com.creativeshare.sunfun.share.Common;
 import com.creativeshare.sunfun.tags.Tags;
-import com.creativeshare.sunfun.viewmodel.listeners.CategoryListener;
+import com.creativeshare.sunfun.listeners.CategoryListener;
 
 import retrofit2.Call;
 import retrofit2.Callback;

@@ -1,11 +1,14 @@
 package com.creativeshare.sunfun.services;
 
 
+import com.creativeshare.sunfun.models.AppData;
+import com.creativeshare.sunfun.models.BankDataModel;
 import com.creativeshare.sunfun.models.CategoryDataModel;
 import com.creativeshare.sunfun.models.EventDataModel;
 import com.creativeshare.sunfun.models.PaymentDataModel;
 import com.creativeshare.sunfun.models.UserModel;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -49,6 +52,20 @@ public interface Service {
 
     @GET("api/all_paying")
     Call<PaymentDataModel> getPaymentMethod();
+
+    @FormUrlEncoded
+    @POST("api/contact_us")
+    Call<ResponseBody> sendContact(@Field("fname") String fname,
+                                   @Field("lname") String lname,
+                                   @Field("email") String email,
+                                   @Field("message") String message
+                                   );
+
+    @GET("api/all_bank_accounts")
+    Call<BankDataModel> getBanks();
+
+    @GET("api/about_us")
+    Call<AppData> getAppData();
 
 }
 

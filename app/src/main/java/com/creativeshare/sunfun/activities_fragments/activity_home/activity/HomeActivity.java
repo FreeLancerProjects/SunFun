@@ -1,21 +1,30 @@
 package com.creativeshare.sunfun.activities_fragments.activity_home.activity;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.FragmentManager;
 
 import com.creativeshare.sunfun.R;
+import com.creativeshare.sunfun.activities_fragments.activity_home.fragments.Fragment_Bank_Account;
 import com.creativeshare.sunfun.activities_fragments.activity_home.fragments.Fragment_Contact_Us;
+import com.creativeshare.sunfun.activities_fragments.activity_home.fragments.Fragment_Event_Details;
 import com.creativeshare.sunfun.activities_fragments.activity_home.fragments.Fragment_Home;
 import com.creativeshare.sunfun.activities_fragments.activity_home.fragments.Fragment_Main;
 import com.creativeshare.sunfun.activities_fragments.activity_home.fragments.Fragment_More;
 import com.creativeshare.sunfun.activities_fragments.activity_home.fragments.Fragment_Notidications;
 import com.creativeshare.sunfun.activities_fragments.activity_home.fragments.Fragment_Orders;
-import com.creativeshare.sunfun.activities_fragments.activity_home.fragments.Fragment_Event_Details;
+import com.creativeshare.sunfun.activities_fragments.activity_sign_in.activities.SignInActivity;
+import com.creativeshare.sunfun.databinding.DialogCustomBinding;
 import com.creativeshare.sunfun.language.Language;
 import com.creativeshare.sunfun.models.EventDataModel;
+import com.creativeshare.sunfun.models.UserModel;
+import com.creativeshare.sunfun.preferences.Preferences;
 
 import java.util.Locale;
 
@@ -23,7 +32,7 @@ import io.paperdb.Paper;
 
 public class HomeActivity extends AppCompatActivity {
     private FragmentManager fragmentManager;
-    private int fragment_count=0;
+    private int fragment_count = 0;
     private Fragment_Home fragment_home;
     private Fragment_Main fragment_main;
     private Fragment_More fragment_more;
@@ -31,15 +40,19 @@ public class HomeActivity extends AppCompatActivity {
     private Fragment_Notidications fragment_notidications;
     private Fragment_Contact_Us fragment_contact_us;
     private Fragment_Event_Details fragment_event_details;
+    private Fragment_Bank_Account fragment_bank_account;
+    private Preferences preferences;
+    private UserModel userModel;
+
     @Override
     protected void attachBaseContext(Context newBase) {
         Paper.init(newBase);
-        super.attachBaseContext(Language.updateResources(newBase, Paper.book().read("lang",Locale.getDefault().getLanguage())));
+        super.attachBaseContext(Language.updateResources(newBase, Paper.book().read("lang", Locale.getDefault().getLanguage())));
 
     }
+
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
@@ -56,10 +69,12 @@ public class HomeActivity extends AppCompatActivity {
     private void initView() {
         Paper.init(this);
         fragmentManager = this.getSupportFragmentManager();
+        preferences = Preferences.getInstance();
+        userModel = preferences.getUserData(this);
     }
-    public void DisplayFragmentHome()
-    {
-        fragment_count+=1;
+
+    public void DisplayFragmentHome() {
+        fragment_count += 1;
         if (fragment_home == null) {
             fragment_home = Fragment_Home.newInstance();
         }
@@ -73,19 +88,19 @@ public class HomeActivity extends AppCompatActivity {
         }
 
     }
-    public void DisplayFragmentMain()
-    {
+
+    public void DisplayFragmentMain() {
 
         if (fragment_main == null) {
             fragment_main = Fragment_Main.newInstance();
         }
-        if(fragment_more!=null&&fragment_more.isAdded()){
+        if (fragment_more != null && fragment_more.isAdded()) {
             fragmentManager.beginTransaction().hide(fragment_more).commit();
         }
-        if(fragment_orders!=null&&fragment_orders.isAdded()){
+        if (fragment_orders != null && fragment_orders.isAdded()) {
             fragmentManager.beginTransaction().hide(fragment_orders).commit();
         }
-        if(fragment_notidications!=null&&fragment_notidications.isAdded()){
+        if (fragment_notidications != null && fragment_notidications.isAdded()) {
             fragmentManager.beginTransaction().hide(fragment_notidications).commit();
         }
         if (fragment_main.isAdded()) {
@@ -95,24 +110,24 @@ public class HomeActivity extends AppCompatActivity {
             fragmentManager.beginTransaction().add(R.id.fragment_home_container, fragment_main, "fragment_main").addToBackStack("fragment_main").commit();
 
         }
-        if(fragment_home!=null&&fragment_home.isAdded()){
+        if (fragment_home != null && fragment_home.isAdded()) {
             fragment_home.updateBottomNavigationPosition(0);
         }
 
     }
-    public void DisplayFragmentMore()
-    {
+
+    public void DisplayFragmentMore() {
 
         if (fragment_more == null) {
             fragment_more = Fragment_More.newInstance();
         }
-if(fragment_main!=null&&fragment_main.isAdded()){
-    fragmentManager.beginTransaction().hide(fragment_main).commit();
-}
-        if(fragment_orders!=null&&fragment_orders.isAdded()){
+        if (fragment_main != null && fragment_main.isAdded()) {
+            fragmentManager.beginTransaction().hide(fragment_main).commit();
+        }
+        if (fragment_orders != null && fragment_orders.isAdded()) {
             fragmentManager.beginTransaction().hide(fragment_orders).commit();
         }
-        if(fragment_notidications!=null&&fragment_notidications.isAdded()){
+        if (fragment_notidications != null && fragment_notidications.isAdded()) {
             fragmentManager.beginTransaction().hide(fragment_notidications).commit();
         }
         if (fragment_more.isAdded()) {
@@ -122,10 +137,11 @@ if(fragment_main!=null&&fragment_main.isAdded()){
             fragmentManager.beginTransaction().add(R.id.fragment_home_container, fragment_more, "fragment_more").addToBackStack("fragment_more").commit();
 
         }
-        if(fragment_home!=null&&fragment_home.isAdded()){
+        if (fragment_home != null && fragment_home.isAdded()) {
             fragment_home.updateBottomNavigationPosition(3);
         }
     }
+
     public void DisplayFragmentContactUs() {
         fragment_count += 1;
         fragment_contact_us = Fragment_Contact_Us.newInstance();
@@ -138,8 +154,22 @@ if(fragment_main!=null&&fragment_main.isAdded()){
 
         }
     }
+
+    public void DisplayFragmentBank() {
+        fragment_count += 1;
+        fragment_bank_account = Fragment_Bank_Account.newInstance();
+
+        if (fragment_bank_account.isAdded()) {
+            fragmentManager.beginTransaction().show(fragment_bank_account).commit();
+
+        } else {
+            fragmentManager.beginTransaction().add(R.id.fragment_app_container, fragment_bank_account, "fragment_bank_account").addToBackStack("fragment_bank_account").commit();
+
+        }
+    }
+
     public void DisplayFragmentEventDetails(EventDataModel.EventModel eventModel) {
-        fragment_count+=1;
+        fragment_count += 1;
 
         fragment_event_details = Fragment_Event_Details.newInstance(eventModel);
 
@@ -151,19 +181,19 @@ if(fragment_main!=null&&fragment_main.isAdded()){
 
         }
     }
-    public void DisplayFragmentorders()
-    {
+
+    public void DisplayFragmentOrders() {
 
         if (fragment_orders == null) {
             fragment_orders = Fragment_Orders.newInstance();
         }
-        if(fragment_main!=null&&fragment_main.isAdded()){
+        if (fragment_main != null && fragment_main.isAdded()) {
             fragmentManager.beginTransaction().hide(fragment_main).commit();
         }
-        if(fragment_more!=null&&fragment_more.isAdded()){
+        if (fragment_more != null && fragment_more.isAdded()) {
             fragmentManager.beginTransaction().hide(fragment_more).commit();
         }
-        if(fragment_notidications!=null&&fragment_notidications.isAdded()){
+        if (fragment_notidications != null && fragment_notidications.isAdded()) {
             fragmentManager.beginTransaction().hide(fragment_notidications).commit();
         }
         if (fragment_orders.isAdded()) {
@@ -173,24 +203,24 @@ if(fragment_main!=null&&fragment_main.isAdded()){
             fragmentManager.beginTransaction().add(R.id.fragment_home_container, fragment_orders, "fragment_orders").addToBackStack("fragment_orders").commit();
 
         }
-        if(fragment_home!=null&&fragment_home.isAdded()){
+        if (fragment_home != null && fragment_home.isAdded()) {
             fragment_home.updateBottomNavigationPosition(1);
         }
     }
-    public void DisplayFragmentnotifications()
-    {
+
+    public void DisplayFragmentNotifications() {
 
         if (fragment_notidications == null) {
             fragment_notidications = Fragment_Notidications.newInstance();
         }
-        if(fragment_main!=null&&fragment_main.isAdded()){
+        if (fragment_main != null && fragment_main.isAdded()) {
             fragmentManager.beginTransaction().hide(fragment_main).commit();
         }
 
-        if(fragment_orders!=null&&fragment_orders.isAdded()){
+        if (fragment_orders != null && fragment_orders.isAdded()) {
             fragmentManager.beginTransaction().hide(fragment_orders).commit();
         }
-        if(fragment_more!=null&&fragment_more.isAdded()){
+        if (fragment_more != null && fragment_more.isAdded()) {
             fragmentManager.beginTransaction().hide(fragment_more).commit();
         }
         if (fragment_notidications.isAdded()) {
@@ -200,10 +230,46 @@ if(fragment_main!=null&&fragment_main.isAdded()){
             fragmentManager.beginTransaction().add(R.id.fragment_home_container, fragment_notidications, "fragment_notidications").addToBackStack("fragment_notidications").commit();
 
         }
-        if(fragment_home!=null&&fragment_home.isAdded()){
+        if (fragment_home != null && fragment_home.isAdded()) {
             fragment_home.updateBottomNavigationPosition(2);
         }
     }
+
+    public void CreateNoSignAlertDialog() {
+        final AlertDialog dialog = new AlertDialog.Builder(this)
+                .create();
+
+        DialogCustomBinding binding = DataBindingUtil.inflate(LayoutInflater.from(this), R.layout.dialog_custom, null, false);
+
+        binding.btnSignUp.setOnClickListener((v) -> {
+            dialog.dismiss();
+
+            NavigateToSignInActivity();
+        });
+        binding.btnSignIn.setOnClickListener((v) -> {
+            dialog.dismiss();
+
+            NavigateToSignInActivity();
+
+
+        });
+
+        binding.btnCancel.setOnClickListener((v) ->
+                dialog.dismiss()
+
+        );
+        dialog.getWindow().getAttributes().windowAnimations = R.style.dialog_congratulation_animation;
+        dialog.getWindow().setBackgroundDrawableResource(R.drawable.dialog_window_bg);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.setView(binding.getRoot());
+        dialog.show();
+    }
+    private void NavigateToSignInActivity() {
+        Intent intent = new Intent(HomeActivity.this, SignInActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
     @Override
     public void onBackPressed() {
         Back();
@@ -218,7 +284,12 @@ if(fragment_main!=null&&fragment_main.isAdded()){
             if (fragment_home != null && fragment_home.isVisible()) {
                 if (fragment_main != null && fragment_main.isVisible()) {
 
+                    if (userModel != null) {
                         finish();
+
+                    } else {
+                        NavigateToSignInActivity();
+                    }
 
                 } else {
                     DisplayFragmentMain();
@@ -229,7 +300,6 @@ if(fragment_main!=null&&fragment_main.isAdded()){
         }
 
     }
-
 
 
 }

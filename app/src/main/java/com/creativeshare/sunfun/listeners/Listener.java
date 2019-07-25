@@ -1,4 +1,4 @@
-package com.creativeshare.sunfun.viewmodel.listeners;
+package com.creativeshare.sunfun.listeners;
 
 import com.creativeshare.sunfun.models.UserModel;
 

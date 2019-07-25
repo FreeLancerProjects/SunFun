@@ -1,4 +1,4 @@
-package com.creativeshare.sunfun.viewmodel.search_category_view_model;
+package com.creativeshare.sunfun.viewmodel.bank_account_view_model;
 
 import android.app.Application;
 import android.content.Context;
@@ -10,20 +10,19 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
 import com.creativeshare.sunfun.R;
-import com.creativeshare.sunfun.models.EventDataModel;
-import com.creativeshare.sunfun.listeners.SearchEventsListener;
+import com.creativeshare.sunfun.models.BankDataModel;
+import com.creativeshare.sunfun.listeners.BankListener;
 
 import java.util.List;
 
-public class CategorySearchViewModel extends AndroidViewModel implements SearchEventsListener {
+public class BankViewModel extends AndroidViewModel implements BankListener {
 
     private Context context;
-    public MutableLiveData<List<EventDataModel.EventModel>> data;
+    public MutableLiveData<List<BankDataModel.BankModel>> data;
     public MutableLiveData<Boolean> error;
     private Repository repository;
 
-
-    public CategorySearchViewModel(@NonNull Application application) {
+    public BankViewModel(@NonNull Application application) {
         super(application);
         data = new MutableLiveData<>();
         error = new MutableLiveData<>();
@@ -35,32 +34,33 @@ public class CategorySearchViewModel extends AndroidViewModel implements SearchE
         this.context = context;
     }
 
-    public void getEvents(String cat_id, String sub_catId, String user_id) {
-        repository.getEvents(this, context, cat_id, sub_catId, user_id);
+    public void getBanks()
+    {
+        repository.getBanks(this,context);
     }
 
 
-
-
     @Override
-    public void onSearchSuccess(List<EventDataModel.EventModel> eventModelList) {
-
-        data.setValue(eventModelList);
+    public void onSuccess(List<BankDataModel.BankModel> bankModelList) {
+        data.postValue(bankModelList);
     }
 
     @Override
-    public void onSearchFailed(int code) {
+    public void onFailed(int code) {
         error.postValue(true);
-        Log.e("code", code + "_");
+        Log.e("code",code+"_");
         Toast.makeText(getApplication(), R.string.failed, Toast.LENGTH_SHORT).show();
 
     }
 
     @Override
-    public void onSearchError(String error) {
+    public void onError(String error) {
+
         this.error.postValue(true);
-        Log.e("Error", error);
+        Log.e("Error",error);
         Toast.makeText(getApplication(), R.string.something, Toast.LENGTH_SHORT).show();
 
     }
+
+
 }

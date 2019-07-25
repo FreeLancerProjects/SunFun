@@ -11,7 +11,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.creativeshare.sunfun.R;
 import com.creativeshare.sunfun.models.CategoryDataModel;
-import com.creativeshare.sunfun.viewmodel.listeners.CategoryListener;
+import com.creativeshare.sunfun.listeners.CategoryListener;
 
 import java.util.List;
 

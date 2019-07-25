@@ -1,5 +1,6 @@
 package com.creativeshare.sunfun.activities_fragments.activity_home.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +11,9 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
-import com.creativeshare.sunfun.activities_fragments.activity_home.activity.HomeActivity;
 import com.creativeshare.sunfun.R;
+import com.creativeshare.sunfun.activities_fragments.activity_app_info.AppInfoActivity;
+import com.creativeshare.sunfun.activities_fragments.activity_home.activity.HomeActivity;
 import com.creativeshare.sunfun.databinding.FragmentMoreBinding;
 
 import java.util.Locale;
@@ -34,23 +36,20 @@ public class Fragment_More extends Fragment {
         activity = (HomeActivity) getActivity();
         Paper.init(activity);
         current_language = Paper.book().read("lang", Locale.getDefault().getLanguage());
-
-        if (current_language.equals("ar")) {
-            binding.arrow1.setRotation(180.0f);
-            binding.arrow2.setRotation(180.0f);
-            binding.arrow3.setRotation(180.0f);
-            binding.arrow4.setRotation(180.0f);
-            binding.arrow5.setRotation(180.0f);
-            binding.arrow6.setRotation(180.0f);
-            binding.arrow7.setRotation(180.0f);
-
-        }
-
-
+        binding.setLang(current_language);
         binding.llContact.setOnClickListener((view -> activity.DisplayFragmentContactUs()));
+        binding.llBank.setOnClickListener((view -> activity.DisplayFragmentBank()));
+        binding.llTerms.setOnClickListener(view -> NavigateToAppInfoActivity(2));
+        binding.llAbout.setOnClickListener(view -> NavigateToAppInfoActivity(1));
 
     }
 
+    private void NavigateToAppInfoActivity(int type)
+    {
+        Intent intent = new Intent(activity, AppInfoActivity.class);
+        intent.putExtra("type",type);
+        startActivity(intent);
+    }
     public static Fragment_More newInstance() {
         return new Fragment_More();
     }

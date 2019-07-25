@@ -1,11 +1,11 @@
-package com.creativeshare.sunfun.viewmodel.payment_view_model;
+package com.creativeshare.sunfun.viewmodel.bank_account_view_model;
 
 import android.content.Context;
 
-import com.creativeshare.sunfun.models.PaymentDataModel;
+import com.creativeshare.sunfun.models.BankDataModel;
 import com.creativeshare.sunfun.remote.Api;
 import com.creativeshare.sunfun.tags.Tags;
-import com.creativeshare.sunfun.listeners.PaymentMethodListener;
+import com.creativeshare.sunfun.listeners.BankListener;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -13,14 +13,14 @@ import retrofit2.Response;
 
 public class Repository {
 
-    public void getPayment(PaymentMethodListener listener, Context context)
+    public void getBanks(BankListener listener, Context context)
     {
 
         Api.getService(Tags.base_url)
-                .getPaymentMethod()
-                .enqueue(new Callback<PaymentDataModel>() {
+                .getBanks()
+                .enqueue(new Callback<BankDataModel>() {
                     @Override
-                    public void onResponse(Call<PaymentDataModel> call, Response<PaymentDataModel> response) {
+                    public void onResponse(Call<BankDataModel> call, Response<BankDataModel> response) {
                         if (response.isSuccessful()&&response.body()!=null&&response.body().getData()!=null)
                         {
                             listener.onSuccess(response.body().getData());
@@ -31,7 +31,7 @@ public class Repository {
                     }
 
                     @Override
-                    public void onFailure(Call<PaymentDataModel> call, Throwable t) {
+                    public void onFailure(Call<BankDataModel> call, Throwable t) {
                         try {
                             listener.onError(t.getMessage());
 

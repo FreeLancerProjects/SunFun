@@ -63,6 +63,7 @@ public class Fragment_Sign_In extends Fragment {
         binding.tvSkip.setOnClickListener((v) -> {
             Intent intent = new Intent(activity, HomeActivity.class);
             startActivity(intent);
+            activity.finish();
         });
 
         binding.tvNewAccount.setOnClickListener((v) ->

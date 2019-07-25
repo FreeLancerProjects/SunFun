@@ -86,6 +86,12 @@
     <string name="payment_method">طريقة الدفع</string>
     <string name="ch_pm_methd">إختر طريقة الدفع</string>
     <string name="cnt_book_event">قم بحجز الحدث ثم قم بحجز النشاط.</string>
+    <string name="suc">تم بنجاح</string>
+    <string name="bank_name">إسم البنك</string>
+    <string name="account_name">إسم الحساب</string>
+    <string name="account_iban">الايبان</string>
+    <string name="account_number">رقم الحساب</string>
+
 
 
 </resources>

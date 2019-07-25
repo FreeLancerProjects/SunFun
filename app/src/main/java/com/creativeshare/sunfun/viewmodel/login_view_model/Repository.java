@@ -8,7 +8,7 @@ import com.creativeshare.sunfun.models.UserModel;
 import com.creativeshare.sunfun.remote.Api;
 import com.creativeshare.sunfun.share.Common;
 import com.creativeshare.sunfun.tags.Tags;
-import com.creativeshare.sunfun.viewmodel.listeners.Listener;
+import com.creativeshare.sunfun.listeners.Listener;
 
 import retrofit2.Call;
 import retrofit2.Callback;

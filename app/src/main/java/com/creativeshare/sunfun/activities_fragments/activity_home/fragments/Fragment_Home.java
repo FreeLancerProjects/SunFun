@@ -16,12 +16,16 @@ import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.creativeshare.sunfun.R;
 import com.creativeshare.sunfun.activities_fragments.activity_home.activity.HomeActivity;
 import com.creativeshare.sunfun.databinding.FragmentHomeBinding;
+import com.creativeshare.sunfun.models.UserModel;
+import com.creativeshare.sunfun.preferences.Preferences;
 
 import io.paperdb.Paper;
 
 public class Fragment_Home extends Fragment {
     private HomeActivity activity;
     private FragmentHomeBinding binding;
+    private Preferences preferences;
+    private UserModel userModel;
 
     @Nullable
     @Override
@@ -34,6 +38,8 @@ public class Fragment_Home extends Fragment {
     private void initView() {
         activity = (HomeActivity) getActivity();
         Paper.init(activity);
+        preferences = Preferences.getInstance();
+        userModel = preferences.getUserData(activity);
         setUpBottomNavigation();
         binding.ahBottomNav.setOnTabSelectedListener((position, wasSelected) -> {
             switch (position) {
@@ -41,10 +47,26 @@ public class Fragment_Home extends Fragment {
                     activity.DisplayFragmentMain();
                     break;
                 case 1:
-                    activity.DisplayFragmentorders();
+                    if (userModel!=null)
+                    {
+                        activity.DisplayFragmentOrders();
+
+                    }else
+                        {
+                            activity.CreateNoSignAlertDialog();
+
+                        }
+
                     break;
                 case 2:
-                    activity.DisplayFragmentnotifications();
+                    if (userModel!=null)
+                    {
+                        activity.DisplayFragmentNotifications();
+
+                    }else
+                    {
+                        activity.CreateNoSignAlertDialog();
+                    }
                     break;
                 case 3:
                     activity.DisplayFragmentMore();
@@ -53,11 +75,8 @@ public class Fragment_Home extends Fragment {
             }
             return false;
         });
-        binding.fabCreateEvent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        binding.fabCreateEvent.setOnClickListener(view -> {
 
-            }
         });
     }
 

@@ -5,8 +5,8 @@ import android.content.Context;
 import com.creativeshare.sunfun.models.EventDataModel;
 import com.creativeshare.sunfun.remote.Api;
 import com.creativeshare.sunfun.tags.Tags;
-import com.creativeshare.sunfun.viewmodel.listeners.EventsListener;
-import com.creativeshare.sunfun.viewmodel.listeners.EventsLoadMoreListener;
+import com.creativeshare.sunfun.listeners.EventsListener;
+import com.creativeshare.sunfun.listeners.EventsLoadMoreListener;
 
 import retrofit2.Call;
 import retrofit2.Callback;

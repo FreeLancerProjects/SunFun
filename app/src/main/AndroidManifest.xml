@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activities_fragments.activity_book_event.BookEventActivity"></activity>
+        <activity android:name=".activities_fragments.activity_app_info.AppInfoActivity"></activity>
+        <activity android:name=".activities_fragments.activity_book_event.BookEventActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -34,15 +35,15 @@
         <activity
             android:name=".activities_fragments.activity_sign_in.activities.SignInActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"></activity>
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
         <activity
             android:name=".activities_fragments.activity_home.activity.HomeActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"></activity>
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
         <activity
             android:name=".activities_fragments.activity_create_event.activity.Create_Event_Activity"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"></activity>
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
     </application>
 
 </manifest>

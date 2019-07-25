@@ -17,6 +17,7 @@ import com.creativeshare.sunfun.models.EventDataModel;
 import com.creativeshare.sunfun.models.PaymentDataModel;
 import com.creativeshare.sunfun.models.UserModel;
 import com.creativeshare.sunfun.preferences.Preferences;
+import com.creativeshare.sunfun.viewmodel.book_event_view_model.BookEventViewModel;
 import com.creativeshare.sunfun.viewmodel.payment_view_model.PaymentViewModel;
 
 import java.util.ArrayList;
@@ -35,6 +36,7 @@ public class BookEventActivity extends AppCompatActivity {
     private String current_lang;
     private EventDataModel.EventModel eventModel;
     private PaymentViewModel paymentViewModel;
+    private BookEventViewModel bookEventViewModel;
 
 
     @Override
@@ -49,6 +51,8 @@ public class BookEventActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this,R.layout.activity_book_event);
         paymentViewModel = ViewModelProviders.of(this).get(PaymentViewModel.class);
         paymentViewModel.setContext(this);
+        bookEventViewModel = ViewModelProviders.of(this).get(BookEventViewModel.class);
+        bookEventViewModel.setContext(this);
         initView();
         getDataFromIntent();
 
@@ -93,5 +97,6 @@ public class BookEventActivity extends AppCompatActivity {
     }
 
     public void setItemSelected(PaymentDataModel.PaymentModel paymentModel) {
+        bookEventViewModel.payment.set(String.valueOf(paymentModel.getId()));
     }
 }

@@ -6,18 +6,16 @@ import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.databinding.BindingAdapter;
 import androidx.databinding.ObservableField;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
 import com.creativeshare.sunfun.R;
 import com.creativeshare.sunfun.models.UserModel;
-import com.creativeshare.sunfun.viewmodel.listeners.Listener;
+import com.creativeshare.sunfun.listeners.Listener;
 
 public class Login_View_Model extends AndroidViewModel implements Listener {
 
@@ -73,12 +71,12 @@ public class Login_View_Model extends AndroidViewModel implements Listener {
             }
     }
 
-    @BindingAdapter("app:error")
+   /* @BindingAdapter("app:error")
     public static void setErrorUi(EditText editText, String error)
     {
         editText.setError(error);
     }
-
+*/
 
     @Override
     public void onSuccess(UserModel userModel) {

@@ -152,7 +152,8 @@
                     android:textSize="14sp"
                     android:inputType="number"
                     android:singleLine="true"
-                    app:Error="@{bookViewModel.subscribers_error.get()}"
+                    android:text="@={bookViewModel.subscribers}"
+                    app:error="@{bookViewModel.subscribers_error}"
                     />
 
                 <TextView
