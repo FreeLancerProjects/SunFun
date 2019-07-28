@@ -49,11 +49,7 @@ public class ActivitiesAdapter extends RecyclerView.Adapter<ActivitiesAdapter.Ac
 
         holder.binding.setLang(lang);
         holder.binding.setActivityModel(activityModel);
-        holder.binding.tvBook.setOnClickListener(view -> {
-            EventDataModel.EventModel.ActivityModel activityModel2 = activityModelList.get(holder.getAdapterPosition());
-            fragment.setItemData(activityModel2);
 
-        });
 
     }
 

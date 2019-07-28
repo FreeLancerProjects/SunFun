@@ -205,22 +205,7 @@ public class Fragment_Event_Details extends Fragment implements OnMapReadyCallba
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(Double.parseDouble(eventModel.getLatitude()), Double.parseDouble(eventModel.getLongitude())),zoom));
     }
 
-    public void setItemData(EventDataModel.EventModel.ActivityModel activityModel) {
-        if (userModel!=null)
-        {
-            if (eventModel.getIs_booking()!=0)
-            {
 
-            }else
-                {
-                    Common.CreateAlertDialog(activity,getString(R.string.cnt_book_event));
-                }
-        }else
-        {
-            Common.CreateNoSignAlertDialog(activity);
-        }
-
-    }
 
     private class MyTimerTask extends TimerTask {
         @Override

@@ -48,7 +48,9 @@
                     android:layout_width="35dp"
                     android:padding="8dp"
                     android:src="@drawable/ic_left_arrow"
-                    android:tint="@color/white" />
+                    android:tint="@color/white"
+                    android:rotation='@{lang.equals("ar")?180:0}'
+                    />
 
                 <TextView
                     android:id="@+id/title"
@@ -138,7 +140,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
                     android:textSize="15sp"
-                    android:text="@string/subscribers"
+                    android:text="@string/subscribers_num"
                     android:layout_marginTop="8dp"
                     />
                 <EditText

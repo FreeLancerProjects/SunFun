@@ -52,8 +52,8 @@ public class Fragment_More extends Fragment {
         binding.setLang(current_language);
         binding.llContact.setOnClickListener((view -> activity.DisplayFragmentContactUs()));
         binding.llBank.setOnClickListener((view -> activity.DisplayFragmentBank()));
-        binding.llTerms.setOnClickListener(view -> NavigateToAppInfoActivity(2));
-        binding.llAbout.setOnClickListener(view -> NavigateToAppInfoActivity(1));
+        binding.llTerms.setOnClickListener(view -> NavigateToAppInfoActivity(1));
+        binding.llAbout.setOnClickListener(view -> NavigateToAppInfoActivity(2));
         binding.llProfile.setOnClickListener(view -> {
             if (userModel!=null)
             {

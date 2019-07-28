@@ -13,17 +13,17 @@ import retrofit2.Response;
 
 public class Repository {
 
-    public void getAppData(AboutAppListener listener, Context context)
+    public void getAppData(AboutAppListener listener, Context context,int type)
     {
 
         Api.getService(Tags.base_url)
-                .getAppData()
+                .getAppData(type)
                 .enqueue(new Callback<AppData>() {
                     @Override
                     public void onResponse(Call<AppData> call, Response<AppData> response) {
                         if (response.isSuccessful()&&response.body()!=null)
                         {
-                            listener.onSuccess(response.body().getData());
+                            listener.onSuccess(response.body());
                         }else
                             {
                                 listener.onFailed(response.code());

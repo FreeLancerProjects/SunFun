@@ -13,12 +13,10 @@ import com.creativeshare.sunfun.R;
 import com.creativeshare.sunfun.listeners.AboutAppListener;
 import com.creativeshare.sunfun.models.AppData;
 
-import java.util.List;
-
 public class AppViewModel extends AndroidViewModel implements AboutAppListener {
 
     private Context context;
-    public MutableLiveData<List<AppData.AppModel>> data;
+    public MutableLiveData<AppData> data;
     public MutableLiveData<Boolean> error;
     private Repository repository;
 
@@ -34,14 +32,14 @@ public class AppViewModel extends AndroidViewModel implements AboutAppListener {
         this.context = context;
     }
 
-    public void getAppData() {
-        repository.getAppData(this, context);
+    public void getAppData(int type) {
+        repository.getAppData(this, context,type);
     }
 
 
     @Override
-    public void onSuccess(List<AppData.AppModel> appDataList) {
-        data.postValue(appDataList);
+    public void onSuccess(AppData appData) {
+        data.postValue(appData);
     }
 
     @Override

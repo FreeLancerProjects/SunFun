@@ -25,7 +25,7 @@ public class AppInfoActivity extends AppCompatActivity {
     private AppViewModel appViewModel;
     private ActivityAppInfoBinding binding;
     private String current_lang;
-    private int type=1;
+    private int type = 1;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -33,10 +33,11 @@ public class AppInfoActivity extends AppCompatActivity {
         super.attachBaseContext(Language.updateResources(newBase, Paper.book().read("lang", Locale.getDefault().getLanguage())));
 
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_app_info);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_app_info);
         appViewModel = ViewModelProviders.of(this).get(AppViewModel.class);
         getDataFromIntent();
         initView();
@@ -44,38 +45,35 @@ public class AppInfoActivity extends AppCompatActivity {
     }
 
 
-
     private void initView() {
         Paper.init(this);
         current_lang = Paper.book().read("lang", Locale.getDefault().getLanguage());
         binding.setLang(current_lang);
-        binding.progBar.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(this,R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
+        binding.progBar.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(this, R.color.colorPrimary), PorterDuff.Mode.SRC_IN);
         appViewModel.setContext(this);
-        appViewModel.getAppData();
+        appViewModel.getAppData(type);
 
-        appViewModel.data.observe(this, appDataList -> {
+        appViewModel.data.observe(this, appData -> {
             binding.progBar.setVisibility(View.GONE);
-            if (type==1)
-            {
-                binding.setAppData(appDataList.get(0));
-            }else
-                {
-                    binding.setAppData(appDataList.get(1));
+            if (type == 1) {
+                binding.setAppData(appData);
+            } else {
+                binding.setAppData(appData);
 
-                }
+            }
         });
+
+
         appViewModel.error.observe(this, aBoolean -> binding.progBar.setVisibility(View.GONE));
         binding.setType(type);
-
 
 
     }
 
     private void getDataFromIntent() {
         Intent intent = getIntent();
-        if (intent!=null)
-        {
-            type = intent.getIntExtra("type",1);
+        if (intent != null) {
+            type = intent.getIntExtra("type", 1);
         }
 
     }

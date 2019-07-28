@@ -174,7 +174,7 @@ public class BookEventActivity extends AppCompatActivity {
     {
         for (ActivityModelUpload model:activityModelUploadList)
         {
-            if (activityModel.getId()== model.getId())
+            if (activityModel.getId()== model.getActivity_id())
             {
                 return true;
             }
@@ -207,7 +207,7 @@ public class BookEventActivity extends AppCompatActivity {
                     {
                         binding.edtSubscribers.setError(null);
                         Common.CloseKeyBoard(this,binding.edtSubscribers);
-                        activityModelUpload.setSubscribers(Integer.parseInt(subscriber));
+                        activityModelUpload.setSubscribers_num(Integer.parseInt(subscriber));
                         activityModelUploadList.add(activityModelUpload);
                         selectedActivitiesAdapter.notifyDataSetChanged();
                         bookEventViewModel.activityList.set(activityModelUploadList);

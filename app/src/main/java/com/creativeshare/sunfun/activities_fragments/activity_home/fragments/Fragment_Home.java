@@ -49,24 +49,25 @@ public class Fragment_Home extends Fragment {
                 case 1:
                     if (userModel!=null)
                     {
-                        activity.DisplayFragmentOrders();
-
-                    }else
-                        {
-                            activity.CreateNoSignAlertDialog();
-
-                        }
-
-                    break;
-                case 2:
-                    if (userModel!=null)
-                    {
                         activity.DisplayFragmentNotifications();
 
                     }else
                     {
                         activity.CreateNoSignAlertDialog();
                     }
+
+                    break;
+                case 2:
+                    if (userModel!=null)
+                    {
+                        activity.DisplayFragmentOrders();
+
+                    }else
+                    {
+                        activity.CreateNoSignAlertDialog();
+
+                    }
+
                     break;
                 case 3:
                     activity.DisplayFragmentMore();

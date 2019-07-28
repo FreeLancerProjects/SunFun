@@ -8,24 +8,30 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.creativeshare.sunfun.R;
+import com.creativeshare.sunfun.activities_fragments.activity_home.fragments.FragmentUpgradeToCompany;
 import com.creativeshare.sunfun.activities_fragments.activity_home.fragments.Fragment_Bank_Account;
 import com.creativeshare.sunfun.activities_fragments.activity_home.fragments.Fragment_Client_Profile;
 import com.creativeshare.sunfun.activities_fragments.activity_home.fragments.Fragment_Contact_Us;
 import com.creativeshare.sunfun.activities_fragments.activity_home.fragments.Fragment_Event_Details;
 import com.creativeshare.sunfun.activities_fragments.activity_home.fragments.Fragment_Home;
 import com.creativeshare.sunfun.activities_fragments.activity_home.fragments.Fragment_Main;
+import com.creativeshare.sunfun.activities_fragments.activity_home.fragments.Fragment_Map;
 import com.creativeshare.sunfun.activities_fragments.activity_home.fragments.Fragment_More;
 import com.creativeshare.sunfun.activities_fragments.activity_home.fragments.Fragment_Notidications;
-import com.creativeshare.sunfun.activities_fragments.activity_home.fragments.Fragment_Orders;
+import com.creativeshare.sunfun.activities_fragments.activity_home.fragments.fragment_orders.Fragment_Orders;
 import com.creativeshare.sunfun.activities_fragments.activity_sign_in.activities.SignInActivity;
 import com.creativeshare.sunfun.databinding.DialogCustomBinding;
 import com.creativeshare.sunfun.language.Language;
 import com.creativeshare.sunfun.models.EventDataModel;
+import com.creativeshare.sunfun.models.SelectedLocation;
 import com.creativeshare.sunfun.models.UserModel;
 import com.creativeshare.sunfun.preferences.Preferences;
 import com.creativeshare.sunfun.remote.Api;
@@ -35,6 +41,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import io.paperdb.Paper;
@@ -55,6 +62,10 @@ public class HomeActivity extends AppCompatActivity {
     private Fragment_Event_Details fragment_event_details;
     private Fragment_Bank_Account fragment_bank_account;
     private Fragment_Client_Profile fragment_client_profile;
+    private Fragment_Map fragment_map;
+    private FragmentUpgradeToCompany fragmentUpgradeToCompany;
+
+
     private Preferences preferences;
     private UserModel userModel;
 
@@ -140,7 +151,8 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
-    public void DisplayFragmentMain() {
+    public void DisplayFragmentMain()
+    {
 
         if (fragment_main == null) {
             fragment_main = Fragment_Main.newInstance();
@@ -166,7 +178,32 @@ public class HomeActivity extends AppCompatActivity {
         }
 
     }
+    public void DisplayFragmentOrders()
+    {
 
+        if (fragment_orders == null) {
+            fragment_orders = Fragment_Orders.newInstance();
+        }
+        if (fragment_main != null && fragment_main.isAdded()) {
+            fragmentManager.beginTransaction().hide(fragment_main).commit();
+        }
+        if (fragment_more != null && fragment_more.isAdded()) {
+            fragmentManager.beginTransaction().hide(fragment_more).commit();
+        }
+        if (fragment_notidications != null && fragment_notidications.isAdded()) {
+            fragmentManager.beginTransaction().hide(fragment_notidications).commit();
+        }
+        if (fragment_orders.isAdded()) {
+            fragmentManager.beginTransaction().show(fragment_orders).commit();
+
+        } else {
+            fragmentManager.beginTransaction().add(R.id.fragment_home_container, fragment_orders, "fragment_orders").addToBackStack("fragment_orders").commit();
+
+        }
+        if (fragment_home != null && fragment_home.isAdded()) {
+            fragment_home.updateBottomNavigationPosition(2);
+        }
+    }
     public void DisplayFragmentMore() {
 
         if (fragment_more == null) {
@@ -219,6 +256,19 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
+    public void DisplayFragmentMap(String from) {
+        fragment_count += 1;
+        fragment_map = Fragment_Map.newInstance(from);
+
+        if (fragment_map.isAdded()) {
+            fragmentManager.beginTransaction().show(fragment_map).commit();
+
+        } else {
+            fragmentManager.beginTransaction().add(R.id.fragment_app_container, fragment_map, "fragment_map").addToBackStack("fragment_map").commit();
+
+        }
+    }
+
     public void DisplayFragmentEventDetails(EventDataModel.EventModel eventModel) {
         fragment_count += 1;
 
@@ -233,33 +283,10 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
-    public void DisplayFragmentOrders() {
 
-        if (fragment_orders == null) {
-            fragment_orders = Fragment_Orders.newInstance();
-        }
-        if (fragment_main != null && fragment_main.isAdded()) {
-            fragmentManager.beginTransaction().hide(fragment_main).commit();
-        }
-        if (fragment_more != null && fragment_more.isAdded()) {
-            fragmentManager.beginTransaction().hide(fragment_more).commit();
-        }
-        if (fragment_notidications != null && fragment_notidications.isAdded()) {
-            fragmentManager.beginTransaction().hide(fragment_notidications).commit();
-        }
-        if (fragment_orders.isAdded()) {
-            fragmentManager.beginTransaction().show(fragment_orders).commit();
 
-        } else {
-            fragmentManager.beginTransaction().add(R.id.fragment_home_container, fragment_orders, "fragment_orders").addToBackStack("fragment_orders").commit();
-
-        }
-        if (fragment_home != null && fragment_home.isAdded()) {
-            fragment_home.updateBottomNavigationPosition(1);
-        }
-    }
-
-    public void DisplayFragmentNotifications() {
+    public void DisplayFragmentNotifications()
+    {
 
         if (fragment_notidications == null) {
             fragment_notidications = Fragment_Notidications.newInstance();
@@ -282,11 +309,12 @@ public class HomeActivity extends AppCompatActivity {
 
         }
         if (fragment_home != null && fragment_home.isAdded()) {
-            fragment_home.updateBottomNavigationPosition(2);
+            fragment_home.updateBottomNavigationPosition(1);
         }
     }
 
-    public void DisplayFragmentClientProfile() {
+    public void DisplayFragmentClientProfile()
+    {
 
         fragment_count += 1;
          fragment_client_profile= Fragment_Client_Profile.newInstance();
@@ -299,7 +327,32 @@ public class HomeActivity extends AppCompatActivity {
 
         }
     }
+    public void DisplayFragmentUpgradetoCompany()
+    {
 
+        fragment_count += 1;
+        fragmentUpgradeToCompany= FragmentUpgradeToCompany.newInstance();
+
+        if (fragmentUpgradeToCompany.isAdded()) {
+            fragmentManager.beginTransaction().show(fragmentUpgradeToCompany).commit();
+
+        } else {
+            fragmentManager.beginTransaction().add(R.id.fragment_app_container, fragmentUpgradeToCompany, "fragmentUpgradeToCompany").addToBackStack("fragmentUpgradeToCompany").commit();
+
+        }
+    }
+
+    public void listenForMapLocation(String from,SelectedLocation selectedLocation)
+    {
+        Back();
+        if (from.equals("fragmentUpgradeToCompany"))
+        {
+            if (fragmentUpgradeToCompany!=null&&fragmentUpgradeToCompany.isAdded())
+            {
+                fragmentUpgradeToCompany.setSelectedLocation(selectedLocation);
+            }
+        }
+    }
 
     public void CreateNoSignAlertDialog() {
         final AlertDialog dialog = new AlertDialog.Builder(this)
@@ -335,6 +388,24 @@ public class HomeActivity extends AppCompatActivity {
         Intent intent = new Intent(HomeActivity.this, SignInActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        List<Fragment> fragmentList = fragmentManager.getFragments();
+        for (Fragment fragment : fragmentList) {
+            fragment.onActivityResult(requestCode, resultCode, data);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        List<Fragment> fragmentList = fragmentManager.getFragments();
+        for (Fragment fragment : fragmentList) {
+            fragment.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
     }
 
     public void RefreshActivity(String lang)

@@ -5,15 +5,24 @@ import com.creativeshare.sunfun.models.AppData;
 import com.creativeshare.sunfun.models.BankDataModel;
 import com.creativeshare.sunfun.models.CategoryDataModel;
 import com.creativeshare.sunfun.models.EventDataModel;
+import com.creativeshare.sunfun.models.EventModelToUpload;
 import com.creativeshare.sunfun.models.PaymentDataModel;
+import com.creativeshare.sunfun.models.PlaceGeocodeData;
+import com.creativeshare.sunfun.models.PlaceMapDetailsData;
+import com.creativeshare.sunfun.models.SocialDataModel;
 import com.creativeshare.sunfun.models.UserModel;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Query;
 
 public interface Service {
@@ -64,19 +73,14 @@ public interface Service {
     @GET("api/all_bank_accounts")
     Call<BankDataModel> getBanks();
 
-    @GET("api/about_us")
-    Call<AppData> getAppData();
-
-
     @FormUrlEncoded
-    @POST("api/add_order")
-    Call<ResponseBody> bookEvent(@Field("company_id") String company_id,
-                                 @Field("user_id") int user_id,
-                                 @Field("event_id") int event_id,
-                                 @Field("subscribers_num") String subscribers_num,
-                                 @Field("paid_type") String paid_type
+    @POST("api/about_us")
+    Call<AppData> getAppData(@Field("type") int type);
 
-    );
+
+
+    @POST("api/add_order")
+    Call<ResponseBody> bookEvent(@Body EventModelToUpload eventModelToUpload);
 
     @FormUrlEncoded
     @POST("api/visit")
@@ -84,6 +88,30 @@ public interface Service {
                                    @Field("software_type") int software_type
 
     );
+
+    @GET("place/findplacefromtext/json")
+    Call<PlaceMapDetailsData> searchOnMap(@Query(value = "inputtype") String inputtype,
+                                          @Query(value = "input") String input,
+                                          @Query(value = "fields") String fields,
+                                          @Query(value = "language") String language,
+                                          @Query(value = "key") String key);
+    @GET("geocode/json")
+    Call<PlaceGeocodeData> getGeoData(@Query(value = "latlng") String latlng,
+                                      @Query(value = "language") String language,
+                                      @Query(value = "key") String key);
+
+    @GET("api/social")
+    Call<SocialDataModel> getSocial();
+
+    @Multipart
+    @POST("api/upgrade")
+    Call<UserModel> upgradeToCompany(@Part("id")RequestBody user_id,
+                                     @Part("responsible")RequestBody responsible,
+                                     @Part("latitude")RequestBody latitude,
+                                     @Part("longitude")RequestBody longitude,
+                                     @Part("address")RequestBody address,
+                                     @Part MultipartBody.Part image
+                                     );
 
 }
 

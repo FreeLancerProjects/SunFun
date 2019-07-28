@@ -4,9 +4,19 @@ import java.io.Serializable;
 
 public class SocialDataModel implements Serializable {
 
-    public class SocialModel implements Serializable
-    {
-        private int id;
-        private String link;
+    private String facebook;
+    private String twitter;
+    private String instagram;
+
+    public String getFacebook() {
+        return facebook;
+    }
+
+    public String getTwitter() {
+        return twitter;
+    }
+
+    public String getInstagram() {
+        return instagram;
     }
 }

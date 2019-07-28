@@ -40,7 +40,7 @@
             android:singleLine="true"
             android:inputType="number"
             android:textColor="@color/black"
-            android:hint="@string/subscribers"
+            android:hint="@string/subscribers_num"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
             android:layout_marginBottom="10dp"

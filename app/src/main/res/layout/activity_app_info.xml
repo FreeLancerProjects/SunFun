@@ -17,7 +17,7 @@
 
         <variable
             name="appData"
-            type="com.creativeshare.sunfun.models.AppData.AppModel" />
+            type="com.creativeshare.sunfun.models.AppData" />
 
     </data>
     <LinearLayout
@@ -62,7 +62,7 @@
                     android:textSize="15sp"
                     android:clickable="false"
                     android:longClickable="false"
-                    android:text='@{type==2?@string/terms_and_conditions:(type ==1?@string/about_app:"")}'
+                    android:text='@{type==1?@string/terms_and_conditions:(type ==2?@string/about_app:"")}'
 
                     />
             </LinearLayout>
@@ -84,7 +84,7 @@
                     android:layout_margin="8dp"
                     android:textColor="@color/black"
                     android:textSize="15sp"
-                    android:text='@{lang.equals("ar")?appData.ar_content:appData.en_content}'
+                    android:text='@{lang.equals("ar")?appData.ar_content:(appData.en_content??appData.ar_content)}'
                     />
 
                 <ProgressBar

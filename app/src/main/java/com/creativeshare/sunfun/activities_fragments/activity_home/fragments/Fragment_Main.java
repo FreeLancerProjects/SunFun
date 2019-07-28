@@ -209,7 +209,7 @@ public class Fragment_Main extends Fragment {
                 {
                     if (userModel != null) {
 
-                        categorySearchViewModel.getEvents(category_id,subcategory_id,String.valueOf(userModel.getUser().getId()));
+                        categorySearchViewModel.getEvents(category_id,subcategory_id,String.valueOf(userModel.getUser().getActivity_id()));
                     } else {
                         categorySearchViewModel.getEvents(category_id,subcategory_id,"0");
 

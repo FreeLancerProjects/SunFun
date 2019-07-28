@@ -22,7 +22,7 @@ public class BookEventViewModel extends AndroidViewModel implements BookEventLis
     private Context context;
     public ObservableField<String> subscribers = new ObservableField<>("");
     public ObservableField<String> payment = new ObservableField<>("");
-    public ObservableField<String> subscribers_error = new ObservableField<>(null);
+    public ObservableField<String> subscribers_error = new ObservableField<>();
     public MutableLiveData<Boolean> success = new MutableLiveData<>();
     public ObservableField<List<ActivityModelUpload>> activityList = new ObservableField<>();
     private Repository repository;
@@ -41,7 +41,7 @@ public class BookEventViewModel extends AndroidViewModel implements BookEventLis
         if (!TextUtils.isEmpty(subscribers.get())&& !TextUtils.isEmpty(payment.get()))
         {
             EventModelToUpload eventModelToUpload = new EventModelToUpload(company_id,user_id,event_id,Integer.parseInt(subscribers.get()),Integer.parseInt(payment.get()),activityList.get());
-            //repository.bookEvent(this,context,user_id,company_id,event_id,subscribers.get(),payment.get());
+            repository.bookEvent(this,context,eventModelToUpload);
         }else
             {
                 if (TextUtils.isEmpty(subscribers.get()))
