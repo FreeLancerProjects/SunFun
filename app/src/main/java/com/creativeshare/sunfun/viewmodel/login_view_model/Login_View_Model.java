@@ -21,8 +21,8 @@ public class Login_View_Model extends AndroidViewModel implements Listener {
 
     public ObservableField<String> email = new ObservableField<>("");
     public ObservableField<String> password = new ObservableField<>("");
-    public ObservableField<String> email_error = new ObservableField<>(null);
-    public ObservableField<String> password_error = new ObservableField<>(null);
+    public ObservableField<String> email_error = new ObservableField<>();
+    public ObservableField<String> password_error = new ObservableField<>();
     private Context context;
     public MutableLiveData<UserModel> userModelMutableLiveData;
 

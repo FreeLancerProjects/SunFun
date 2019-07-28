@@ -91,7 +91,13 @@
     <string name="account_name">إسم الحساب</string>
     <string name="account_iban">الايبان</string>
     <string name="account_number">رقم الحساب</string>
-
+    <string name="i_m_a_company">سجلني كشركة</string>
+    <string name="select_language">إختر اللغة</string>
+    <string name="select">إختر</string>
+    <string name="activities">الانشطة</string>
+    <string name="nom">العدد :</string>
+    <string name="enter_subscriber_no">أدخل عدد المشتركين</string>
+    <string name="ok">حسنا!</string>
 
 
 </resources>

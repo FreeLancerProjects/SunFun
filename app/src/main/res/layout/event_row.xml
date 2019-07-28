@@ -34,7 +34,7 @@
             android:scaleType="fitXY"
             app:riv_corner_radius="5dp"
             app:riv_border_width="1dp"
-            app:Uri="@{event.image1??event.image2}"
+            imageEventEndPoint="@{event.image1??event.image2}"
 
 
             />
@@ -95,8 +95,8 @@
             android:layout_marginEnd="8dp"
             android:textColor="@color/black"
             android:textSize="12sp"
-            app:startDate="@{event.start_at}"
-            app:endDate="@{event.end_at}"
+            startDate="@{event.start_at}"
+            endDate="@{event.end_at}"
 
             />
         <TextView
@@ -109,8 +109,8 @@
             android:layout_marginEnd="8dp"
             android:textColor="@color/black"
             android:textSize="12sp"
-            app:startTime="@{event.from_time}"
-            app:endTime="@{event.to_time}"
+            startTime="@{event.from_time}"
+            endTime="@{event.to_time}"
 
             />
 

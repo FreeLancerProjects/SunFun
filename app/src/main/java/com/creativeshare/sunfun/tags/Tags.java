@@ -8,4 +8,7 @@ public class Tags {
 
     public static final String session_login = "login";
     public static final String session_logout = "logout";
+
+    public static final int type_user = 2;
+    public static final int type_company = 1;
 }

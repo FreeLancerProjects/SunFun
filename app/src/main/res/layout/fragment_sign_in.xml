@@ -92,7 +92,7 @@
                             android:textSize="14sp"
                             android:textColorHint="@color/gray4"
                             android:text="@={login_view_model.email}"
-                            app:error="@{login_view_model.email_error}"
+                            error="@{login_view_model.email_error}"
 
                             />
                     </LinearLayout>
@@ -147,7 +147,7 @@
                                 android:textSize="14sp"
                                 android:textColorHint="@color/gray4"
                                 android:text="@={login_view_model.password}"
-                                app:error="@{login_view_model.password_error}"
+                                error="@{login_view_model.password_error}"
 
 
                                 />

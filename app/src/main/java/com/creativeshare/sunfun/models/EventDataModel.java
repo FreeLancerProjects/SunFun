@@ -1,21 +1,7 @@
 package com.creativeshare.sunfun.models;
 
-import android.net.Uri;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import androidx.databinding.BindingAdapter;
-
-import com.creativeshare.sunfun.R;
-import com.creativeshare.sunfun.tags.Tags;
-import com.makeramen.roundedimageview.RoundedImageView;
-import com.squareup.picasso.Picasso;
-
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 public class EventDataModel implements Serializable {
 
@@ -165,38 +151,8 @@ public class EventDataModel implements Serializable {
             return activities;
         }
 
-        @BindingAdapter("app:Uri")
-        public static void displayImage(RoundedImageView imageView,String imageEndPoint)
-        {
 
-            Picasso.with(imageView.getContext()).load(Uri.parse(Tags.IMAGE_EVENT_URL+imageEndPoint)).placeholder(R.drawable.logo).fit().into(imageView);
 
-        }
-        @BindingAdapter({"app:startDate","app:endDate"})
-        public static void displayDate(TextView textView,String start_date,String end_date)
-        {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
-            String sDate = dateFormat.format(new Date(Long.parseLong(start_date)*1000));
-
-            SimpleDateFormat dateFormat2 = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
-
-            String eDate = dateFormat2.format(new Date(Long.parseLong(end_date)*1000));
-
-            textView.setText(String.format("%s - %s",sDate,eDate));
-        }
-
-        @BindingAdapter({"app:startTime","app:endTime"})
-        public static void displayTime(TextView textView,String start_time,String end_time)
-        {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm aa", Locale.ENGLISH);
-            String sTime = dateFormat.format(new Date(Long.parseLong(start_time)*1000));
-
-            SimpleDateFormat dateFormat2 = new SimpleDateFormat("hh:mm aa", Locale.ENGLISH);
-
-            String eTime = dateFormat2.format(new Date(Long.parseLong(end_time)*1000));
-
-            textView.setText(String.format("%s - %s",sTime,eTime));
-        }
 
         public static class ActivityModel implements Serializable
         {
@@ -272,13 +228,13 @@ public class EventDataModel implements Serializable {
                 return booking_number;
             }
 
-
-            @BindingAdapter("app:activityImage")
-            public static void displayActivityImage(ImageView imageView,String url)
-            {
-                Picasso.with(imageView.getContext()).load(Uri.parse(Tags.IMAGE_ACTIVITY_URL+url)).fit().placeholder(R.drawable.logo).into(imageView);
+            public void setAr_title(String ar_title) {
+                this.ar_title = ar_title;
             }
 
+            public void setEn_title(String en_title) {
+                this.en_title = en_title;
+            }
         }
 
     }

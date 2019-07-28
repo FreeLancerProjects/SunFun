@@ -38,18 +38,16 @@ public class Preferences {
 
     }
 
-    public void setIsLanguageSelected(Context context)
-    {
+    public void setIsLanguageSelected(Context context) {
         SharedPreferences preferences = context.getSharedPreferences("language_selected", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putBoolean("selected",true);
+        editor.putBoolean("selected", true);
         editor.apply();
     }
 
-    public boolean isLanguageSelected(Context context)
-    {
+    public boolean isLanguageSelected(Context context) {
         SharedPreferences preferences = context.getSharedPreferences("language_selected", Context.MODE_PRIVATE);
-        return preferences.getBoolean("selected",false);
+        return preferences.getBoolean("selected", false);
     }
 
     public void create_update_userdata(Context context, UserModel userModel) {
@@ -86,4 +84,27 @@ public class Preferences {
         String session = preferences.getString("state", Tags.session_logout);
         return session;
     }
+
+    public void setLastVisit(Context context,String date)
+    {
+        SharedPreferences preferences = context.getSharedPreferences("visit",Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("lastVisit",date);
+        editor.apply();
+
+    }
+    public String getLastVisit(Context context)
+    {
+        SharedPreferences preferences = context.getSharedPreferences("visit",Context.MODE_PRIVATE);
+        return preferences.getString("lastVisit","0");
+    }
+    public void clear(Context context) {
+        SharedPreferences preferences = context.getSharedPreferences("user", Context.MODE_PRIVATE);
+        SharedPreferences.Editor edit = preferences.edit();
+        edit.clear();
+        edit.apply();
+        create_update_session(context, Tags.session_logout);
+    }
+
+
 }

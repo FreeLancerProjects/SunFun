@@ -153,9 +153,41 @@
                     android:inputType="number"
                     android:singleLine="true"
                     android:text="@={bookViewModel.subscribers}"
-                    app:error="@{bookViewModel.subscribers_error}"
+                    error="@{bookViewModel.subscribers_error}"
                     />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:text="@string/activities"
+                    android:layout_marginTop="8dp"
+                    />
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/edt_bg2"
+                    >
+                    <Spinner
+                        android:id="@+id/spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:backgroundTint="@color/colorPrimary"
 
+                        >
+
+                    </Spinner>
+                </FrameLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recViewActivities"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    >
+
+                </androidx.recyclerview.widget.RecyclerView>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -182,7 +214,7 @@
                     android:textColor="@color/white"
                     android:textSize="15sp"
                     android:text="@string/book_now"
-                    android:onClick="@{(v)->bookViewModel.BookEvent()}"
+                    android:onClick="@{(v)->bookViewModel.BookEvent(userModel.user.id,eventModel.company_id,eventModel.id)}"
                     />
 
             </LinearLayout>

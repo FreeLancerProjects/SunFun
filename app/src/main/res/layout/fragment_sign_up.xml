@@ -127,7 +127,7 @@
                             android:textSize="14sp"
                             android:textColorHint="@color/gray4"
                             android:text="@={signUpViewModel.name}"
-                            app:error ="@{signUpViewModel.name_error}"
+                            error ="@{signUpViewModel.name_error}"
 
                             />
                     </LinearLayout>
@@ -156,7 +156,7 @@
                             android:textColor="@color/colorPrimary"
 
                             android:text="@={signUpViewModel.phone_code}"
-                            app:error ="@{signUpViewModel.phone_code_error}"
+                            error ="@{signUpViewModel.phone_code_error}"
 
                             android:textSize="15sp"
                             />
@@ -193,7 +193,7 @@
                             app:layout_constraintStart_toEndOf="@id/viewPhoneCode"
                             app:layout_constraintTop_toTopOf="parent"
                             android:text="@={signUpViewModel.phone}"
-                            app:error="@{signUpViewModel.phone_error}"
+                            error="@{signUpViewModel.phone_error}"
 
 
                             />
@@ -271,7 +271,7 @@
                             android:textSize="14sp"
                             android:textColorHint="@color/gray4"
                             android:text="@={signUpViewModel.email}"
-                            app:error="@{signUpViewModel.email_error}"
+                            error="@{signUpViewModel.email_error}"
 
 
                             />
@@ -327,7 +327,7 @@
                                 android:textSize="14sp"
                                 android:textColorHint="@color/gray4"
                                 android:text="@={signUpViewModel.password}"
-                                app:error="@{signUpViewModel.password_error}"
+                                error="@{signUpViewModel.password_error}"
 
 
 

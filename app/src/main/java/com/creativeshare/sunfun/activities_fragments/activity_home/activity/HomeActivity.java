@@ -4,6 +4,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +14,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.creativeshare.sunfun.R;
 import com.creativeshare.sunfun.activities_fragments.activity_home.fragments.Fragment_Bank_Account;
+import com.creativeshare.sunfun.activities_fragments.activity_home.fragments.Fragment_Client_Profile;
 import com.creativeshare.sunfun.activities_fragments.activity_home.fragments.Fragment_Contact_Us;
 import com.creativeshare.sunfun.activities_fragments.activity_home.fragments.Fragment_Event_Details;
 import com.creativeshare.sunfun.activities_fragments.activity_home.fragments.Fragment_Home;
@@ -25,10 +28,20 @@ import com.creativeshare.sunfun.language.Language;
 import com.creativeshare.sunfun.models.EventDataModel;
 import com.creativeshare.sunfun.models.UserModel;
 import com.creativeshare.sunfun.preferences.Preferences;
+import com.creativeshare.sunfun.remote.Api;
+import com.creativeshare.sunfun.tags.Tags;
 
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 import io.paperdb.Paper;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HomeActivity extends AppCompatActivity {
     private FragmentManager fragmentManager;
@@ -41,6 +54,7 @@ public class HomeActivity extends AppCompatActivity {
     private Fragment_Contact_Us fragment_contact_us;
     private Fragment_Event_Details fragment_event_details;
     private Fragment_Bank_Account fragment_bank_account;
+    private Fragment_Client_Profile fragment_client_profile;
     private Preferences preferences;
     private UserModel userModel;
 
@@ -71,6 +85,43 @@ public class HomeActivity extends AppCompatActivity {
         fragmentManager = this.getSupportFragmentManager();
         preferences = Preferences.getInstance();
         userModel = preferences.getUserData(this);
+        String lastVisit = preferences.getLastVisit(this);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd",Locale.ENGLISH);
+        String now = dateFormat.format(new Date(Calendar.getInstance().getTimeInMillis()));
+
+        if (!lastVisit.equals(now))
+        {
+            updateVisit(now);
+
+        }
+    }
+
+    private void updateVisit(String now) {
+        Api.getService(Tags.base_url)
+                .updateVisit(now,2)
+                .enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        if (response.isSuccessful())
+                        {
+                            preferences.setLastVisit(HomeActivity.this,now);
+                        }else
+                            {
+                                try {
+                                    Log.e("errorVisitCode",response.code()+"_"+response.errorBody().string());
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        try {
+                            Log.e("Error",t.getMessage()+"_");
+                        }catch (Exception e){}
+                    }
+                });
     }
 
     public void DisplayFragmentHome() {
@@ -235,6 +286,21 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
+    public void DisplayFragmentClientProfile() {
+
+        fragment_count += 1;
+         fragment_client_profile= Fragment_Client_Profile.newInstance();
+
+        if (fragment_client_profile.isAdded()) {
+            fragmentManager.beginTransaction().show(fragment_client_profile).commit();
+
+        } else {
+            fragmentManager.beginTransaction().add(R.id.fragment_app_container, fragment_client_profile, "fragment_client_profile").addToBackStack("fragment_client_profile").commit();
+
+        }
+    }
+
+
     public void CreateNoSignAlertDialog() {
         final AlertDialog dialog = new AlertDialog.Builder(this)
                 .create();
@@ -264,12 +330,41 @@ public class HomeActivity extends AppCompatActivity {
         dialog.setView(binding.getRoot());
         dialog.show();
     }
+
     private void NavigateToSignInActivity() {
         Intent intent = new Intent(HomeActivity.this, SignInActivity.class);
         startActivity(intent);
         finish();
     }
 
+    public void RefreshActivity(String lang)
+    {
+        Paper.book().write("lang",lang);
+        Language.setNewLocale(this,lang);
+        new Handler()
+                .postDelayed(() -> {
+
+                    Intent intent =  getIntent();
+                    finish();
+                    startActivity(intent);
+                },1050);
+
+
+
+    }
+    public void logout()
+    {
+        if (userModel!=null)
+        {
+            userModel =null;
+            preferences.clear(this);
+            NavigateToSignInActivity();
+
+        }else
+            {
+                NavigateToSignInActivity();
+            }
+    }
     @Override
     public void onBackPressed() {
         Back();

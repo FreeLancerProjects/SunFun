@@ -20,9 +20,9 @@ public class ContactViewModel extends AndroidViewModel implements ContactListene
     public ObservableField<String> email = new ObservableField<>("");
     public ObservableField<String> subject = new ObservableField<>("");
 
-    public ObservableField<String> name_error = new ObservableField<>(null);
-    public ObservableField<String> email_error = new ObservableField<>(null);
-    public ObservableField<String> subject_error = new ObservableField<>(null);
+    public ObservableField<String> name_error = new ObservableField<>();
+    public ObservableField<String> email_error = new ObservableField<>();
+    public ObservableField<String> subject_error = new ObservableField<>();
     private Repository repository;
 
     public ContactViewModel(@NonNull Application application) {

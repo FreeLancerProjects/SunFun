@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activities_fragments.activity_app_info.AppInfoActivity"></activity>
+        <activity android:name=".activities_fragments.activity_profile.ProfileClientActivity"></activity>
+        <activity android:name=".activities_fragments.activity_app_info.AppInfoActivity" />
         <activity android:name=".activities_fragments.activity_book_event.BookEventActivity" />
 
         <meta-data

@@ -91,4 +91,11 @@
     <string name="account_name">Account Name</string>
     <string name="account_iban">Account IBAN</string>
     <string name="account_number">Account Number</string>
+    <string name="i_m_a_company">i\'m a company</string>
+    <string name="select_language">Select Language</string>
+    <string name="select">Select</string>
+    <string name="activities">Activities</string>
+    <string name="nom">No:</string>
+    <string name="enter_subscriber_no">Enter subscriber No</string>
+    <string name="ok">Ok</string>
 </resources>
