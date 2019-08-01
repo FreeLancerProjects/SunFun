@@ -5,7 +5,6 @@ import android.content.Context;
 import com.creativeshare.sunfun.models.BankDataModel;
 import com.creativeshare.sunfun.remote.Api;
 import com.creativeshare.sunfun.tags.Tags;
-import com.creativeshare.sunfun.listeners.BankListener;
 
 import retrofit2.Call;
 import retrofit2.Callback;

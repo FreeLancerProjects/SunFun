@@ -10,6 +10,7 @@ import androidx.databinding.BindingAdapter;
 
 import com.creativeshare.sunfun.R;
 import com.creativeshare.sunfun.tags.Tags;
+import com.iarcuschin.simpleratingbar.SimpleRatingBar;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.squareup.picasso.Picasso;
 
@@ -85,5 +86,20 @@ public class UI_General_Method {
         String eTime = dateFormat2.format(new Date(Long.parseLong(end_time)*1000));
 
         textView.setText(String.format("%s - %s",sTime,eTime));
+    }
+
+    @BindingAdapter("rate")
+    public static void displayRate(SimpleRatingBar simpleRatingBar,double rate)
+    {
+
+        simpleRatingBar.setRating((float) rate);
+    }
+    @BindingAdapter("date")
+    public static void convertToDate(TextView textView,String date)
+    {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("EEE dd/MM/yyy", Locale.ENGLISH);
+        String d = dateFormat.format(new Date(Long.parseLong(date)*1000));
+        textView.setText(d);
+
     }
 }

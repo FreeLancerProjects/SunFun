@@ -12,14 +12,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.creativeshare.sunfun.R;
 import com.creativeshare.sunfun.activities_fragments.activity_home.activity.HomeActivity;
 import com.creativeshare.sunfun.activities_fragments.activity_sign_in.activities.SignInActivity;
 import com.creativeshare.sunfun.databinding.FragmentSignUpBinding;
-import com.creativeshare.sunfun.models.UserModel;
 import com.creativeshare.sunfun.preferences.Preferences;
 import com.creativeshare.sunfun.viewmodel.signup_view_model.SignUp_View_Model;
 import com.mukesh.countrypicker.Country;
@@ -59,15 +57,12 @@ public class Fragment_Sign_Up extends Fragment implements OnCountryPickerListene
             binding.imagePhoneCode.setRotation(180.0f);
         }
 
-        signUp_view_model.userModelMutableLiveData.observe(this, new Observer<UserModel>() {
-            @Override
-            public void onChanged(UserModel userModel) {
-
-                preferences.create_update_userdata(activity,userModel);
-                Intent intent = new Intent(activity, HomeActivity.class);
-                startActivity(intent);
-                activity.finish();
-            }
+        signUp_view_model.userModelMutableLiveData.observe(this, userModel -> {
+            userModel.getUser().setUser_type("1");
+            preferences.create_update_userdata(activity,userModel);
+            Intent intent = new Intent(activity, HomeActivity.class);
+            startActivity(intent);
+            activity.finish();
         });
         CreateCountryDialog();
 

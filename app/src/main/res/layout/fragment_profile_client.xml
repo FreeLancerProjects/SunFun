@@ -229,7 +229,7 @@
                         app:layout_constraintStart_toEndOf="@id/v2"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintWidth_default="wrap"
-                        android:text='@{userModel.user.phone_code+" "+userModel.user.phone}'
+                        android:text='@{userModel.user.phone_code.replaceFirst("00","+")+" "+userModel.user.phone}'
 
                         />
 

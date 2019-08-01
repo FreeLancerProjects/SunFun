@@ -1,7 +1,6 @@
 package com.creativeshare.sunfun.activities_fragments.activity_home.fragments.fragment_orders;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +27,11 @@ public class Fragment_Orders extends Fragment {
     private List<Fragment> fragments;
     private List<String> titles;
 
+    public static Fragment_Orders newInstance()
+    {
+        return new Fragment_Orders();
+    }
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_orders,container,false);
@@ -36,7 +40,6 @@ public class Fragment_Orders extends Fragment {
     }
 
     private void initView() {
-        Log.e("sss","ttttt");
         fragments = new ArrayList<>();
         titles = new ArrayList<>();
         activity=(HomeActivity)getActivity();
@@ -56,8 +59,14 @@ public class Fragment_Orders extends Fragment {
 
     }
 
-    public static Fragment_Orders newInstance()
+    public void refreshFragmentOrder()
     {
-        return new Fragment_Orders();
+        Fragment_Current_Order fragment_current_order = (Fragment_Current_Order) pager_adapter.getItem(0);
+        fragment_current_order.getOrders();
+
+        Fragment_Previous_Order fragment_previous_order= (Fragment_Previous_Order) pager_adapter.getItem(1);
+        fragment_previous_order.getOrders();
     }
+
+
 }

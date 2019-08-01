@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -31,6 +32,7 @@ import com.creativeshare.sunfun.models.CategoryDataModel;
 import com.creativeshare.sunfun.models.EventDataModel;
 import com.creativeshare.sunfun.models.UserModel;
 import com.creativeshare.sunfun.preferences.Preferences;
+import com.creativeshare.sunfun.singleton.Singleton;
 import com.creativeshare.sunfun.viewmodel.category_view_model.CategoryViewModel;
 import com.creativeshare.sunfun.viewmodel.events_view_model.EventViewModel;
 import com.creativeshare.sunfun.viewmodel.search_category_view_model.CategorySearchViewModel;
@@ -58,6 +60,7 @@ public class Fragment_Main extends Fragment {
     private UserModel userModel;
     private CategorySearchViewModel categorySearchViewModel;
     private boolean isLoading = false;
+    private Singleton singleton;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -71,6 +74,7 @@ public class Fragment_Main extends Fragment {
     }
 
     private void initView() {
+        singleton = Singleton.newInstance();
         eventModelList = new ArrayList<>();
         categoryList = new ArrayList<>();
         subCategoryList = new ArrayList<>();
@@ -202,20 +206,7 @@ public class Fragment_Main extends Fragment {
             binding.spinnerSubCategory.setSelection(0);
             category_id = "";
             subcategory_id ="";
-            /*if (TextUtils.isEmpty(subcategory_id))
-            {
 
-            }else
-                {
-                    if (userModel != null) {
-
-                        categorySearchViewModel.getEvents(category_id,subcategory_id,String.valueOf(userModel.getUser().getActivity_id()));
-                    } else {
-                        categorySearchViewModel.getEvents(category_id,subcategory_id,"0");
-
-                    }
-                }
-*/
 
                 }
         );
@@ -274,6 +265,7 @@ public class Fragment_Main extends Fragment {
             viewModel.getCategories();
 
             if (userModel != null) {
+
                 eventViewModel.getEvents(String.valueOf(userModel.getUser().getId()));
 
             } else {
@@ -281,7 +273,14 @@ public class Fragment_Main extends Fragment {
 
             }
             isFirstTime = false;
-        }
+        }else
+            {
+                if (userModel != null&&singleton.isEventAdded()) {
+
+                    eventViewModel.getEvents(String.valueOf(userModel.getUser().getId()));
+                    singleton.setEventAdded(false);
+                }
+            }
     }
 
     public void setItemData(EventDataModel.EventModel eventModel) {
@@ -291,9 +290,16 @@ public class Fragment_Main extends Fragment {
     public void book(EventDataModel.EventModel eventModel) {
         if (userModel!=null)
         {
-            Intent intent = new Intent(activity, BookEventActivity.class);
-            intent.putExtra("data",eventModel);
-            startActivity(intent);
+            if (userModel.getUser().getId()!=Integer.parseInt(eventModel.getCompany_id()))
+            {
+                Intent intent = new Intent(activity, BookEventActivity.class);
+                intent.putExtra("data",eventModel);
+                startActivity(intent);
+            }else
+                {
+                    Toast.makeText(activity, R.string.cnt_book, Toast.LENGTH_LONG).show();
+                }
+
         }else
             {
                 CreateNoSignAlertDialog();

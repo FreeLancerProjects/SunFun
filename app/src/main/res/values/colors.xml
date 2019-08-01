@@ -19,4 +19,6 @@
     <color name="gray8">#ebeff7</color>
     <color name="golden">#df8d32</color>
     <color name="end_color">#4c9bfa</color>
+    <color name="rating">#FBC02D</color>
+    <color name="active">#43A047</color>
 </resources>

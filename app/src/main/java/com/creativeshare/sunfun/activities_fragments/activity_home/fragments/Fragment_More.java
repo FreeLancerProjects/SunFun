@@ -57,9 +57,12 @@ public class Fragment_More extends Fragment {
         binding.llProfile.setOnClickListener(view -> {
             if (userModel!=null)
             {
-                if (userModel.getUser().getUser_type()== Tags.type_user)
+                if (userModel.getUser().getUser_type().equals(Tags.type_user))
                 {
                     activity.DisplayFragmentClientProfile();
+                }else if (userModel.getUser().getUser_type().equals(Tags.type_company))
+                {
+                    activity.DisplayFragmentCompanyProfile();
                 }
             }else
                 {
@@ -70,7 +73,7 @@ public class Fragment_More extends Fragment {
         binding.llEditProfile.setOnClickListener(view -> {
             if (userModel!=null)
             {
-                if (userModel.getUser().getUser_type()== Tags.type_user)
+                if (userModel.getUser().getUser_type().equals(Tags.type_user))
                 {
 
                 }

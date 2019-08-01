@@ -80,7 +80,7 @@ public class Fragment_Event_Details extends Fragment implements OnMapReadyCallba
         activityModelList = new ArrayList<>();
         images = new ArrayList<>();
         activity = (HomeActivity) getActivity();
-        preferences  = Preferences.getInstance();
+        preferences = Preferences.getInstance();
         userModel = preferences.getUserData(activity);
         Paper.init(activity);
         current_language = Paper.book().read("lang", Locale.getDefault().getLanguage());
@@ -88,57 +88,57 @@ public class Fragment_Event_Details extends Fragment implements OnMapReadyCallba
         binding.tab.setupWithViewPager(binding.pager);
 
         Bundle bundle = getArguments();
-        if (bundle!=null)
-        {
+        if (bundle != null) {
             eventModel = (EventDataModel.EventModel) bundle.getSerializable(TAG);
             binding.setEvent(eventModel);
         }
 
-        manager = new LinearLayoutManager(activity,LinearLayoutManager.HORIZONTAL,false);
+        manager = new LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false);
         activityModelList.addAll(eventModel.getActivities());
         binding.recView.setLayoutManager(manager);
-        adapter = new ActivitiesAdapter(activityModelList,activity,this);
+        adapter = new ActivitiesAdapter(activityModelList, activity, this);
         binding.recView.setAdapter(adapter);
 
 
-        if (eventModel.getImage1()!=null&&!eventModel.getImage1().isEmpty()&&!eventModel.getImage1().equals("0"))
-        {
+
+        if (eventModel.getImage1() != null && !eventModel.getImage1().isEmpty() && !eventModel.getImage1().equals("0")) {
             images.add(eventModel.getImage1());
         }
 
-        if (eventModel.getImage2()!=null&&!eventModel.getImage2().isEmpty()&&!eventModel.getImage2().equals("0"))
-        {
+        if (eventModel.getImage2() != null && !eventModel.getImage2().isEmpty() && !eventModel.getImage2().equals("0")) {
             images.add(eventModel.getImage2());
         }
 
-        sliderAdapter = new EventSliderAdapter(images,activity);
+
+        if (userModel != null) {
+            if (Integer.parseInt(eventModel.getCompany_id()) == userModel.getUser().getId()) {
+                binding.btnBook.setVisibility(View.GONE);
+            } else {
+                binding.btnBook.setVisibility(View.VISIBLE);
+
+
+            }
+        } else {
+            binding.btnBook.setVisibility(View.GONE);
+
+        }
+
+        sliderAdapter = new EventSliderAdapter(images, activity);
         binding.pager.setAdapter(sliderAdapter);
 
-        if (images.size()>1)
-        {
-            for (int i=0;i<binding.tab.getTabCount()-1;i++)
-            {
+        if (images.size() > 1) {
+            for (int i = 0; i < binding.tab.getTabCount() - 1; i++) {
 
-                View view = ((ViewGroup)binding.tab.getChildAt(0)).getChildAt(i);
+                View view = ((ViewGroup) binding.tab.getChildAt(0)).getChildAt(i);
                 ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
-                params.setMargins(5,0,5,0);
+                params.setMargins(5, 0, 5, 0);
                 binding.tab.requestLayout();
             }
 
             timer = new Timer();
             timerTask = new MyTimerTask();
-            timer.scheduleAtFixedRate(timerTask,6000,6000);
+            timer.scheduleAtFixedRate(timerTask, 6000, 6000);
         }
-
-        binding.btnBook.setOnClickListener(view -> {
-            if (userModel!=null)
-            {
-
-            }else
-                {
-                    Common.CreateNoSignAlertDialog(activity);
-                }
-        });
 
 
 
@@ -146,11 +146,22 @@ public class Fragment_Event_Details extends Fragment implements OnMapReadyCallba
 
         binding.appBar.addOnOffsetChangedListener((AppBarLayout.BaseOnOffsetChangedListener) (appBarLayout, verticalOffset) -> {
             int total_rang = appBarLayout.getTotalScrollRange();
-            if ((total_rang+verticalOffset)>70)
-            {
-                binding.btnBook.setVisibility(View.VISIBLE);
-            }else
-            {
+            if ((total_rang + verticalOffset) > 70) {
+
+                if (userModel != null) {
+                    if (Integer.parseInt(eventModel.getCompany_id()) == userModel.getUser().getId()) {
+                        binding.btnBook.setVisibility(View.GONE);
+                    } else {
+                        binding.btnBook.setVisibility(View.VISIBLE);
+
+
+                    }
+                } else {
+                    binding.btnBook.setVisibility(View.GONE);
+
+                }
+
+            } else {
                 binding.btnBook.setVisibility(View.GONE);
 
             }
@@ -158,26 +169,22 @@ public class Fragment_Event_Details extends Fragment implements OnMapReadyCallba
         binding.arrow.setOnClickListener(view -> activity.Back());
 
         binding.btnBook.setOnClickListener(view -> {
-            if (userModel!=null)
-            {
+            if (userModel != null) {
                 Intent intent = new Intent(activity, BookEventActivity.class);
-                intent.putExtra("data",eventModel);
+                intent.putExtra("data", eventModel);
                 startActivity(intent);
-            }else
-                {
-                 Common.CreateNoSignAlertDialog(activity);
-                }
+            } else {
+                Common.CreateNoSignAlertDialog(activity);
+            }
 
         });
 
     }
 
 
-
     private void initMap() {
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
-        if (mapFragment!=null)
-        {
+        if (mapFragment != null) {
             mapFragment.getMapAsync(this);
 
         }
@@ -190,21 +197,19 @@ public class Fragment_Event_Details extends Fragment implements OnMapReadyCallba
         googleMap.setBuildingsEnabled(false);
         googleMap.setIndoorEnabled(true);
         googleMap.setTrafficEnabled(false);
-        googleMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(activity,R.raw.maps));
+        googleMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(activity, R.raw.maps));
         addMarker();
     }
 
     private void addMarker() {
         Marker marker = mMap.addMarker(new MarkerOptions().position(new LatLng(Double.parseDouble(eventModel.getLatitude()), Double.parseDouble(eventModel.getLongitude()))));
-        if (eventModel.getAddress()!=null)
-        {
+        if (eventModel.getAddress() != null) {
             marker.setTitle(eventModel.getAddress());
         }
 
         marker.setIcon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(Double.parseDouble(eventModel.getLatitude()), Double.parseDouble(eventModel.getLongitude())),zoom));
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(Double.parseDouble(eventModel.getLatitude()), Double.parseDouble(eventModel.getLongitude())), zoom));
     }
-
 
 
     private class MyTimerTask extends TimerTask {
@@ -212,11 +217,9 @@ public class Fragment_Event_Details extends Fragment implements OnMapReadyCallba
         public void run() {
             activity.runOnUiThread(() -> {
 
-                if (binding.pager.getCurrentItem()<binding.pager.getAdapter().getCount()-1)
-                {
-                    binding.pager.setCurrentItem(binding.pager.getCurrentItem()+1,true);
-                }else
-                {
+                if (binding.pager.getCurrentItem() < binding.pager.getAdapter().getCount() - 1) {
+                    binding.pager.setCurrentItem(binding.pager.getCurrentItem() + 1, true);
+                } else {
                     binding.pager.setCurrentItem(0);
                 }
             });
@@ -227,13 +230,11 @@ public class Fragment_Event_Details extends Fragment implements OnMapReadyCallba
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if (timer!=null)
-        {
+        if (timer != null) {
             timer.purge();
             timer.cancel();
         }
-        if (timerTask!=null)
-        {
+        if (timerTask != null) {
             timerTask.cancel();
         }
     }

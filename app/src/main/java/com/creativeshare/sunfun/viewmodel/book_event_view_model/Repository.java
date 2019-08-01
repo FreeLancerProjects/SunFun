@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 
 import com.creativeshare.sunfun.R;
-import com.creativeshare.sunfun.listeners.BookEventListener;
 import com.creativeshare.sunfun.models.EventModelToUpload;
 import com.creativeshare.sunfun.remote.Api;
 import com.creativeshare.sunfun.share.Common;

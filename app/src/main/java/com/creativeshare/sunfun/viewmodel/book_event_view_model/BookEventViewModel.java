@@ -11,7 +11,6 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
 import com.creativeshare.sunfun.R;
-import com.creativeshare.sunfun.listeners.BookEventListener;
 import com.creativeshare.sunfun.models.ActivityModelUpload;
 import com.creativeshare.sunfun.models.EventModelToUpload;
 

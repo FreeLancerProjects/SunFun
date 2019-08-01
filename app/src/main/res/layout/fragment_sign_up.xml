@@ -354,7 +354,7 @@
                 app:layout_constraintVertical_bias="0"
                 android:textColor="@color/white"
                 android:textSize="15sp"
-                android:text="@string/log_in"
+                android:text="@string/signup"
                 android:onClick="@{()->signUpViewModel.signUp()}"
                 />
 

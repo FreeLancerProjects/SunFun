@@ -12,7 +12,6 @@ import androidx.databinding.ObservableField;
 import androidx.lifecycle.AndroidViewModel;
 
 import com.creativeshare.sunfun.R;
-import com.creativeshare.sunfun.listeners.ContactListener;
 
 public class ContactViewModel extends AndroidViewModel implements ContactListener {
     private Context context;

@@ -146,7 +146,7 @@ public class BookEventActivity extends AppCompatActivity {
         bookEventViewModel.success.observe(this, aBoolean ->{
                     Toast.makeText(BookEventActivity.this,getString(R.string.suc), Toast.LENGTH_SHORT).show();
                     singleton = Singleton.newInstance();
-                    singleton.setEventAdded(true);
+                    singleton.setSentNewOrder(true);
                     finish();
 
                 }

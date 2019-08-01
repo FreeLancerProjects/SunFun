@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class UserModel implements Serializable {
 
     private User user;
+    private Information information;
 
     public User getUser() {
         return user;
@@ -15,7 +16,7 @@ public class UserModel implements Serializable {
         private int id;
         private String name;
         private String email;
-        private int user_type;
+        private String user_type;
         private int be_company;
         private double latitude;
         private double longitude;
@@ -39,7 +40,11 @@ public class UserModel implements Serializable {
             return email;
         }
 
-        public int getUser_type() {
+        public void setUser_type(String user_type) {
+            this.user_type = user_type;
+        }
+
+        public String getUser_type() {
             return user_type;
         }
 
@@ -81,6 +86,40 @@ public class UserModel implements Serializable {
 
         public String getImage() {
             return image;
+        }
+    }
+
+    public Information getInformation() {
+        return information;
+    }
+
+    public class Information implements Serializable
+    {
+        private int accepted;
+        private int refused;
+        private int money;
+        private int site_money;
+        private int credit_limit;
+
+
+        public int getAccepted() {
+            return accepted;
+        }
+
+        public int getRefused() {
+            return refused;
+        }
+
+        public int getMoney() {
+            return money;
+        }
+
+        public int getSite_money() {
+            return site_money;
+        }
+
+        public int getCredit_limit() {
+            return credit_limit;
         }
     }
 }

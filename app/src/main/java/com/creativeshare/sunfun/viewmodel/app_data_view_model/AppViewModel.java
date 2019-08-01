@@ -10,7 +10,6 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
 import com.creativeshare.sunfun.R;
-import com.creativeshare.sunfun.listeners.AboutAppListener;
 import com.creativeshare.sunfun.models.AppData;
 
 public class AppViewModel extends AndroidViewModel implements AboutAppListener {

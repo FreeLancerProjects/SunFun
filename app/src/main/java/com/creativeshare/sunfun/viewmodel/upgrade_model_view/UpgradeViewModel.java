@@ -12,7 +12,6 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
 import com.creativeshare.sunfun.R;
-import com.creativeshare.sunfun.listeners.UpgradeListener;
 import com.creativeshare.sunfun.models.UserModel;
 
 public class UpgradeViewModel extends AndroidViewModel implements UpgradeListener {

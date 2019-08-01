@@ -2,7 +2,6 @@ package com.creativeshare.sunfun.viewmodel.app_data_view_model;
 
 import android.content.Context;
 
-import com.creativeshare.sunfun.listeners.AboutAppListener;
 import com.creativeshare.sunfun.models.AppData;
 import com.creativeshare.sunfun.remote.Api;
 import com.creativeshare.sunfun.tags.Tags;

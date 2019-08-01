@@ -1,5 +1,6 @@
 package com.creativeshare.sunfun.activities_fragments.activity_home.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,10 +15,12 @@ import androidx.fragment.app.Fragment;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigationItem;
 import com.creativeshare.sunfun.R;
+import com.creativeshare.sunfun.activities_fragments.activity_create_event.activity.Create_Event_Activity;
 import com.creativeshare.sunfun.activities_fragments.activity_home.activity.HomeActivity;
 import com.creativeshare.sunfun.databinding.FragmentHomeBinding;
 import com.creativeshare.sunfun.models.UserModel;
 import com.creativeshare.sunfun.preferences.Preferences;
+import com.creativeshare.sunfun.tags.Tags;
 
 import io.paperdb.Paper;
 
@@ -40,6 +43,23 @@ public class Fragment_Home extends Fragment {
         Paper.init(activity);
         preferences = Preferences.getInstance();
         userModel = preferences.getUserData(activity);
+        if (userModel==null)
+        {
+            binding.fab.setVisibility(View.GONE);
+        }else
+            {
+                if (userModel.getUser().getUser_type().equals(Tags.type_company))
+                {
+                    binding.fab.setVisibility(View.VISIBLE);
+
+                }else
+                    {
+                        binding.fab.setVisibility(View.GONE);
+
+                    }
+            }
+
+
         setUpBottomNavigation();
         binding.ahBottomNav.setOnTabSelectedListener((position, wasSelected) -> {
             switch (position) {
@@ -76,8 +96,9 @@ public class Fragment_Home extends Fragment {
             }
             return false;
         });
-        binding.fabCreateEvent.setOnClickListener(view -> {
-
+        binding.fab.setOnClickListener(view -> {
+            Intent intent = new Intent(activity, Create_Event_Activity.class);
+            startActivity(intent);
         });
     }
 

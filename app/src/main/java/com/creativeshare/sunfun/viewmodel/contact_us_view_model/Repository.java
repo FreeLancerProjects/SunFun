@@ -7,7 +7,6 @@ import com.creativeshare.sunfun.R;
 import com.creativeshare.sunfun.remote.Api;
 import com.creativeshare.sunfun.share.Common;
 import com.creativeshare.sunfun.tags.Tags;
-import com.creativeshare.sunfun.listeners.ContactListener;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;

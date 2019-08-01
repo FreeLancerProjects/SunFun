@@ -11,7 +11,6 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.creativeshare.sunfun.R;
 import com.creativeshare.sunfun.models.EventDataModel;
-import com.creativeshare.sunfun.listeners.SearchEventsListener;
 
 import java.util.List;
 

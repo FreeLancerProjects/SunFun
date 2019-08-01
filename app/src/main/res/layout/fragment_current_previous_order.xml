@@ -34,6 +34,18 @@
             android:layout_height="35dp"
             android:layout_gravity="center" />
 
+        <TextView
+            android:id="@+id/tvNoOrders"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:text="@string/no_orders_to_display"
+            android:visibility="gone"
+            />
+
     </FrameLayout>
 
 </layout>

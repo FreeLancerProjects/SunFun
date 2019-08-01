@@ -15,7 +15,6 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.creativeshare.sunfun.R;
 import com.creativeshare.sunfun.models.UserModel;
-import com.creativeshare.sunfun.listeners.Listener;
 
 public class Login_View_Model extends AndroidViewModel implements Listener {
 

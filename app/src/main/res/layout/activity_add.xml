@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    >
+    <data>
+        <variable
+            name="eventIdModel"
+            type="com.creativeshare.sunfun.models.EventIdModel" />
+        <variable
+            name="lang"
+            type="String" />
+        <variable
+            name="viewModel"
+            type="com.creativeshare.sunfun.viewmodel.add_activity_view_model.AddActivityViewModel" />
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/gray0"
+        android:clickable="true"
+        android:focusable="true"
+        >
+        <androidx.appcompat.widget.Toolbar
+            android:background="@color/colorPrimary"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            app:contentInsetEnd="0dp"
+            app:contentInsetLeft="0dp"
+            app:contentInsetRight="0dp"
+            app:contentInsetStart="0dp">
+
+            <LinearLayout
+                android:id="@+id/llBack"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:orientation="horizontal"
+
+                >
+
+                <ImageView
+                    android:layout_height="35dp"
+                    android:layout_width="35dp"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_left_arrow"
+                    android:tint="@color/white"
+                    android:rotation='@{lang.equals("ar")?180:0}'
+                    />
+
+                <TextView
+                    android:layout_gravity="center_vertical"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    android:text="@string/add_activity"
+                    />
+            </LinearLayout>
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/ic_correct"
+                android:tint="@color/white"
+                android:layout_gravity="end"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp"
+                android:padding="5dp"
+                android:onClick="@{()->viewModel.addActivity(eventIdModel.id)}"
+                />
+
+        </androidx.appcompat.widget.Toolbar>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+
+
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/activity_image"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center_vertical"
+
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:weightSum="1"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="20dp"
+
+                    >
+                    <FrameLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".4"
+                        android:background="@drawable/edt_bg"
+                        >
+                        <com.makeramen.roundedimageview.RoundedImageView
+                            android:id="@+id/image"
+                            android:layout_width="match_parent"
+                            android:layout_height="130dp"
+                            app:riv_border_width="0dp"
+                            android:clickable="false"
+                            android:longClickable="false"
+                            app:riv_border_color="@color/gray4"
+                            />
+                        <ImageView
+                            android:id="@+id/icon"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_upload"
+                            android:padding="5dp"
+                            android:clickable="false"
+                            android:longClickable="false"
+                            />
+                    </FrameLayout>
+
+
+
+                </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_ar"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:paddingRight="10dp"
+                    android:paddingLeft="10dp"
+                    android:gravity="center_vertical"
+
+                    />
+                <EditText
+                    android:id="@+id/edtTitleAr"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:background="@drawable/edt_bg"
+                    android:hint="@string/title_ar"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:layout_marginTop="5dp"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray4"
+                    android:singleLine="true"
+                    android:text="@={viewModel.name_ar}"
+                    error="@{viewModel.name_ar_error}"
+
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_en"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:paddingRight="10dp"
+                    android:paddingLeft="10dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="10dp"
+
+                    />
+                <EditText
+                    android:id="@+id/edtTitleEn"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:background="@drawable/edt_bg"
+                    android:hint="@string/title_en"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:layout_marginTop="5dp"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray4"
+                    android:singleLine="true"
+                    android:text="@={viewModel.name_en}"
+                    error="@{viewModel.name_en_error}"
+
+                    />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/the_beginning_of_activity"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <LinearLayout
+                    android:id="@+id/llStartdate"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal"
+                    android:background="@drawable/edt_bg"
+                    android:weightSum="1">
+
+                    <TextView
+                        android:id="@+id/tvStartDate"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".85"
+                        android:gravity="center_vertical"
+                        android:hint="@string/event_begin"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:singleLine="true"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        android:clickable="false"
+                        error="@{viewModel.start_date_error}"
+
+
+                        />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".15"
+                        android:background="@color/colorPrimary"
+                        android:padding="8dp"
+                        android:rotation="180"
+                        android:src="@drawable/date"
+                        android:clickable="false"
+                        android:longClickable="false"
+                        />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/the_end_of_activity"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+
+                    />
+
+
+                <LinearLayout
+                    android:id="@+id/llEndDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal"
+                    android:background="@drawable/edt_bg"
+                    android:weightSum="1">
+
+                    <TextView
+                        android:id="@+id/tvEndDate"
+
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".85"
+                        android:hint="@string/end_date"
+                        android:textColor="@color/black"
+                        android:textSize="15sp"
+                        android:singleLine="true"
+                        android:gravity="center_vertical"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:clickable="false"
+                        error="@{viewModel.end_date_error}"
+                        />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".15"
+                        android:background="@color/colorPrimary"
+                        android:padding="8dp"
+                        android:rotation="180"
+                        android:src="@drawable/date"
+                        android:clickable="false"
+                        android:longClickable="false"
+                        />
+                </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ticket_number_available"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:layout_marginTop="25dp"
+                    android:gravity="center_vertical"
+                    />
+
+                <EditText
+                    android:id="@+id/edtTicket"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:background="@drawable/edt_bg"
+                    android:hint="@string/ticket_number_available"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:layout_marginTop="8dp"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray4"
+                    android:singleLine="true"
+                    android:inputType="number"
+                    android:text="@={viewModel.ticket_num}"
+                    error="@{viewModel.ticket_num_error}"
+
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/price"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_vertical"
+                    />
+                <EditText
+                    android:id="@+id/edtPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:background="@drawable/edt_bg"
+                    android:hint="@string/price"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:layout_marginTop="8dp"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray4"
+                    android:singleLine="true"
+                    android:inputType="numberDecimal"
+                    android:text="@={viewModel.price}"
+                    error="@{viewModel.price_error}"
+
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/unit"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:paddingRight="10dp"
+                    android:paddingLeft="10dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="10dp"
+
+                    />
+                <EditText
+                    android:id="@+id/edtUnit"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:background="@drawable/edt_bg"
+                    android:hint="@string/unit"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:layout_marginTop="5dp"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray4"
+                    android:singleLine="true"
+                    android:text="@={viewModel.unit}"
+                    error="@{viewModel.unit_error}"
+
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/address_ar"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:paddingRight="10dp"
+                    android:paddingLeft="10dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="10dp"
+
+                    />
+                <EditText
+                    android:id="@+id/edtAddressAr"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:background="@drawable/edt_bg"
+                    android:hint="@string/address_ar"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:layout_marginTop="5dp"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray4"
+                    android:singleLine="true"
+                    android:text="@={viewModel.place_ar}"
+                    error="@{viewModel.place_ar_error}"
+
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/address_en"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    android:paddingRight="10dp"
+                    android:paddingLeft="10dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="10dp"
+
+                    />
+                <EditText
+                    android:id="@+id/edtAddressEn"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:background="@drawable/edt_bg"
+                    android:hint="@string/address_en"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:layout_marginTop="5dp"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/gray4"
+                    android:singleLine="true"
+                    android:text="@={viewModel.place_en}"
+                    error="@{viewModel.place_en_error}"
+
+                    />
+
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+</layout>

@@ -19,6 +19,7 @@ import com.creativeshare.sunfun.R;
 import com.creativeshare.sunfun.activities_fragments.activity_home.fragments.FragmentUpgradeToCompany;
 import com.creativeshare.sunfun.activities_fragments.activity_home.fragments.Fragment_Bank_Account;
 import com.creativeshare.sunfun.activities_fragments.activity_home.fragments.Fragment_Client_Profile;
+import com.creativeshare.sunfun.activities_fragments.activity_home.fragments.Fragment_Company_Profile;
 import com.creativeshare.sunfun.activities_fragments.activity_home.fragments.Fragment_Contact_Us;
 import com.creativeshare.sunfun.activities_fragments.activity_home.fragments.Fragment_Event_Details;
 import com.creativeshare.sunfun.activities_fragments.activity_home.fragments.Fragment_Home;
@@ -35,6 +36,7 @@ import com.creativeshare.sunfun.models.SelectedLocation;
 import com.creativeshare.sunfun.models.UserModel;
 import com.creativeshare.sunfun.preferences.Preferences;
 import com.creativeshare.sunfun.remote.Api;
+import com.creativeshare.sunfun.singleton.Singleton;
 import com.creativeshare.sunfun.tags.Tags;
 
 import java.io.IOException;
@@ -62,18 +64,35 @@ public class HomeActivity extends AppCompatActivity {
     private Fragment_Event_Details fragment_event_details;
     private Fragment_Bank_Account fragment_bank_account;
     private Fragment_Client_Profile fragment_client_profile;
+    private Fragment_Company_Profile fragment_company_profile;
     private Fragment_Map fragment_map;
     private FragmentUpgradeToCompany fragmentUpgradeToCompany;
-
-
     private Preferences preferences;
     private UserModel userModel;
+    private boolean isFirstTime = true;
+    private Singleton singleton;
 
     @Override
     protected void attachBaseContext(Context newBase) {
         Paper.init(newBase);
         super.attachBaseContext(Language.updateResources(newBase, Paper.book().read("lang", Locale.getDefault().getLanguage())));
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (isFirstTime)
+        {
+            isFirstTime = false;
+        }else
+            {
+                if (singleton.isSentNewOrder())
+                {
+                    refreshFragmentOrders();
+                    singleton.setSentNewOrder(false);
+                }
+            }
     }
 
     @Override
@@ -92,6 +111,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void initView() {
+        singleton = Singleton.newInstance();
         Paper.init(this);
         fragmentManager = this.getSupportFragmentManager();
         preferences = Preferences.getInstance();
@@ -283,8 +303,6 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
-
-
     public void DisplayFragmentNotifications()
     {
 
@@ -327,7 +345,21 @@ public class HomeActivity extends AppCompatActivity {
 
         }
     }
-    public void DisplayFragmentUpgradetoCompany()
+    public void DisplayFragmentCompanyProfile()
+    {
+
+        fragment_count += 1;
+        fragment_company_profile= Fragment_Company_Profile.newInstance();
+
+        if (fragment_company_profile.isAdded()) {
+            fragmentManager.beginTransaction().show(fragment_company_profile).commit();
+
+        } else {
+            fragmentManager.beginTransaction().add(R.id.fragment_app_container, fragment_company_profile, "fragment_company_profile").addToBackStack("fragment_company_profile").commit();
+
+        }
+    }
+    public void DisplayFragmentUpgradeToCompany()
     {
 
         fragment_count += 1;
@@ -341,7 +373,39 @@ public class HomeActivity extends AppCompatActivity {
 
         }
     }
+    private void refreshFragmentOrders()
+    {
+        if (fragment_orders!=null&&fragment_orders.isAdded())
+        {
+            fragment_orders.refreshFragmentOrder();
+        }
+    }
+    private void refreshProfile(UserModel userModel)
+    {
+        this.userModel = userModel;
+        preferences.create_update_userdata(this,userModel);
+        if (userModel.getUser().getUser_type().equals(Tags.type_user))
+        {
+            if (fragment_client_profile!=null&&fragment_client_profile.isAdded())
+            {
+                try {
+                    new Handler()
+                            .postDelayed(() -> fragment_client_profile.updateUI(userModel),1000);
+                }catch (Exception e){}
 
+            }
+        }else
+            {
+                if (fragment_company_profile!=null&&fragment_company_profile.isAdded())
+                {
+                    try {
+                        new Handler()
+                                .postDelayed(() -> fragment_company_profile.updateUI(userModel),1000);
+                    }catch (Exception e){}
+
+                }
+            }
+    }
     public void listenForMapLocation(String from,SelectedLocation selectedLocation)
     {
         Back();

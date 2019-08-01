@@ -63,15 +63,12 @@ public class Fragment_Client_Profile extends Fragment {
         binding.setUserModel(userModel);
         binding.consBack.setOnClickListener(view -> activity.Back());
         binding.consUpgrade.setOnClickListener(view -> {
-            if (userModel.getUser().getUser_type()== Tags.type_user)
+            if (userModel.getUser().getBe_company()==0||userModel.getUser().getBe_company()==2)
             {
-                if (userModel.getUser().getBe_company()==0||userModel.getUser().getBe_company()==2)
-                {
-                    activity.DisplayFragmentUpgradetoCompany();
-                }else
-                {
-                    Common.CreateAlertDialog(activity,getString(R.string.req_sent));
-                }
+                activity.DisplayFragmentUpgradeToCompany();
+            }else
+            {
+                Common.CreateAlertDialog(activity,getString(R.string.req_sent));
             }
         });
         binding.imageFacebook.setOnClickListener(view -> {
@@ -127,6 +124,12 @@ public class Fragment_Client_Profile extends Fragment {
         getSocialMedia();
     }
 
+
+    public void updateUI(UserModel userModel)
+    {
+        this.userModel = userModel;
+        binding.setUserModel(userModel);
+    }
 
     private void getSocialMedia() {
         ProgressDialog dialog = Common.createProgressDialog(activity,getString(R.string.wait));

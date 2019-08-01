@@ -302,7 +302,6 @@
                 android:textSize="13sp"
                 app:layout_anchor="@id/app_bar"
                 app:layout_anchorGravity="bottom|start"
-                android:visibility="@{event.is_booking==0?view.VISIBLE:view.GONE}"
                 />
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

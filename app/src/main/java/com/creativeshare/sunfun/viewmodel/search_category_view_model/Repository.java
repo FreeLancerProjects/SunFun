@@ -6,7 +6,6 @@ import android.util.Log;
 import com.creativeshare.sunfun.models.EventDataModel;
 import com.creativeshare.sunfun.remote.Api;
 import com.creativeshare.sunfun.tags.Tags;
-import com.creativeshare.sunfun.listeners.SearchEventsListener;
 
 import java.io.IOException;
 

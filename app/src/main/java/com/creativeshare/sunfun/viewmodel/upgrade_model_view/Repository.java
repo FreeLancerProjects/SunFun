@@ -6,7 +6,6 @@ import android.net.Uri;
 import android.util.Log;
 
 import com.creativeshare.sunfun.R;
-import com.creativeshare.sunfun.listeners.UpgradeListener;
 import com.creativeshare.sunfun.models.UserModel;
 import com.creativeshare.sunfun.remote.Api;
 import com.creativeshare.sunfun.share.Common;
