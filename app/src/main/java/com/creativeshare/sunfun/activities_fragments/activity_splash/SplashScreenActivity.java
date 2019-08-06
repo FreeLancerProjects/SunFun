@@ -17,6 +17,10 @@ import com.creativeshare.sunfun.language.Language;
 import com.creativeshare.sunfun.preferences.Preferences;
 import com.creativeshare.sunfun.tags.Tags;
 
+import java.util.Locale;
+
+import io.paperdb.Paper;
+
 public class SplashScreenActivity extends AppCompatActivity {
 
     private ActivitySplashBinding binding;
@@ -25,7 +29,8 @@ public class SplashScreenActivity extends AppCompatActivity {
 
     @Override
     protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(Language.updateResources(newBase, Preferences.getInstance().getLanguage(newBase)));
+        Paper.init(newBase);
+        super.attachBaseContext(Language.updateResources(newBase,Paper.book().read("lang", Locale.getDefault().getLanguage())));
 
     }
 

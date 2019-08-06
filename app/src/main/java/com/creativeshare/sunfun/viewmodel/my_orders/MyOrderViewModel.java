@@ -124,7 +124,7 @@ public class MyOrderViewModel extends AndroidViewModel implements ListenerCurren
         if (code==201)
         {
             List<OrderDataModel.OrderModel> orderModelList = new ArrayList<>();
-            dataCurrentOrder.postValue(orderModelList);
+            dataPreviousOrder.postValue(orderModelList);
         }else
         {
             errorPreviousOrder.postValue(true);

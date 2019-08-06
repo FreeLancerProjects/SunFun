@@ -127,7 +127,6 @@
                     />
 
 
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -141,19 +140,50 @@
                     />
 
                 <EditText
+                    android:id="@+id/edtSubject"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/edt_bg_white"
+                    android:hint="@string/subject"
+                    android:inputType="text"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:singleLine="true"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:text="@={viewModel.subject}"
+                    app:error="@{viewModel.subject_error}"
+
+                    />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="@string/message"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+
+                    />
+
+                <EditText
                     android:id="@+id/edt_msg"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/edt_bg_white"
                     android:gravity="start"
-                    android:hint="@string/subject"
+                    android:hint="@string/message"
                     android:padding="10dp"
                     android:textColor="@color/black"
                     android:textSize="14sp"
                     android:inputType="textMultiLine"
-                    android:text="@={viewModel.subject}"
-                    app:error="@{viewModel.subject_error}"
+                    android:text="@={viewModel.message}"
+                    app:error="@{viewModel.message_error}"
 
                     />
 

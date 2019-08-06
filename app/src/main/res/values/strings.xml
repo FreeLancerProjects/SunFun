@@ -149,5 +149,33 @@
     <string name="completed">Completed</string>
     <string name="pending">Pending</string>
     <string name="no_orders_to_display">No orders to display</string>
+    <string name="scan_qr_code">Scan QR code</string>
+    <string name="cam_pem_denied">Camera permission denied</string>
+    <string name="edit_password">Edit Password</string>
+    <string name="new_password">New Password</string>
+
+    <string name="just_now">just now</string>
+    <string name="a_minute_ago">a minute ago</string>
+    <string name="min">MIN</string>
+    <string name="an_hour_ago">an hour ago</string>
+    <string name="hs">Hs</string>
+    <string name="yesterday">yesterday</string>
+    <string name="day">D</string>
+    <string name="new_order">New order</string>
+    <string name="order_accepted">Order accepted</string>
+    <string name="order_refused">Order refused</string>
+    <string name="company_accepted">Your request accepted to be a company</string>
+    <string name="company_refused">Your request refused to be a company</string>
+    <string name="create_event_accepted">Your event added now</string>
+    <string name="create_event_refused">Your event creation refused</string>
+    <string name="no_not">No notification to display</string>
+    <string name="qr_not_available">Booking code not exist.</string>
+    <string name="booking_details">Booking details</string>
+    <string name="event">Event</string>
+    <string name="company_name">Company name</string>
+    <string name="accept">Accept</string>
+    <string name="refuse">Refuse</string>
+    <string name="already_request_send">You already sent a request</string>
+
 
 </resources>

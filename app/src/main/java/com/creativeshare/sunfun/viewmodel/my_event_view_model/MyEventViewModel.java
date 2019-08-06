@@ -12,6 +12,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.creativeshare.sunfun.R;
 import com.creativeshare.sunfun.models.EventDataModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MyEventViewModel extends AndroidViewModel implements EventsListener, EventsLoadMoreListener {
@@ -39,6 +40,7 @@ public class MyEventViewModel extends AndroidViewModel implements EventsListener
 
     public void getMyEvents(String id)
     {
+        current_page = 1;
         repository.getEvents(this,context,id);
     }
 
@@ -57,9 +59,18 @@ public class MyEventViewModel extends AndroidViewModel implements EventsListener
 
     @Override
     public void onFailed(int code) {
-        error.postValue(true);
+        if (code==201)
+        {
+            List<EventDataModel.EventModel> list = new ArrayList<>();
+            data.postValue(list);
+        }else
+            {
+                error.postValue(true);
+                Toast.makeText(getApplication(), R.string.failed, Toast.LENGTH_SHORT).show();
+
+            }
+
         Log.e("code",code+"_");
-        Toast.makeText(getApplication(), R.string.failed, Toast.LENGTH_SHORT).show();
 
     }
 
@@ -82,6 +93,12 @@ public class MyEventViewModel extends AndroidViewModel implements EventsListener
 
     @Override
     public void onLoadFailed(int code) {
+        if (code == 201)
+        {
+            List<EventDataModel.EventModel> list = new ArrayList<>();
+            data.postValue(list);
+
+        }
         errorLoadMore.postValue(true);
         Log.e("code",code+"_");
 

@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment;
 import com.creativeshare.sunfun.R;
 import com.creativeshare.sunfun.activities_fragments.activity_app_info.AppInfoActivity;
 import com.creativeshare.sunfun.activities_fragments.activity_home.activity.HomeActivity;
+import com.creativeshare.sunfun.activities_fragments.activity_qr_code.QRCodeActivity;
 import com.creativeshare.sunfun.databinding.FragmentMoreBinding;
 import com.creativeshare.sunfun.models.UserModel;
 import com.creativeshare.sunfun.preferences.Preferences;
@@ -50,6 +51,15 @@ public class Fragment_More extends Fragment {
         language_array = new String[]{"English","العربية"};
 
         binding.setLang(current_language);
+        if (userModel.getUser().getUser_type().equals(Tags.type_company))
+        {
+            binding.llScanCode.setVisibility(View.VISIBLE);
+            binding.v.setVisibility(View.VISIBLE);
+        }else
+            {
+                binding.llScanCode.setVisibility(View.GONE);
+                binding.v.setVisibility(View.GONE);
+            }
         binding.llContact.setOnClickListener((view -> activity.DisplayFragmentContactUs()));
         binding.llBank.setOnClickListener((view -> activity.DisplayFragmentBank()));
         binding.llTerms.setOnClickListener(view -> NavigateToAppInfoActivity(1));
@@ -75,8 +85,11 @@ public class Fragment_More extends Fragment {
             {
                 if (userModel.getUser().getUser_type().equals(Tags.type_user))
                 {
-
-                }
+                    activity.DisplayFragmentClientEditProfile();
+                }else
+                    {
+                        activity.DisplayFragmentCompanyEditProfile();
+                    }
             }else
             {
                 activity.CreateNoSignAlertDialog();
@@ -85,6 +98,10 @@ public class Fragment_More extends Fragment {
         });
         binding.llLanguageSettings.setOnClickListener(view -> CreateLanguageDialog());
         binding.llLogout.setOnClickListener(view ->activity.logout());
+        binding.llScanCode.setOnClickListener(view -> {
+            Intent intent = new Intent(activity, QRCodeActivity.class);
+            startActivity(intent);
+        });
     }
 
     private void NavigateToAppInfoActivity(int type)

@@ -18,6 +18,7 @@ public class OrderDataModel implements Serializable {
         private String event_id;
         private String booking_code;
         private String booking_image;
+        private int total_booking_price;
         private int status;
         private String paid_type;
         private String created_at;
@@ -25,8 +26,10 @@ public class OrderDataModel implements Serializable {
         private String event_en_title;
         private int event_price;
         private int subscribers_num;
+        private String date;
 
-        private BookingDetails booking_details;
+
+        private List<BookingDetails> booking_details;
 
         public int getId() {
             return id;
@@ -76,7 +79,15 @@ public class OrderDataModel implements Serializable {
             return event_price;
         }
 
-        public BookingDetails getBooking_details() {
+        public String getDate() {
+            return date;
+        }
+
+        public int getTotal_booking_price() {
+            return total_booking_price;
+        }
+
+        public List<BookingDetails> getBooking_details() {
             return booking_details;
         }
     }
@@ -90,6 +101,7 @@ public class OrderDataModel implements Serializable {
         private int subscribers_num;
         private String activitie_ar_title;
         private String activitie_en_title;
+        private String activitie_image;
 
 
         public int getId() {
@@ -118,6 +130,12 @@ public class OrderDataModel implements Serializable {
 
         public String getActivitie_en_title() {
             return activitie_en_title;
+
+
+        }
+
+        public String getActivitie_image() {
+            return activitie_image;
         }
     }
 }

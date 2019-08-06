@@ -54,6 +54,8 @@ public class Fragment_Contact_Us extends Fragment {
 
         }
 
+        binding.arrow.setOnClickListener(view -> activity.Back());
+
 
     }
 

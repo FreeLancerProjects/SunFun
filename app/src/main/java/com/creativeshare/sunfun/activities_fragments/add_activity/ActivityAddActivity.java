@@ -27,8 +27,8 @@ import com.creativeshare.sunfun.databinding.ActivityAddBinding;
 import com.creativeshare.sunfun.databinding.DialogSelectImageBinding;
 import com.creativeshare.sunfun.language.Language;
 import com.creativeshare.sunfun.models.EventIdModel;
-import com.creativeshare.sunfun.preferences.Preferences;
 import com.creativeshare.sunfun.share.Common;
+import com.creativeshare.sunfun.singleton.Singleton;
 import com.creativeshare.sunfun.viewmodel.add_activity_view_model.AddActivityViewModel;
 import com.squareup.picasso.Picasso;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
@@ -55,10 +55,12 @@ public class ActivityAddActivity extends AppCompatActivity implements DatePicker
     private final int IMG_REQ1 = 1, IMG_REQ2 = 2;
     private Uri imgUri1 = null;
     private AddActivityViewModel addActivityViewModel;
+    private Singleton singleton;
 
     @Override
     protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(Language.updateResources(newBase, Preferences.getInstance().getLanguage(newBase)));
+        Paper.init(newBase);
+        super.attachBaseContext(Language.updateResources(newBase,Paper.book().read("lang",Locale.getDefault().getLanguage())));
 
     }
     @Override
@@ -79,6 +81,7 @@ public class ActivityAddActivity extends AppCompatActivity implements DatePicker
     }
 
     private void initView() {
+        singleton = Singleton.newInstance();
         Paper.init(this);
         lang = Paper.book().read("lang", Locale.getDefault().getLanguage());
         binding.setLang(lang);
@@ -99,6 +102,9 @@ public class ActivityAddActivity extends AppCompatActivity implements DatePicker
             binding.edtTicket.setText("");
             binding.edtUnit.setText("");
             imgUri1 = null;
+            singleton.setEventAdded(true);
+
+
 
         });
 

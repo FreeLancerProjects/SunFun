@@ -14,11 +14,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.creativeshare.sunfun.R;
 import com.creativeshare.sunfun.activities_fragments.activity_home.fragments.FragmentUpgradeToCompany;
 import com.creativeshare.sunfun.activities_fragments.activity_home.fragments.Fragment_Bank_Account;
+import com.creativeshare.sunfun.activities_fragments.activity_home.fragments.Fragment_Client_Edit_Profile;
 import com.creativeshare.sunfun.activities_fragments.activity_home.fragments.Fragment_Client_Profile;
+import com.creativeshare.sunfun.activities_fragments.activity_home.fragments.Fragment_Company_Edit_Profile;
 import com.creativeshare.sunfun.activities_fragments.activity_home.fragments.Fragment_Company_Profile;
 import com.creativeshare.sunfun.activities_fragments.activity_home.fragments.Fragment_Contact_Us;
 import com.creativeshare.sunfun.activities_fragments.activity_home.fragments.Fragment_Event_Details;
@@ -26,9 +29,10 @@ import com.creativeshare.sunfun.activities_fragments.activity_home.fragments.Fra
 import com.creativeshare.sunfun.activities_fragments.activity_home.fragments.Fragment_Main;
 import com.creativeshare.sunfun.activities_fragments.activity_home.fragments.Fragment_Map;
 import com.creativeshare.sunfun.activities_fragments.activity_home.fragments.Fragment_More;
-import com.creativeshare.sunfun.activities_fragments.activity_home.fragments.Fragment_Notidications;
+import com.creativeshare.sunfun.activities_fragments.activity_home.fragments.Fragment_Notifications;
 import com.creativeshare.sunfun.activities_fragments.activity_home.fragments.fragment_orders.Fragment_Orders;
 import com.creativeshare.sunfun.activities_fragments.activity_sign_in.activities.SignInActivity;
+import com.creativeshare.sunfun.databinding.ActivityHomeBinding;
 import com.creativeshare.sunfun.databinding.DialogCustomBinding;
 import com.creativeshare.sunfun.language.Language;
 import com.creativeshare.sunfun.models.EventDataModel;
@@ -38,6 +42,7 @@ import com.creativeshare.sunfun.preferences.Preferences;
 import com.creativeshare.sunfun.remote.Api;
 import com.creativeshare.sunfun.singleton.Singleton;
 import com.creativeshare.sunfun.tags.Tags;
+import com.creativeshare.sunfun.viewmodel.user_profile_view_model.UserViewModel;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -53,13 +58,14 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class HomeActivity extends AppCompatActivity {
+    private ActivityHomeBinding binding;
     private FragmentManager fragmentManager;
     private int fragment_count = 0;
     private Fragment_Home fragment_home;
     private Fragment_Main fragment_main;
     private Fragment_More fragment_more;
     private Fragment_Orders fragment_orders;
-    private Fragment_Notidications fragment_notidications;
+    private Fragment_Notifications fragment_notifications;
     private Fragment_Contact_Us fragment_contact_us;
     private Fragment_Event_Details fragment_event_details;
     private Fragment_Bank_Account fragment_bank_account;
@@ -67,10 +73,14 @@ public class HomeActivity extends AppCompatActivity {
     private Fragment_Company_Profile fragment_company_profile;
     private Fragment_Map fragment_map;
     private FragmentUpgradeToCompany fragmentUpgradeToCompany;
+    private Fragment_Client_Edit_Profile fragment_Client_edit_profile;
+    private Fragment_Company_Edit_Profile fragment_company_edit_profile;
     private Preferences preferences;
     private UserModel userModel;
     private boolean isFirstTime = true;
     private Singleton singleton;
+    private UserViewModel userViewModel;
+
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -98,9 +108,8 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
-
-
+        binding = DataBindingUtil.setContentView(this,R.layout.activity_home);
+        userViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
         initView();
 
         if (savedInstanceState == null) {
@@ -110,6 +119,10 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
+    public void getUserData()
+    {
+        userViewModel.getUser(String.valueOf(userModel.getUser().getId()));
+    }
     private void initView() {
         singleton = Singleton.newInstance();
         Paper.init(this);
@@ -122,14 +135,16 @@ public class HomeActivity extends AppCompatActivity {
 
         if (!lastVisit.equals(now))
         {
-            updateVisit(now);
+            updateVisit(now,(Calendar.getInstance().getTimeInMillis()/1000));
 
         }
+
+        userViewModel.data.observe(this, this::refreshProfile);
     }
 
-    private void updateVisit(String now) {
+    private void updateVisit(String now, long time) {
         Api.getService(Tags.base_url)
-                .updateVisit(now,2)
+                .updateVisit(time,2)
                 .enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
@@ -183,8 +198,8 @@ public class HomeActivity extends AppCompatActivity {
         if (fragment_orders != null && fragment_orders.isAdded()) {
             fragmentManager.beginTransaction().hide(fragment_orders).commit();
         }
-        if (fragment_notidications != null && fragment_notidications.isAdded()) {
-            fragmentManager.beginTransaction().hide(fragment_notidications).commit();
+        if (fragment_notifications != null && fragment_notifications.isAdded()) {
+            fragmentManager.beginTransaction().hide(fragment_notifications).commit();
         }
         if (fragment_main.isAdded()) {
             fragmentManager.beginTransaction().show(fragment_main).commit();
@@ -210,8 +225,8 @@ public class HomeActivity extends AppCompatActivity {
         if (fragment_more != null && fragment_more.isAdded()) {
             fragmentManager.beginTransaction().hide(fragment_more).commit();
         }
-        if (fragment_notidications != null && fragment_notidications.isAdded()) {
-            fragmentManager.beginTransaction().hide(fragment_notidications).commit();
+        if (fragment_notifications != null && fragment_notifications.isAdded()) {
+            fragmentManager.beginTransaction().hide(fragment_notifications).commit();
         }
         if (fragment_orders.isAdded()) {
             fragmentManager.beginTransaction().show(fragment_orders).commit();
@@ -235,8 +250,8 @@ public class HomeActivity extends AppCompatActivity {
         if (fragment_orders != null && fragment_orders.isAdded()) {
             fragmentManager.beginTransaction().hide(fragment_orders).commit();
         }
-        if (fragment_notidications != null && fragment_notidications.isAdded()) {
-            fragmentManager.beginTransaction().hide(fragment_notidications).commit();
+        if (fragment_notifications != null && fragment_notifications.isAdded()) {
+            fragmentManager.beginTransaction().hide(fragment_notifications).commit();
         }
         if (fragment_more.isAdded()) {
             fragmentManager.beginTransaction().show(fragment_more).commit();
@@ -306,8 +321,8 @@ public class HomeActivity extends AppCompatActivity {
     public void DisplayFragmentNotifications()
     {
 
-        if (fragment_notidications == null) {
-            fragment_notidications = Fragment_Notidications.newInstance();
+        if (fragment_notifications == null) {
+            fragment_notifications = Fragment_Notifications.newInstance();
         }
         if (fragment_main != null && fragment_main.isAdded()) {
             fragmentManager.beginTransaction().hide(fragment_main).commit();
@@ -319,11 +334,11 @@ public class HomeActivity extends AppCompatActivity {
         if (fragment_more != null && fragment_more.isAdded()) {
             fragmentManager.beginTransaction().hide(fragment_more).commit();
         }
-        if (fragment_notidications.isAdded()) {
-            fragmentManager.beginTransaction().show(fragment_notidications).commit();
+        if (fragment_notifications.isAdded()) {
+            fragmentManager.beginTransaction().show(fragment_notifications).commit();
 
         } else {
-            fragmentManager.beginTransaction().add(R.id.fragment_home_container, fragment_notidications, "fragment_notidications").addToBackStack("fragment_notidications").commit();
+            fragmentManager.beginTransaction().add(R.id.fragment_home_container, fragment_notifications, "fragment_notifications").addToBackStack("fragment_notifications").commit();
 
         }
         if (fragment_home != null && fragment_home.isAdded()) {
@@ -359,6 +374,36 @@ public class HomeActivity extends AppCompatActivity {
 
         }
     }
+
+    public void DisplayFragmentClientEditProfile()
+    {
+
+        fragment_count += 1;
+        fragment_Client_edit_profile = Fragment_Client_Edit_Profile.newInstance();
+
+        if (fragment_Client_edit_profile.isAdded()) {
+            fragmentManager.beginTransaction().show(fragment_Client_edit_profile).commit();
+
+        } else {
+            fragmentManager.beginTransaction().add(R.id.fragment_app_container, fragment_Client_edit_profile, "fragment_Client_edit_profile").addToBackStack("fragment_Client_edit_profile").commit();
+
+        }
+    }
+
+    public void DisplayFragmentCompanyEditProfile()
+    {
+
+        fragment_count += 1;
+        fragment_company_edit_profile = Fragment_Company_Edit_Profile.newInstance();
+
+        if (fragment_company_edit_profile.isAdded()) {
+            fragmentManager.beginTransaction().show(fragment_company_edit_profile).commit();
+
+        } else {
+            fragmentManager.beginTransaction().add(R.id.fragment_app_container, fragment_company_edit_profile, "fragment_company_edit_profile").addToBackStack("fragment_company_edit_profile").commit();
+
+        }
+    }
     public void DisplayFragmentUpgradeToCompany()
     {
 
@@ -373,14 +418,14 @@ public class HomeActivity extends AppCompatActivity {
 
         }
     }
-    private void refreshFragmentOrders()
+    public void refreshFragmentOrders()
     {
         if (fragment_orders!=null&&fragment_orders.isAdded())
         {
             fragment_orders.refreshFragmentOrder();
         }
     }
-    private void refreshProfile(UserModel userModel)
+    public void refreshProfile(UserModel userModel)
     {
         this.userModel = userModel;
         preferences.create_update_userdata(this,userModel);

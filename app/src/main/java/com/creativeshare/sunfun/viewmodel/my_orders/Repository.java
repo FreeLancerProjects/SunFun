@@ -1,6 +1,7 @@
 package com.creativeshare.sunfun.viewmodel.my_orders;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.creativeshare.sunfun.models.OrderDataModel;
 import com.creativeshare.sunfun.remote.Api;
@@ -74,8 +75,10 @@ public class Repository {
                 .enqueue(new Callback<OrderDataModel>() {
                     @Override
                     public void onResponse(Call<OrderDataModel> call, Response<OrderDataModel> response) {
+                        Log.e("respons_code",response.code()+"_");
                         if (response.isSuccessful()&&response.body()!=null&&response.body().getData()!=null)
                         {
+                            Log.e("dddd","tt");
                             listener.onPreviousSuccess(response.body().getData());
                         }else
                         {

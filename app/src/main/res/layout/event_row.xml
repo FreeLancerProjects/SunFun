@@ -64,7 +64,7 @@
             app:layout_constraintStart_toEndOf="@+id/image"
             android:layout_marginStart="8dp"
             tools:ignore="RtlCompat"
-            android:textColor="@color/gray3"
+            android:textColor="@color/gray4"
             android:textSize="14sp"
             android:text='@{event.responsible??""}'
 

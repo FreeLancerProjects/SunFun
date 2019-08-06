@@ -9,18 +9,18 @@ public class EventModelToUpload implements Serializable {
     private int event_id;
     private int subscribers_num;
     private int paid_type;
-    private List<ActivityModelUpload> activatis;
+    private List<ActivityModelUpload> bookingDetails;
 
     public EventModelToUpload() {
     }
 
-    public EventModelToUpload(String company_id, int user_id, int event_id, int subscribers_num, int paid_type, List<ActivityModelUpload> activatis) {
+    public EventModelToUpload(String company_id, int user_id, int event_id, int subscribers_num, int paid_type, List<ActivityModelUpload> bookingDetails) {
         this.company_id = company_id;
         this.user_id = user_id;
         this.event_id = event_id;
         this.subscribers_num = subscribers_num;
         this.paid_type = paid_type;
-        this.activatis = activatis;
+        this.bookingDetails = bookingDetails;
     }
 
     public void setCompany_id(String company_id) {
@@ -43,8 +43,8 @@ public class EventModelToUpload implements Serializable {
         this.paid_type = paid_type;
     }
 
-    public void setActivatis(List<ActivityModelUpload> activatis) {
-        this.activatis = activatis;
+    public void setBookingDetails(List<ActivityModelUpload> bookingDetails) {
+        this.bookingDetails = bookingDetails;
     }
 
     public String getCompany_id() {
@@ -67,7 +67,7 @@ public class EventModelToUpload implements Serializable {
         return paid_type;
     }
 
-    public List<ActivityModelUpload> getActivatis() {
-        return activatis;
+    public List<ActivityModelUpload> getBookingDetails() {
+        return bookingDetails;
     }
 }

@@ -2,12 +2,15 @@ package com.creativeshare.sunfun.viewmodel.book_event_view_model;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.util.Log;
 
 import com.creativeshare.sunfun.R;
 import com.creativeshare.sunfun.models.EventModelToUpload;
 import com.creativeshare.sunfun.remote.Api;
 import com.creativeshare.sunfun.share.Common;
 import com.creativeshare.sunfun.tags.Tags;
+
+import java.io.IOException;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -33,6 +36,11 @@ public class Repository {
                             listener.onSuccess();
                         }else
                             {
+                                try {
+                                    Log.e("error_code",response.code()+"_"+response.errorBody().string());
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
                                 listener.onFailed(response.code());
                             }
                     }

@@ -18,10 +18,13 @@ public class ContactViewModel extends AndroidViewModel implements ContactListene
     public ObservableField<String> name = new ObservableField<>("");
     public ObservableField<String> email = new ObservableField<>("");
     public ObservableField<String> subject = new ObservableField<>("");
+    public ObservableField<String> message = new ObservableField<>("");
 
     public ObservableField<String> name_error = new ObservableField<>();
     public ObservableField<String> email_error = new ObservableField<>();
     public ObservableField<String> subject_error = new ObservableField<>();
+    public ObservableField<String> message_error = new ObservableField<>();
+
     private Repository repository;
 
     public ContactViewModel(@NonNull Application application) {
@@ -37,8 +40,10 @@ public class ContactViewModel extends AndroidViewModel implements ContactListene
         if (!TextUtils.isEmpty(name.get()) &&
                 !TextUtils.isEmpty(email.get()) &&
                 Patterns.EMAIL_ADDRESS.matcher(email.get()).matches() &&
-                !TextUtils.isEmpty(subject.get())) {
-            repository.sendContact(this, context, name.get(), email.get(), subject.get());
+                !TextUtils.isEmpty(subject.get())&&
+                !TextUtils.isEmpty(message.get())
+        ) {
+            repository.sendContact(this, context, name.get(), email.get(), subject.get(),message.get());
         } else {
             if (TextUtils.isEmpty(name.get())) {
                 name_error.set(context.getString(R.string.field_req));
@@ -59,6 +64,12 @@ public class ContactViewModel extends AndroidViewModel implements ContactListene
                 subject_error.set(context.getString(R.string.field_req));
             } else {
                 subject_error.set(null);
+            }
+
+            if (TextUtils.isEmpty(message.get())) {
+                message_error.set(context.getString(R.string.field_req));
+            } else {
+                message_error.set(null);
             }
         }
     }

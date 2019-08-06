@@ -108,6 +108,9 @@ public class Fragment_Previous_Order extends Fragment {
 
         myOrderViewModel.dataLoadMorePreviousOrder.observe(this, orderModelList -> {
             isLoading = false;
+            Fragment_Previous_Order.this.orderModelList.remove(Fragment_Previous_Order.this.orderModelList.size()-1);
+            adapter.notifyItemRemoved(Fragment_Previous_Order.this.orderModelList.size()-1);
+
             Fragment_Previous_Order.this.orderModelList.addAll(orderModelList);
             adapter.notifyDataSetChanged();
         });

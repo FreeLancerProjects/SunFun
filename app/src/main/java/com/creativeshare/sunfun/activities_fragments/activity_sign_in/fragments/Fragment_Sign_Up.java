@@ -52,10 +52,7 @@ public class Fragment_Sign_Up extends Fragment implements OnCountryPickerListene
         Paper.init(activity);
         preferences = Preferences.getInstance();
         current_language = Paper.book().read("lang", Locale.getDefault().getLanguage());
-        if (current_language.equals("ar")) {
-            binding.arrow.setRotation(180.0f);
-            binding.imagePhoneCode.setRotation(180.0f);
-        }
+        binding.setLang(current_language);
 
         signUp_view_model.userModelMutableLiveData.observe(this, userModel -> {
             userModel.getUser().setUser_type("1");

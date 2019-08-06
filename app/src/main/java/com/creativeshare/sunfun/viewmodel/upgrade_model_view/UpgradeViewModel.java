@@ -81,7 +81,15 @@ public class UpgradeViewModel extends AndroidViewModel implements UpgradeListene
     @Override
     public void onFailed(int code) {
         Log.e("error_code",code+"_");
-        Toast.makeText(context, context.getString(R.string.failed), Toast.LENGTH_SHORT).show();
+        if (code == 422)
+        {
+            Toast.makeText(context, R.string.already_request_send, Toast.LENGTH_SHORT).show();
+
+        }else
+            {
+                Toast.makeText(context, context.getString(R.string.failed), Toast.LENGTH_SHORT).show();
+
+            }
     }
 
     @Override

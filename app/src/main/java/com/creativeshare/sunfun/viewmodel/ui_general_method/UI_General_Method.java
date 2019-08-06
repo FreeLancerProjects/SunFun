@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.databinding.BindingAdapter;
 
 import com.creativeshare.sunfun.R;
+import com.creativeshare.sunfun.share.TimeAgo;
 import com.creativeshare.sunfun.tags.Tags;
 import com.iarcuschin.simpleratingbar.SimpleRatingBar;
 import com.makeramen.roundedimageview.RoundedImageView;
@@ -100,6 +101,80 @@ public class UI_General_Method {
         SimpleDateFormat dateFormat = new SimpleDateFormat("EEE dd/MM/yyy", Locale.ENGLISH);
         String d = dateFormat.format(new Date(Long.parseLong(date)*1000));
         textView.setText(d);
+
+    }
+
+    @BindingAdapter("notification_date")
+    public static void convertToNotDate(TextView textView,String date)
+    {
+       long d = Long.parseLong(date)*1000;
+       String n_date = TimeAgo.getTimeAgo(d,textView.getContext());
+       textView.setText(n_date);
+
+    }
+
+    @BindingAdapter({"notification_action","status"})
+    public static void checkOrderStatus(TextView textView,String notification_action,String status)
+    {
+        if (notification_action.equals("1"))
+        {
+            textView.setText(R.string.new_order);
+        }else if (notification_action.equals("4"))
+        {
+            if (status.equals("1"))
+            {
+                textView.setText(R.string.order_accepted);
+            }else if (status.equals("2"))
+            {
+                textView.setText(R.string.order_refused);
+
+            }
+        }
+
+        else if (notification_action.equals("5"))
+        {
+            if (status.equals("1"))
+            {
+                textView.setText(R.string.company_accepted);
+            }else if (status.equals("2"))
+            {
+                textView.setText(R.string.company_refused);
+
+            }
+        }
+
+        else if (notification_action.equals("6"))
+        {
+            if (status.equals("1"))
+            {
+                textView.setText(R.string.create_event_accepted);
+            }else if (status.equals("2"))
+            {
+                textView.setText(R.string.create_event_refused);
+
+            }
+        }
+
+    }
+
+    @BindingAdapter({"visibility_tv"})
+    public static void checkVisibility(TextView textView,String notification_action)
+    {
+        if (notification_action.equals("1"))
+        {
+            textView.setVisibility(View.VISIBLE);
+        }else
+            {
+                textView.setVisibility(View.GONE);
+
+            }
+
+    }
+
+    @BindingAdapter({"qr_code_image"})
+    public static void qrcode_image(ImageView imageView,String end_point)
+    {
+        Picasso.with(imageView.getContext()).load(Uri.parse(Tags.IMAGE_QRCODE+end_point)).fit().into(imageView);
 
     }
 }

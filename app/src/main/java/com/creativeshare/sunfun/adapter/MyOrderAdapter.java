@@ -3,6 +3,7 @@ package com.creativeshare.sunfun.adapter;
 import android.content.Context;
 import android.graphics.PorterDuff;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -12,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.creativeshare.sunfun.R;
+import com.creativeshare.sunfun.activities_fragments.activity_home.fragments.fragment_orders.Fragment_Current_Order;
 import com.creativeshare.sunfun.databinding.LoadMoreBinding;
 import com.creativeshare.sunfun.databinding.OrderRowBinding;
 import com.creativeshare.sunfun.models.OrderDataModel;
@@ -63,6 +65,21 @@ public class MyOrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             MyOrderHolder myOrderHolder = (MyOrderHolder) holder;
             myOrderHolder.binding.setLang(lang);
             myOrderHolder.binding.setOrderModel(orderModel);
+
+            if (fragment instanceof Fragment_Current_Order)
+            {
+                myOrderHolder.binding.getRoot().setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        OrderDataModel.OrderModel orderModel = orderModelList.get(myOrderHolder.getAdapterPosition());
+
+                        Fragment_Current_Order fragment_current_order = (Fragment_Current_Order) fragment;
+                        fragment_current_order.setItemData(orderModel);
+
+                    }
+                });
+
+            }
 
 
         }else

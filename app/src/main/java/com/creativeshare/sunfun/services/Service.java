@@ -3,10 +3,12 @@ package com.creativeshare.sunfun.services;
 
 import com.creativeshare.sunfun.models.AppData;
 import com.creativeshare.sunfun.models.BankDataModel;
+import com.creativeshare.sunfun.models.BookingScanData;
 import com.creativeshare.sunfun.models.CategoryDataModel;
 import com.creativeshare.sunfun.models.EventDataModel;
 import com.creativeshare.sunfun.models.EventIdModel;
 import com.creativeshare.sunfun.models.EventModelToUpload;
+import com.creativeshare.sunfun.models.NotificationDataModel;
 import com.creativeshare.sunfun.models.OrderDataModel;
 import com.creativeshare.sunfun.models.PaymentDataModel;
 import com.creativeshare.sunfun.models.PlaceGeocodeData;
@@ -69,6 +71,7 @@ public interface Service {
     Call<ResponseBody> sendContact(@Field("fname") String fname,
                                    @Field("lname") String lname,
                                    @Field("email") String email,
+                                   @Field("subject") String subject,
                                    @Field("message") String message
     );
 
@@ -85,7 +88,7 @@ public interface Service {
 
     @FormUrlEncoded
     @POST("api/visit")
-    Call<ResponseBody> updateVisit(@Field("date") String date,
+    Call<ResponseBody> updateVisit(@Field("date") long date,
                                    @Field("software_type") int software_type
 
     );
@@ -169,11 +172,72 @@ public interface Service {
 
     @FormUrlEncoded
     @POST("api/myOrders")
-    Call<OrderDataModel> getMyCurrentOrders(@Field("id") int id,@Field("page") int page);
+    Call<OrderDataModel> getMyCurrentOrders(@Field("id") int id, @Field("page") int page);
 
     @FormUrlEncoded
     @POST("api/myEndedOrders")
-    Call<OrderDataModel> getMyPreviousOrders(@Field("id") int id,@Field("page") int page);
+    Call<OrderDataModel> getMyPreviousOrders(@Field("id") int id, @Field("page") int page);
+
+
+    @FormUrlEncoded
+    @POST("api/myNotification")
+    Call<NotificationDataModel> getMyNotification(@Field("user_id") int id, @Field("page") int page);
+
+    @Multipart
+    @POST("api/update/user_image")
+    Call<UserModel> editUserImage(@Part("id") RequestBody id,
+                                  @Part MultipartBody.Part image);
+
+
+    @FormUrlEncoded
+    @POST("api/user_profile_update")
+    Call<UserModel> editClientProfile(@Field("id") int id,
+                                      @Field("name") String name,
+                                      @Field("email") String email,
+                                      @Field("phone_code") String phone_code,
+                                      @Field("phone") String phone);
+
+
+    @FormUrlEncoded
+    @POST("api/user_profile_update")
+    Call<UserModel> editCompanyProfile(@Field("id") int id,
+                                       @Field("name") String name,
+                                       @Field("email") String email,
+                                       @Field("phone_code") String phone_code,
+                                       @Field("phone") String phone,
+                                       @Field("responsible") String responsible
+    );
+
+    @FormUrlEncoded
+    @POST("api/myBooking")
+    Call<BookingScanData> scanCode(@Field("booking_code") String booking_code);
+
+    @FormUrlEncoded
+    @POST("api/Booking")
+    Call<BookingScanData> myBookingDetails(@Field("booking_id") String booking_id);
+
+    @FormUrlEncoded
+    @POST("api/acceptBookingEvent")
+    Call<ResponseBody> accept(@Field("booking_id") int booking_id,
+                              @Field("company_id") String company_id,
+                              @Field("notification_id") int notification_id,
+                              @Field("event_id") String event_id
+
+    );
+
+    @FormUrlEncoded
+    @POST("api/refuseBookingEvent")
+    Call<ResponseBody> refuse(@Field("booking_id") int booking_id,
+                              @Field("company_id") String company_id,
+                              @Field("notification_id") int notification_id,
+                              @Field("event_id") String event_id
+
+    );
+
+    @FormUrlEncoded
+    @POST("api/user_update_info")
+    Call<UserModel> getUserData(@Field("user_id") String user_id
+    );
 
 }
 

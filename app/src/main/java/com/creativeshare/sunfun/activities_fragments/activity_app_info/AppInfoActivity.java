@@ -66,6 +66,7 @@ public class AppInfoActivity extends AppCompatActivity {
 
         appViewModel.error.observe(this, aBoolean -> binding.progBar.setVisibility(View.GONE));
         binding.setType(type);
+        binding.llBack.setOnClickListener(view -> finish());
 
 
     }

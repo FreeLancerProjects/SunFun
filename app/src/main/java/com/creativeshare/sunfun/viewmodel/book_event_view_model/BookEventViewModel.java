@@ -3,6 +3,7 @@ package com.creativeshare.sunfun.viewmodel.book_event_view_model;
 import android.app.Application;
 import android.content.Context;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -68,6 +69,7 @@ public class BookEventViewModel extends AndroidViewModel implements BookEventLis
 
     @Override
     public void onFailed(int code) {
+        Log.e("code_error",code+"___");
         Toast.makeText(context, context.getString(R.string.failed), Toast.LENGTH_SHORT).show();
     }
 

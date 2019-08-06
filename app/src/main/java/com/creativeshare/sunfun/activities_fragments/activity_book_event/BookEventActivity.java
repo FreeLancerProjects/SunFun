@@ -154,6 +154,9 @@ public class BookEventActivity extends AppCompatActivity {
         );
 
 
+        binding.arrow.setOnClickListener(view -> finish());
+
+
     }
 
     private void getDataFromIntent() {
@@ -192,9 +195,11 @@ public class BookEventActivity extends AppCompatActivity {
     }
 
 
-    public void CreateSubscribersAlertDialog(ActivityModelUpload activityModelUpload) {
+    private void CreateSubscribersAlertDialog(ActivityModelUpload activityModelUpload) {
         final AlertDialog dialog = new AlertDialog.Builder(this)
                 .create();
+
+        dialog.setCancelable(false);
 
         DialogSubscribersBinding binding = DataBindingUtil.inflate(LayoutInflater.from(this), R.layout.dialog_subscribers, null, false);
 

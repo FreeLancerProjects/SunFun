@@ -45,9 +45,12 @@ public class Create_Event_Activity extends AppCompatActivity {
 
 
 
+
+
     @Override
     protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(Language.updateResources(newBase,  Preferences.getInstance().getLanguage(newBase)));
+        Paper.init(newBase);
+        super.attachBaseContext(Language.updateResources(newBase,Paper.book().read("lang",Locale.getDefault().getLanguage())));
 
     }
 

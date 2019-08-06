@@ -149,6 +149,33 @@
     <string name="completed">مكتملة</string>
     <string name="pending">قيد الإنتظار</string>
     <string name="no_orders_to_display">لا توجد طلبات لعرضها</string>
+    <string name="scan_qr_code">مسح Qr كود</string>
+    <string name="cam_pem_denied">الوصول للكاميرا غير مسموح</string>
+    <string name="edit_password">تعديل كلمة المرور</string>
+    <string name="new_password">كلمة المرور الجديدة</string>
 
+    <string name="just_now">الان</string>
+    <string name="a_minute_ago">منذ دقيقة</string>
+    <string name="min">د</string>
+    <string name="an_hour_ago">منذ ساعة</string>
+    <string name="hs">س</string>
+    <string name="yesterday">أمس</string>
+    <string name="day">يوم</string>
+
+    <string name="new_order">طلب جديد.</string>
+    <string name="order_accepted">تم قبول طلبك</string>
+    <string name="order_refused">تم رفض طلبك.</string>
+    <string name="company_accepted">تم قبول طلبك كشركة.</string>
+    <string name="company_refused">تم رفض طلبك كشركة.</string>
+    <string name="create_event_accepted">تم إضافة حدث جديد لك.</string>
+    <string name="create_event_refused">تم رفض إضافة حدث لك.</string>
+    <string name="no_not">لا توجد إشعارات لعرضها</string>
+    <string name="qr_not_available">رقم التزكرة غير موجود</string>
+    <string name="booking_details">تفاصيل الحجز</string>
+    <string name="event">الحدث</string>
+    <string name="company_name">إسم الشركة</string>
+    <string name="accept">قبول</string>
+    <string name="refuse">رفض</string>
+    <string name="already_request_send">تم إرسال طلبك من قبل</string>
 
 </resources>

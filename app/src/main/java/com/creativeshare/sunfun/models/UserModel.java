@@ -24,6 +24,7 @@ public class UserModel implements Serializable {
         private String responsible;
         private String phone_code;
         private String phone;
+        private String address;
         private int is_available;
         private double ratings;
         private String image;
@@ -86,6 +87,10 @@ public class UserModel implements Serializable {
 
         public String getImage() {
             return image;
+        }
+
+        public String getAddress() {
+            return address;
         }
     }
 

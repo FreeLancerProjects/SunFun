@@ -76,7 +76,13 @@ public class FragmentUpgradeToCompany extends Fragment {
         binding.setUserModel(userModel);
         binding.setViewModel(upgradeViewModel);
         upgradeViewModel.setContext(activity);
+        upgradeViewModel.data.observe(this, userModel ->
+        {
+            this.userModel = userModel;
+            activity.refreshProfile(userModel);
+            activity.Back();
 
+        });
         lang = Paper.book().read("lang", Locale.getDefault().getLanguage());
         binding.setLang(lang);
         binding.image.setOnClickListener((view -> CreateImageAlertDialog()));
@@ -97,23 +103,17 @@ public class FragmentUpgradeToCompany extends Fragment {
         Button btn_cancel = view.findViewById(R.id.btn_cancel);
 
 
-        btn_camera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-                Check_CameraPermission();
+        btn_camera.setOnClickListener(v -> {
+            dialog.dismiss();
+            Check_CameraPermission();
 
-            }
         });
 
-        btn_gallery.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-                Check_ReadPermission();
+        btn_gallery.setOnClickListener(v -> {
+            dialog.dismiss();
+            Check_ReadPermission();
 
 
-            }
         });
 
         btn_cancel.setOnClickListener(new View.OnClickListener() {

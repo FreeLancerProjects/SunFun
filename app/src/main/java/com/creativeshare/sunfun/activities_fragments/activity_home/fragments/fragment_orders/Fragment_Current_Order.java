@@ -1,6 +1,7 @@
 package com.creativeshare.sunfun.activities_fragments.activity_home.fragments.fragment_orders;
 
 
+import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.creativeshare.sunfun.R;
 import com.creativeshare.sunfun.activities_fragments.activity_home.activity.HomeActivity;
+import com.creativeshare.sunfun.activities_fragments.activity_order_details.OrderDetailsActivity;
 import com.creativeshare.sunfun.adapter.MyOrderAdapter;
 import com.creativeshare.sunfun.databinding.FragmentCurrentPreviousOrderBinding;
 import com.creativeshare.sunfun.models.OrderDataModel;
@@ -107,6 +109,9 @@ public class Fragment_Current_Order extends Fragment {
 
         myOrderViewModel.dataLoadMoreCurrentOrder.observe(this, orderModelList -> {
             isLoading = false;
+            Fragment_Current_Order.this.orderModelList.remove(Fragment_Current_Order.this.orderModelList.size()-1);
+            adapter.notifyItemRemoved(Fragment_Current_Order.this.orderModelList.size()-1);
+
             Fragment_Current_Order.this.orderModelList.addAll(orderModelList);
             adapter.notifyDataSetChanged();
         });
@@ -137,4 +142,9 @@ public class Fragment_Current_Order extends Fragment {
     }
 
 
+    public void setItemData(OrderDataModel.OrderModel orderModel) {
+        Intent intent = new Intent(activity, OrderDetailsActivity.class);
+        intent.putExtra("data",orderModel);
+        startActivity(intent);
+    }
 }

@@ -80,6 +80,8 @@
                     android:textStyle="bold"
                     android:textColor="@color/colorPrimary"
                     android:text='@{lang.equals("ar")?orderModel.event_ar_title:orderModel.event_en_title}'
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
                     />
                 <TextView
                     android:id="@+id/tv1"
@@ -91,6 +93,8 @@
                     android:textColor="@color/gray4"
                     android:text="@string/ticket_num"
                     android:layout_marginTop="5dp"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
 
                     />
 
@@ -117,7 +121,8 @@
                     android:layout_marginTop="8dp"
                     android:textSize="14sp"
                     android:text="@{orderModel.booking_code}"
-
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
                     />
 
                 <TextView
@@ -141,7 +146,8 @@
                     android:layout_marginTop="5dp"
                     android:text="@string/order_state"
                     android:textColor="@color/gray4"
-
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
                     />
 
                 <TextView
@@ -153,7 +159,8 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     android:layout_marginBottom="5dp"
                     android:text='@{String.valueOf(orderModel.status).equals("3")?@string/completed:@string/pending}'
-
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
 
                     />
 
@@ -191,7 +198,7 @@
             android:textColor="@color/colorPrimary"
             android:textSize="14sp"
             android:background="@drawable/tv_bg"
-            date="@{orderModel.created_at}"
+            date="@{orderModel.date}"
             />
     </LinearLayout>
 

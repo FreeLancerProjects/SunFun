@@ -9,6 +9,10 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <application
         android:name=".share.App"
@@ -18,30 +22,34 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning,UnusedAttribute"
         android:usesCleartextTraffic="true"
+        tools:ignore="GoogleAppIndexingWarning,UnusedAttribute"
         tools:targetApi="m">
+        <activity android:name=".activities_fragments.activity_order_details.OrderDetailsActivity"></activity>
+        <activity android:name=".activities_fragments.activity_company_action.CompanyActionActivity" />
+        <activity android:name=".activities_fragments.scan_booking_details.ScanBookingDetailsActivity" />
+        <activity android:name=".activities_fragments.activity_qr_code.QRCodeActivity" />
 
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
 
-        <activity android:name=".activities_fragments.add_activity.ActivityAddActivity"
+        <activity
+            android:name=".activities_fragments.add_activity.ActivityAddActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:windowSoftInputMode="stateAlwaysHidden"
-            />
-        <activity android:name=".activities_fragments.activity_my_events.MyEventsActivity"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activities_fragments.activity_my_events.MyEventsActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
-            />
-        <activity android:name=".activities_fragments.activity_app_info.AppInfoActivity"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+        <activity
+            android:name=".activities_fragments.activity_app_info.AppInfoActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
-            />
-        <activity android:name=".activities_fragments.activity_book_event.BookEventActivity"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+        <activity
+            android:name=".activities_fragments.activity_book_event.BookEventActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
-            />
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
