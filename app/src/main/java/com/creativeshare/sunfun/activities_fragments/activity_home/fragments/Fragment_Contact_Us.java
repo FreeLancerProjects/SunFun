@@ -54,6 +54,7 @@ public class Fragment_Contact_Us extends Fragment {
 
         }
 
+        contactViewModel.success.observe(this,aBoolean -> activity.Back());
         binding.arrow.setOnClickListener(view -> activity.Back());
 
 

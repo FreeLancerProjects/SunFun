@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.databinding.ObservableField;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.MutableLiveData;
 
 import com.creativeshare.sunfun.R;
 
@@ -24,6 +25,7 @@ public class ContactViewModel extends AndroidViewModel implements ContactListene
     public ObservableField<String> email_error = new ObservableField<>();
     public ObservableField<String> subject_error = new ObservableField<>();
     public ObservableField<String> message_error = new ObservableField<>();
+    public MutableLiveData<Boolean> success = new MutableLiveData<>();
 
     private Repository repository;
 
@@ -76,6 +78,7 @@ public class ContactViewModel extends AndroidViewModel implements ContactListene
 
     @Override
     public void onSuccess() {
+        success.postValue(true);
         Toast.makeText(context, R.string.suc, Toast.LENGTH_SHORT).show();
     }
 

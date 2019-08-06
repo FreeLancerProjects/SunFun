@@ -140,5 +140,38 @@ public class Repository {
     public void editPassword(int user_id,String password, EditProfileListener listener, Context context)
     {
 
+        ProgressDialog dialog = Common.createProgressDialog(context,context.getString(R.string.wait));
+        dialog.setCancelable(false);
+        dialog.show();
+
+        Api.getService(Tags.base_url)
+                .updatePassword(user_id,password)
+                .enqueue(new Callback<UserModel>() {
+                    @Override
+                    public void onResponse(Call<UserModel> call, Response<UserModel> response) {
+                        dialog.dismiss();
+                        if (response.isSuccessful()&&response.body()!=null)
+                        {
+                            listener.onSuccess(response.body());
+                        }else
+                        {
+                            try {
+                                Log.e("respons",response.errorBody().string());
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            listener.onFailed(response.code());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<UserModel> call, Throwable t) {
+                        try {
+                            dialog.dismiss();
+                            listener.onError(t.getMessage());
+
+                        }catch (Exception e){}
+                    }
+                });
     }
 }

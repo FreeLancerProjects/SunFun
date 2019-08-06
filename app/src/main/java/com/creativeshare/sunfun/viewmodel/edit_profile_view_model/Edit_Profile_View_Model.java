@@ -29,7 +29,6 @@ public class Edit_Profile_View_Model extends AndroidViewModel implements EditPro
     public ObservableField<String> phone_error = new ObservableField<>();
     public ObservableField<String> email_error = new ObservableField<>();
     public ObservableField<String> responsible_name_error = new ObservableField<>();
-
     public MutableLiveData<UserModel> userModelMutableLiveData;
     private Context context;
     private Repository repository;

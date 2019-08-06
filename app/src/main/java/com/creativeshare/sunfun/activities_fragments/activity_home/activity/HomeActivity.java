@@ -43,6 +43,7 @@ import com.creativeshare.sunfun.remote.Api;
 import com.creativeshare.sunfun.singleton.Singleton;
 import com.creativeshare.sunfun.tags.Tags;
 import com.creativeshare.sunfun.viewmodel.user_profile_view_model.UserViewModel;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -115,8 +116,44 @@ public class HomeActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             DisplayFragmentHome();
             DisplayFragmentMain();
-        }
 
+        }
+        updateUserToken();
+
+    }
+
+    private void updateUserToken() {
+        if (userModel!=null)
+        {
+            FirebaseInstanceId.getInstance()
+                    .getInstanceId()
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful())
+                        {
+                            String token = task.getResult().getToken();
+                            Api.getService(Tags.base_url)
+                                    .updateToken(userModel.getUser().getId(),token)
+                                    .enqueue(new Callback<ResponseBody>() {
+                                        @Override
+                                        public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                            if (response.isSuccessful())
+                                            {
+                                                Log.e("token","updated successfully");
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onFailure(Call<ResponseBody> call, Throwable t) {
+                                           try {
+                                               Log.e("token",t.getMessage());
+
+                                           }catch (Exception e){}
+
+                                        }
+                                    });
+                        }
+                    });
+        }
     }
 
     public void getUserData()

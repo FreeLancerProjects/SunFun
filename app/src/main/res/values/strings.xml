@@ -176,6 +176,8 @@
     <string name="accept">Accept</string>
     <string name="refuse">Refuse</string>
     <string name="already_request_send">You already sent a request</string>
+    <string name="no_ticket_av">No ticket available</string>
+    <string name="company">Company :</string>
 
 
 </resources>

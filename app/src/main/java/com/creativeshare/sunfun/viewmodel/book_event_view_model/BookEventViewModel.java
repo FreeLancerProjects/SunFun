@@ -69,8 +69,16 @@ public class BookEventViewModel extends AndroidViewModel implements BookEventLis
 
     @Override
     public void onFailed(int code) {
+        if (code == 405)
+        {
+            Toast.makeText(context, context.getString(R.string.no_ticket_av), Toast.LENGTH_SHORT).show();
+
+        }else
+            {
+                Toast.makeText(context, context.getString(R.string.failed), Toast.LENGTH_SHORT).show();
+
+            }
         Log.e("code_error",code+"___");
-        Toast.makeText(context, context.getString(R.string.failed), Toast.LENGTH_SHORT).show();
     }
 
     @Override

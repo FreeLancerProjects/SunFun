@@ -80,6 +80,7 @@ public class Fragment_Company_Edit_Profile extends Fragment implements OnCountry
         updateUIData(userModel);
 
         edit_profile_view_model.userModelMutableLiveData.observe(this, userModel -> {
+            Toast.makeText(activity, getString(R.string.suc), Toast.LENGTH_SHORT).show();
             Fragment_Company_Edit_Profile.this.userModel = userModel;
             updateUIData(userModel);
             activity.refreshProfile(userModel);

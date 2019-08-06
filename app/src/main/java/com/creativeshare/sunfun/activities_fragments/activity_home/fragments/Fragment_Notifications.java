@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -150,9 +151,11 @@ public class Fragment_Notifications extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 333&&resultCode== Activity.RESULT_OK&&data!=null)
         {
+            Log.e("1","1");
             if (data.hasExtra("action"))
             {
                 int response = data.getExtras().getInt("action");
+                Log.e("2",response+"-");
 
                 if (response == 1)
                 {

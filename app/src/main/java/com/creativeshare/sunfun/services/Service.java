@@ -239,6 +239,20 @@ public interface Service {
     Call<UserModel> getUserData(@Field("user_id") String user_id
     );
 
+    @FormUrlEncoded
+    @POST("api/user_password")
+    Call<UserModel> updatePassword(@Field("id") int id,
+                                   @Field("password") String password
+
+    );
+
+    @FormUrlEncoded
+    @POST("api/updateToken")
+    Call<ResponseBody> updateToken(@Field("user_id_fk") int user_id,
+                                   @Field("phone_token") String phone_token
+
+    );
+
 }
 
 

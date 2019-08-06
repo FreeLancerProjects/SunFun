@@ -88,7 +88,7 @@ public class CompanyActionActivity extends AppCompatActivity {
                         {
                             Intent intent = getIntent();
                             intent.putExtra("action",1);
-                            setResult(RESULT_OK);
+                            setResult(RESULT_OK,intent);
                             finish();
                         }else
                             {
@@ -128,7 +128,7 @@ public class CompanyActionActivity extends AppCompatActivity {
                         {
                             Intent intent = getIntent();
                             intent.putExtra("action",2);
-                            setResult(RESULT_OK);
+                            setResult(RESULT_OK,intent);
                             finish();
                         }else
                         {

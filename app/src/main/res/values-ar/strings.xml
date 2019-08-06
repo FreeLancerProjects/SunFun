@@ -163,8 +163,8 @@
     <string name="day">يوم</string>
 
     <string name="new_order">طلب جديد.</string>
-    <string name="order_accepted">تم قبول طلبك</string>
-    <string name="order_refused">تم رفض طلبك.</string>
+    <string name="order_accepted">تم قبول الطلب</string>
+    <string name="order_refused">تم رفض الطلب</string>
     <string name="company_accepted">تم قبول طلبك كشركة.</string>
     <string name="company_refused">تم رفض طلبك كشركة.</string>
     <string name="create_event_accepted">تم إضافة حدث جديد لك.</string>
@@ -177,5 +177,7 @@
     <string name="accept">قبول</string>
     <string name="refuse">رفض</string>
     <string name="already_request_send">تم إرسال طلبك من قبل</string>
+    <string name="no_ticket_av">عدد التزاكر غير متاح.</string>
+    <string name="company">منظم الحدث :</string>
 
 </resources>

@@ -259,7 +259,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/gray7"
                         android:textSize="14sp"
-                        android:text="@{String.valueOf(bookingModel.booking.total_booking_price)}"
+                        android:text='@{String.valueOf(bookingModel.booking.total_booking_price)+" "+@string/sar}'
 
                         />
 

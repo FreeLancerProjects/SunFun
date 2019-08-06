@@ -84,7 +84,7 @@ public class MyEventsActivity extends AppCompatActivity implements Swipe.SwipeLi
 
         adapter = new MyEventsAdapter(eventModelList, this);
         binding.recView.setAdapter(adapter);
-        ItemTouchHelper.SimpleCallback simpleCallback = new Swipe(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT, this);
+        ItemTouchHelper.SimpleCallback simpleCallback = new Swipe(0, ItemTouchHelper.LEFT , this);
         new ItemTouchHelper(simpleCallback).attachToRecyclerView(binding.recView);
         eventViewModel.setContext(this);
         eventViewModel.data.observe(this, eventModelList -> {

@@ -25,15 +25,33 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute"
         tools:targetApi="m">
-        <activity android:name=".activities_fragments.activity_order_details.OrderDetailsActivity"></activity>
-        <activity android:name=".activities_fragments.activity_company_action.CompanyActionActivity" />
-        <activity android:name=".activities_fragments.scan_booking_details.ScanBookingDetailsActivity" />
-        <activity android:name=".activities_fragments.activity_qr_code.QRCodeActivity" />
+        <activity android:name=".activities_fragments.activity_order_details.OrderDetailsActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
+            />
+        <activity android:name=".activities_fragments.activity_company_action.CompanyActionActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
+            />
+        <activity android:name=".activities_fragments.scan_booking_details.ScanBookingDetailsActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
+            />
+        <activity android:name=".activities_fragments.activity_qr_code.QRCodeActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
+            />
 
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />
-
+        <service
+            android:name=".notifications.FireBaseMessaging"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
         <activity
             android:name=".activities_fragments.add_activity.ActivityAddActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"

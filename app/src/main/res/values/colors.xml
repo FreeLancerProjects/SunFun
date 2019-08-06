@@ -21,4 +21,5 @@
     <color name="end_color">#4c9bfa</color>
     <color name="rating">#FBC02D</color>
     <color name="active">#43A047</color>
+    <color name="book_trans">#99000000</color>
 </resources>

@@ -20,6 +20,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import io.paperdb.Paper;
 
 public class UI_General_Method {
 
@@ -110,6 +111,18 @@ public class UI_General_Method {
        long d = Long.parseLong(date)*1000;
        String n_date = TimeAgo.getTimeAgo(d,textView.getContext());
        textView.setText(n_date);
+
+    }
+
+    @BindingAdapter("event_date")
+    public static void convertToEventDate(TextView textView,String date)
+    {
+        Paper.init(textView.getContext());
+        String lang = Paper.book().read("lang",Locale.getDefault().getLanguage());
+        long d = Long.parseLong(date)*1000;
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd\n MMM",new Locale(lang));
+        String dd = dateFormat.format(new Date(d));
+        textView.setText(dd);
 
     }
 

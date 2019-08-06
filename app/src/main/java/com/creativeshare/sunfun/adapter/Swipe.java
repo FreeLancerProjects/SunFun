@@ -77,11 +77,11 @@ public class Swipe extends ItemTouchHelper.SimpleCallback {
 
                     if (dX>0)
                     {
-                        holder.binding.consBackground.setBackgroundResource(R.color.active);
+                       /* holder.binding.consBackground.setBackgroundResource(R.color.active);
                         holder.binding.img2.setVisibility(View.GONE);
                         holder.binding.tv2.setVisibility(View.GONE);
                         holder.binding.img1.setVisibility(View.VISIBLE);
-                        holder.binding.tv1.setVisibility(View.VISIBLE);
+                        holder.binding.tv1.setVisibility(View.VISIBLE);*/
 
 
                     }else

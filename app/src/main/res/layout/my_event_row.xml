@@ -142,6 +142,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:src="@drawable/ic_edit"
                 android:padding="5dp"
+                android:visibility="gone"
                 />
             <ImageView
                 android:id="@+id/imageDelete"

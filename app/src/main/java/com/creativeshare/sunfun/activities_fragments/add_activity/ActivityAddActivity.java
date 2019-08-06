@@ -90,6 +90,7 @@ public class ActivityAddActivity extends AppCompatActivity implements DatePicker
         addActivityViewModel.setContext(this);
         addActivityViewModel.success.observe(this,aBoolean ->
         {
+            Toast.makeText(this, getString(R.string.suc), Toast.LENGTH_SHORT).show();
             binding.image.setImageBitmap(null);
             binding.icon.setVisibility(View.VISIBLE);
             binding.tvEndDate.setText("");
